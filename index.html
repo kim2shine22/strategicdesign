@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Kim Matthews — Strategy and Design Portfolio. Strategic storytelling for public interest communications." />
+  <title>Kim Matthews Portfolio</title>
+
+  <!-- Preconnect for faster font loading -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <!-- Overpass Mono: hero headings | IBM Plex Sans: nav + body | Special Elite: typewriter accent -->
+  <link href="https://fonts.googleapis.com/css2?family=Overpass+Mono:wght@400;600;700&family=IBM+Plex+Sans:wght@300;400;500;600&family=Special+Elite&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/reset.css" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+
+  <!-- Skip link: keyboard/screen reader users jump straight to content -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- ===================== HEADER ===================== -->
+  <header class="site-header" role="banner">
+    <div class="header-inner">
+
+      <a href="#home" class="site-title" aria-label="Kim Matthews Portfolio — home">
+        Kim Matthews Portfolio
+      </a>
+
+      <!-- Mobile hamburger toggle -->
+      <button
+        class="nav-toggle"
+        aria-expanded="false"
+        aria-controls="primary-nav"
+        aria-label="Open navigation menu"
+      >
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+
+      <nav id="primary-nav" class="primary-nav" aria-label="Primary navigation">
+        <ul role="list">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#methodology">Methodology</a></li>
+          <li><a href="#case-studies">Case Studies</a></li>
+          <li><a href="#resume">Resume</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+
+    </div>
+  </header>
+
+  <!-- ===================== MAIN ===================== -->
+  <main id="main-content">
+
+    <!-- HERO -->
+    <section class="hero" id="home" aria-label="Hero">
+      <div class="hero-inner">
+
+        <div class="hero-text">
+          <h1 class="hero-heading">
+            Strategic<br />
+            Storytelling,<br />
+            A Work Horse<br />
+            Solution
+          </h1>
+        </div>
+
+        <div class="hero-visual" aria-hidden="true">
+          <div class="tv-wrapper" id="tv-unit" role="button" tabindex="0" aria-label="Watch portfolio video — click to open full screen" aria-haspopup="dialog">
+
+            <img
+              src="assets/images/liltv.png"
+              alt=""
+              class="tv-image"
+              loading="eager"
+              decoding="async"
+            />
+
+            <!-- CRT screen area — glow activates on hover -->
+            <div class="tv-screen-overlay" id="tv-screen">
+              <!-- YouTube iframe injected here by video.js when popup opens -->
+            </div>
+
+            <!-- PG-rating style badge — positioned above bottom buttons -->
+            <div class="tv-badge" aria-hidden="true">
+              <span class="tv-badge-text">FOR BEST VIEWING</span>
+              <span class="tv-badge-sub">CLICK FOR FULL SCREEN</span>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!--
+      ===================== SECTION TEMPLATE =====================
+      Copy this block to add new sections. Change id, aria-label,
+      and --section-bg to shift the background color.
+      Reorder sections by cutting and pasting blocks — no CSS needed.
+
+      <section class="content-section" id="methodology"
+               style="--section-bg: var(--hero-orange);"
+               aria-label="Methodology">
+        <div class="section-inner">
+          <h2 class="section-heading">Methodology</h2>
+          <div class="section-body">Content here.</div>
+        </div>
+      </section>
+    -->
+
+  </main>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="footer-inner">
+      <p>&copy; <span id="year"></span> Kim Matthews. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- ===================== VIDEO POPUP MODAL ===================== -->
+  <div
+    class="video-modal"
+    id="video-modal"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Portfolio video — full screen view"
+    hidden
+  >
+    <div class="video-modal-backdrop" id="modal-backdrop"></div>
+    <div class="video-modal-content">
+      <button class="video-modal-close" id="modal-close" aria-label="Close video">
+        <span aria-hidden="true">✕</span>
+      </button>
+      <div class="video-modal-frame">
+        <iframe
+          id="video-iframe"
+          src=""
+          title="Kim Matthews — Portfolio Video"
+          frameborder="0"
+          allow="autoplay; fullscreen"
+          allowfullscreen
+        ></iframe>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/nav.js" defer></script>
+  <script src="js/video.js" defer></script>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+
+</body>
+</html>
