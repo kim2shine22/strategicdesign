@@ -349,7 +349,7 @@ a:focus-visible {
 
 .hero-mobile-tv {
   width: 100%;
-  max-width: 260px;
+  max-width: 130px;
   height: auto;
   display: block;
   mix-blend-mode: multiply;
