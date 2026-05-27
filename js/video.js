@@ -8,7 +8,7 @@
 (function () {
   'use strict';
 
-  var VIDEO_SRC = 'Assets/Videos/portfolio.mp4';
+  var VIDEO_SRC = 'assets/videos/portfolio.mp4';
 
   var tvUnit   = document.getElementById('tv-unit');
   var modal    = document.getElementById('video-modal');
