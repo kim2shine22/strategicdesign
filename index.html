@@ -64,7 +64,7 @@
 
         <div class="hero-text">
           <img
-            src="assets/SVG/heroheading.svg"
+            src="Assets/SVG/heroheading.svg"
             alt="Strategic Storytelling, A Work Horse Solution"
             class="hero-heading-svg"
           />
@@ -74,45 +74,59 @@
           <div class="tv-wrapper" id="tv-unit" role="button" tabindex="0" aria-label="Watch portfolio video — click to open full screen" aria-haspopup="dialog">
 
             <img
-              src="assets/images/liltv.png"
+              src="Assets/Images/liltv.png"
               alt=""
               class="tv-image"
               loading="eager"
               decoding="async"
             />
 
-            <!-- CRT screen area — glow activates on hover -->
             <div class="tv-screen-overlay" id="tv-screen">
-              <!-- YouTube iframe injected here by video.js when popup opens -->
+              <!--
+                SELF-HOSTED VIDEO
+                Place your MP4 file at: Assets/Videos/portfolio.mp4
+                Swap the src value when your file is ready.
+              -->
+              <video
+                class="tv-video"
+                autoplay
+                muted
+                loop
+                playsinline
+                preload="metadata"
+              >
+                <source src="Assets/Videos/portfolio.mp4" type="video/mp4" />
+              </video>
             </div>
 
-            <!-- SVG label badge — positioned above bottom buttons -->
             <div class="tv-badge" aria-hidden="true">
-              <img src="assets/SVG/label.svg" alt="" class="tv-badge-svg" />
+              <img src="Assets/SVG/label.svg" alt="" class="tv-badge-svg" />
             </div>
 
           </div>
         </div>
 
       </div>
+
+      <!-- Subheading anchored to bottom of hero — CTA + methodology intro -->
+      <div class="hero-subheading">
+        <img
+          src="Assets/SVG/subheading1.svg"
+          alt="The Methodology"
+          class="subheading-svg"
+        />
+      </div>
+
     </section>
 
     <!-- ===================== METHODOLOGY ===================== -->
     <section class="methodology" id="methodology" aria-label="Methodology">
       <div class="methodology-inner">
 
-        <div class="subheading-wrap">
-          <img
-            src="assets/SVG/subheading1.svg"
-            alt="The Methodology"
-            class="subheading-svg"
-          />
-        </div>
-
         <!-- Decorative spine — hidden on mobile -->
         <div class="spine-wrap" aria-hidden="true">
           <img
-            src="assets/images/flowerspine.png"
+            src="Assets/Images/flowerspine.png"
             alt=""
             class="spine-img"
             loading="lazy"
