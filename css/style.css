@@ -467,7 +467,7 @@ a:focus-visible {
 .methodology-heading {
   display: flex;
   justify-content: center;
-  padding: var(--space-1) var(--content-pad) var(--space-6);
+  padding: 0 var(--content-pad) var(--space-6);
 }
 
 .subheading-svg {
@@ -482,7 +482,7 @@ a:focus-visible {
    Adjust top in small increments if visual alignment needs tuning. */
 .spine-wrap {
   position: absolute;
-  top: var(--space-6);   /* tweak this value to raise/lower vs heading */
+  top: clamp(7rem, 10vw, 10rem);   /* push spine down — tune in 1rem increments */
   left: 0;
   width: clamp(300px, 75vw, 1080px);
   z-index: 1;
