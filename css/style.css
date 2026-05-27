@@ -256,7 +256,7 @@ a:focus-visible {
 }
 
 .hero-text {
-  padding-left: 3rem;    /* aligns S of Strategic under M of Matthews in header */
+  padding-left: clamp(1rem, 2vw, 3rem);
   padding-right: 0;
   padding-top: 12%;
 }
@@ -289,10 +289,10 @@ a:focus-visible {
   transition: filter 400ms ease;
 }
 
-/* TV lights up on hover */
-.tv-wrapper:hover .tv-image,
-.tv-wrapper:focus .tv-image {
-  filter: brightness(1.12);
+/* TV lights up on hover — glow on wrapper avoids mix-blend-mode interference */
+.tv-wrapper:hover,
+.tv-wrapper:focus {
+  filter: brightness(1.1) drop-shadow(0 0 25px rgba(247, 187, 67, 0.8));
 }
 
 .tv-screen-overlay {
@@ -309,13 +309,7 @@ a:focus-visible {
   transition: box-shadow 400ms ease;
 }
 
-/* Gold glow on hover */
-.tv-wrapper:hover .tv-screen-overlay,
-.tv-wrapper:focus .tv-screen-overlay {
-  box-shadow:
-    0 0 18px 6px rgba(247, 187, 67, 0.45),
-    0 0 40px 14px rgba(247, 187, 67, 0.20);
-}
+/* Gold glow handled by .tv-wrapper:hover above */
 
 /* -------------------------------------------------------
    TV BADGE — PG-rating style rectangle
