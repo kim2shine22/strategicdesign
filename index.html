@@ -70,6 +70,28 @@
           />
         </div>
 
+        <!-- Mobile-only: TV chassis + video stacked, no screen overlay -->
+        <div class="hero-mobile-media" aria-hidden="true">
+          <img
+            src="assets/images/liltv.png"
+            alt=""
+            class="hero-mobile-tv"
+            loading="eager"
+            decoding="async"
+          />
+          <video
+            class="hero-mobile-video"
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="metadata"
+          >
+            <source src="assets/video/placeholder.mov" type="video/mp4" />
+            <source src="assets/video/placeholder.mov" type="video/quicktime" />
+          </video>
+        </div>
+
         <div class="hero-visual" aria-hidden="true">
           <div class="tv-wrapper" id="tv-unit" role="button" tabindex="0" aria-label="Watch portfolio video — click to open full screen" aria-haspopup="dialog">
 
@@ -82,11 +104,6 @@
             />
 
             <div class="tv-screen-overlay" id="tv-screen">
-              <!--
-                SELF-HOSTED VIDEO
-                Place your MP4 file at: assets/videos/portfolio.mp4
-                Swap the src value when your file is ready.
-              -->
               <video
                 class="tv-video"
                 autoplay
@@ -95,7 +112,8 @@
                 playsinline
                 preload="metadata"
               >
-                <source src="assets/videos/portfolio.mp4" type="video/mp4" />
+                <source src="assets/video/placeholder.mov" type="video/mp4" />
+                <source src="assets/video/placeholder.mov" type="video/quicktime" />
               </video>
             </div>
 
@@ -108,33 +126,55 @@
 
       </div>
 
-      <!-- Subheading anchored to bottom of hero — CTA + methodology intro -->
-      <div class="hero-subheading">
+      <!-- Mobile TV stack — hidden on desktop, fills hero blank space on mobile.
+           TV image sits on top; video plays below as a separate element (no overlay). -->
+      <div class="mobile-hero-tv" aria-hidden="true">
         <img
-          src="assets/SVG/subheading1.svg"
-          alt="The Methodology"
-          class="subheading-svg"
+          src="assets/images/liltv.png"
+          alt=""
+          class="mobile-hero-tv-img"
         />
+        <video
+          class="mobile-hero-video"
+          autoplay
+          muted
+          loop
+          playsinline
+          preload="metadata"
+        >
+          <source src="assets/video/placeholder.mov" type="video/mp4" />
+          <source src="assets/video/placeholder.mov" type="video/quicktime" />
+        </video>
       </div>
 
     </section>
 
     <!-- ===================== METHODOLOGY ===================== -->
     <section class="methodology" id="methodology" aria-label="Methodology">
+
+      <!-- Spine flush to top-left of section — outside inner container, clips at section edges -->
+      <div class="spine-wrap" aria-hidden="true">
+        <img
+          src="assets/images/flowerspine.png"
+          alt=""
+          class="spine-img"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+
       <div class="methodology-inner">
 
-        <!-- Decorative spine — hidden on mobile -->
-        <div class="spine-wrap" aria-hidden="true">
+        <!-- Section heading — moved here from hero so spine top flower aligns with it -->
+        <div class="methodology-heading">
           <img
-            src="assets/images/flowerspine.png"
-            alt=""
-            class="spine-img"
-            loading="lazy"
-            decoding="async"
+            src="assets/SVG/subheading1.svg"
+            alt="The 7-step Methodology"
+            class="subheading-svg"
           />
         </div>
 
-        <!-- Methodology content goes here -->
+        <!-- Methodology step content goes here -->
 
       </div>
     </section>

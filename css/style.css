@@ -46,6 +46,7 @@
   --space-4:  1rem;
   --space-6:  1.5rem;
   --space-8:  2rem;
+  --space-10: 2.5rem;
   --space-12: 3rem;
   --space-16: 4rem;
   --space-20: 5rem;
@@ -141,11 +142,11 @@ a:focus-visible {
 
 .header-inner {
   display: flex;
-  align-items: flex-end;        /* all content sits at bottom of header */
+  align-items: flex-end;
   justify-content: space-between;
   max-width: var(--maxw);
   margin: 0 auto;
-  padding: 0 var(--content-pad) var(--space-2);  /* bottom padding creates floor gap */
+  padding: 0 var(--content-pad) var(--space-2);
   height: 100%;
 }
 
@@ -248,22 +249,7 @@ a:focus-visible {
   min-height: calc(100vh - var(--header-height));
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-}
-
-/* Subheading sits just below the TV */
-.hero-subheading {
-  display: flex;
-  justify-content: center;
-  padding: 0 var(--content-pad) var(--space-6);
-  margin-top: calc(-1 * var(--space-8));
-}
-
-.subheading-svg {
-  width: 65%;
-  max-width: 880px;
-  height: auto;
-  display: block;
+  justify-content: flex-start;
 }
 
 .hero-inner {
@@ -285,7 +271,7 @@ a:focus-visible {
 
 .hero-heading-svg {
   width: 100%;
-  max-width: 1560px;   /* tripled from 520px */
+  max-width: 1560px;
   height: auto;
   display: block;
 }
@@ -310,7 +296,6 @@ a:focus-visible {
   transition: filter 400ms ease;
 }
 
-/* TV lights up on hover — glow on wrapper avoids mix-blend-mode interference */
 .tv-wrapper:hover,
 .tv-wrapper:focus {
   filter: brightness(1.1) drop-shadow(0 0 25px rgba(247, 187, 67, 0.8));
@@ -325,12 +310,9 @@ a:focus-visible {
   border-radius: 6px;
   overflow: hidden;
   cursor: pointer;
-  /* Uncomment to calibrate position: */
-  /* background: rgba(255,0,0,0.3); */
   transition: box-shadow 400ms ease;
 }
 
-/* Self-hosted video fills the TV screen */
 .tv-video {
   position: absolute;
   top: 0;
@@ -340,10 +322,6 @@ a:focus-visible {
   object-fit: cover;
 }
 
-/* -------------------------------------------------------
-   TV BADGE — PG-rating style rectangle
-   Positioned in the mustard cabinet area below the screen.
-------------------------------------------------------- */
 .tv-badge {
   position: absolute;
   top:    87%;
@@ -361,6 +339,28 @@ a:focus-visible {
 .tv-wrapper:hover .tv-badge,
 .tv-wrapper:focus .tv-badge {
   opacity: 0.85;
+}
+
+
+/* Mobile TV + video in hero — hidden on desktop */
+.hero-mobile-media {
+  display: none;
+}
+
+.hero-mobile-tv {
+  width: 100%;
+  max-width: 260px;
+  height: auto;
+  display: block;
+  mix-blend-mode: multiply;
+}
+
+.hero-mobile-video {
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+  display: block;
+  border-radius: 4px;
 }
 
 
@@ -440,16 +440,19 @@ a:focus-visible {
 
 /* ==========================================================
    6. METHODOLOGY SECTION
-   Gradient: lightest-orange → hero-orange, transition starts
-   at the very top (bottom of hero/TV) and completes before
-   the subheading appears.
-   ♿ Flowerspine is decorative — aria-hidden, no alt text needed.
+   Background: lightest-orange — the spine and heading sit on
+   this cream ground. overflow:hidden clips spine at section
+   edges. min-height prevents collapse while inner is sparse.
+   ♿ Spine and mobile TV are decorative — aria-hidden.
 ========================================================== */
 
 .methodology {
   background: var(--hero-orange);
   padding-top: 0;
   padding-bottom: var(--space-20);
+  position: relative;
+  overflow: hidden;
+  min-height: clamp(800px, 130vh, 1600px);
 }
 
 .methodology-inner {
@@ -457,20 +460,48 @@ a:focus-visible {
   margin: 0 auto;
   padding: 0 var(--content-pad);
   position: relative;
+  z-index: 2;  /* sits above spine (z-index: 1) */
 }
 
-/* Flower spine — starts left, just below subheading, 75% wide */
+/* Section heading — centered, above spine content */
+.methodology-heading {
+  display: flex;
+  justify-content: center;
+  padding: var(--space-1) var(--content-pad) var(--space-6);
+}
+
+.subheading-svg {
+  width: 65%;
+  max-width: 880px;
+  height: auto;
+  display: block;
+}
+
+/* Flower spine — absolute to section, clips at overflow:hidden boundary.
+   top value aligns first flower with the heading row.
+   Adjust top in small increments if visual alignment needs tuning. */
 .spine-wrap {
-  margin-top: calc(-1 * var(--space-4));  /* slight overlap with subheading bottom */
-  width: 75%;
+  position: absolute;
+  top: var(--space-6);   /* tweak this value to raise/lower vs heading */
+  left: 0;
+  width: clamp(300px, 75vw, 1080px);
+  z-index: 1;
+  pointer-events: none;
 }
 
 .spine-img {
   width: 100%;
   height: auto;
   display: block;
-  mix-blend-mode: multiply;  /* removes black background on golden section */
+  mix-blend-mode: multiply;
 }
+
+/* Mobile TV stack — hidden on desktop, shown in hero on mobile */
+.mobile-hero-tv {
+  display: none;
+}
+
+/* placeholder — mobile-tv-wrap removed from methodology */
 
 
 /* ==========================================================
@@ -505,15 +536,6 @@ a:focus-visible {
   max-width: 72ch;
 }
 
-/*
-  GRAPHIC + LABEL UTILITY
-  Position a label above, below, left, or right of any image.
-
-  <div class="graphic-block label-below">
-    <img src="..." alt="Description" />
-    <p class="graphic-label">Caption text</p>
-  </div>
-*/
 .graphic-block {
   display: flex;
   flex-direction: column;
@@ -535,7 +557,7 @@ a:focus-visible {
 
 
 /* ==========================================================
-   7. FOOTER
+   8. FOOTER
 ========================================================== */
 
 .site-footer {
@@ -560,8 +582,9 @@ a:focus-visible {
 
 
 /* ==========================================================
-   8. RESPONSIVE — MOBILE (max 768px)
-   TV hidden. Single column. Clean and scannable.
+   9. RESPONSIVE — MOBILE (max 768px)
+   TV hidden on hero. Mobile TV shown in methodology.
+   Spine hidden on mobile. Clean single column.
 ========================================================== */
 
 @media (max-width: 768px) {
@@ -611,13 +634,61 @@ a:focus-visible {
     max-width: 100%;
   }
 
+  /* Hero TV hidden on mobile — mobile TV stack in hero section shows instead */
   .hero-visual {
     display: none;
   }
 
-  /* Hide decorative spine on mobile — keeps layout clean */
+  /* Hero mobile media — TV chassis + video stacked */
+  .hero-mobile-media {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-4);
+    padding: var(--space-4) 0 var(--space-6);
+  }
+  .mobile-hero-tv {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-4);
+    padding: 0 var(--content-pad) var(--space-8);
+  }
+
+  .mobile-hero-tv-img {
+    width: 65%;
+    max-width: 260px;
+    height: auto;
+    display: block;
+    mix-blend-mode: multiply;
+  }
+
+  .mobile-hero-video {
+    width: 80%;
+    max-width: 320px;
+    height: auto;
+    display: block;
+    border-radius: 4px;
+  }
+
+  /* Methodology: tighter min-height on mobile */
+  .methodology {
+    min-height: auto;
+  }
+
+  /* Spine hidden on mobile — content reads cleanly without it */
   .spine-wrap {
     display: none;
+  }
+
+  /* Heading centered, full-width SVG on mobile */
+  .methodology-heading {
+    padding: var(--space-6) 0 var(--space-4);
+  }
+
+  .subheading-svg {
+    width: 90%;
+    max-width: 100%;
   }
 
   .content-section {
@@ -633,17 +704,21 @@ a:focus-visible {
 
 
 /* ==========================================================
-   9. RESPONSIVE — MEDIUM (769px–1100px)
-   TV scales down, layout stays two-column.
+   10. RESPONSIVE — MEDIUM (769px–1100px)
+   TV scales down, two-column layout maintained.
 ========================================================== */
 
 @media (min-width: 769px) and (max-width: 1100px) {
 
-  .hero-heading {
-    font-size: clamp(var(--text-2xl), 3.5vw, var(--text-4xl));
+  .hero-heading-svg {
+    max-width: 100%;
   }
 
   .tv-wrapper {
     max-width: 640px;
+  }
+
+  .spine-wrap {
+    width: clamp(300px, 65vw, 800px);
   }
 }
