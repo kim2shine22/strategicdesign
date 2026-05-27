@@ -482,7 +482,7 @@ a:focus-visible {
    Adjust top in small increments if visual alignment needs tuning. */
 .spine-wrap {
   position: absolute;
-  top: clamp(7rem, 10vw, 10rem);   /* push spine down — tune in 1rem increments */
+  top: clamp(2rem, 3vw, 3rem);   /* push spine down — tune in 1rem increments */
   left: 0;
   width: clamp(300px, 75vw, 1080px);
   z-index: 1;
@@ -622,6 +622,11 @@ a:focus-visible {
   .hero-inner {
     grid-template-columns: 1fr;
     padding: var(--space-12) var(--content-pad);
+  }
+
+  /* Hero shrinks to content on mobile — no viewport-height stretch */
+  .hero {
+    min-height: auto;
   }
 
   .hero-text {
