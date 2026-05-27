@@ -249,7 +249,7 @@ a:focus-visible {
   min-height: calc(100vh - var(--header-height));
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: space-between;
 }
 
 .hero-inner {
@@ -339,6 +339,21 @@ a:focus-visible {
 .tv-wrapper:hover .tv-badge,
 .tv-wrapper:focus .tv-badge {
   opacity: 0.85;
+}
+
+
+/* Hero subheading — anchored to bottom of hero by space-between */
+.hero-subheading {
+  display: flex;
+  justify-content: center;
+  padding: 0 var(--content-pad) var(--space-6);
+}
+
+.subheading-svg {
+  width: 65%;
+  max-width: 880px;
+  height: auto;
+  display: block;
 }
 
 
@@ -451,7 +466,6 @@ a:focus-visible {
   padding-top: 0;
   padding-bottom: var(--space-20);
   position: relative;
-  overflow: hidden;
   min-height: clamp(800px, 130vh, 1600px);
 }
 
@@ -482,8 +496,8 @@ a:focus-visible {
    Adjust top in small increments if visual alignment needs tuning. */
 .spine-wrap {
   position: absolute;
-  top: clamp(2rem, 3vw, 3rem);   /* push spine down — tune in 1rem increments */
-  left: 0;
+  top: -167px;   /* locked — do not change */
+  left: 165px;   /* locked — do not change */
   width: clamp(300px, 75vw, 1080px);
   z-index: 1;
   pointer-events: none;
