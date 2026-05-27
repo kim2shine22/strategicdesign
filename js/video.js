@@ -13,7 +13,7 @@
      Paste your YouTube video ID here when ready.
      Example: if URL is youtube.com/watch?v=abc123, ID = abc123
   ------------------------------------------------------- */
-  var VIDEO_ID = 'lY5V4hSLWY8';
+  var VIDEO_ID = 'PASTE_VIDEO_ID_HERE';
 
   /* YouTube embed URL — loop=1 requires playlist param with same ID */
   function buildEmbedURL () {
