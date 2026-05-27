@@ -20,6 +20,8 @@
   --lightest-orange: #fbf1da;
   --twilight:        #4A4E70;
   --twilight-dark:   #363957;
+  --champagne:       #dcc8a8;
+  --saffron:         #e5a04c;
 
   /* Fonts */
   --font-display: 'Overpass Mono', monospace;
@@ -133,25 +135,25 @@ a:focus-visible {
   top: 0;
   z-index: 100;
   height: var(--header-height);
-  background-color: var(--twilight);
+  background-color: var(--champagne);
   box-shadow: var(--shadow-sm);
 }
 
 .header-inner {
   display: flex;
-  align-items: center;
+  align-items: flex-end;        /* all content sits at bottom of header */
   justify-content: space-between;
   max-width: var(--maxw);
   margin: 0 auto;
-  padding: 0 var(--content-pad);
+  padding: 0 var(--content-pad) var(--space-2);  /* bottom padding creates floor gap */
   height: 100%;
 }
 
 .site-title {
   font-family: var(--font-label);
-  font-size: var(--text-xl);
+  font-size: var(--text-base);
   font-weight: 600;
-  color: var(--white);
+  color: var(--black);
   letter-spacing: 0.01em;
   white-space: nowrap;
 }
@@ -170,7 +172,7 @@ a:focus-visible {
   font-family: var(--font-label);
   font-size: var(--text-sm);
   font-weight: 500;
-  color: var(--white);
+  color: var(--black);
   letter-spacing: 0.04em;
   text-transform: uppercase;
   padding: var(--space-1) 0;
@@ -215,7 +217,7 @@ a:focus-visible {
   display: block;
   width: 100%;
   height: 2px;
-  background-color: var(--white);
+  background-color: var(--black);
   border-radius: 2px;
   transition: transform 250ms ease, opacity 150ms ease;
 }
@@ -238,7 +240,6 @@ a:focus-visible {
 
 .hero {
   background-color: var(--lightest-orange);
-  background-image: linear-gradient(to bottom, var(--lightest-orange) 70%, var(--white) 100%);
   min-height: calc(100vh - var(--header-height));
   display: flex;
   align-items: flex-start;
@@ -258,15 +259,14 @@ a:focus-visible {
 .hero-text {
   padding-left: clamp(1rem, 2vw, 3rem);
   padding-right: 0;
-  padding-top: 12%;
+  padding-top: 22%;
 }
 
-.hero-heading {
-  font-family: var(--font-display);
-  font-size: clamp(4rem, 9vw, 7.5rem);
-  font-weight: 700;
-  line-height: 1.5;
-  color: var(--black);
+.hero-heading-svg {
+  width: 100%;
+  max-width: 1560px;   /* tripled from 520px */
+  height: auto;
+  display: block;
 }
 
 .hero-visual {
@@ -320,40 +320,17 @@ a:focus-visible {
   top:    87%;
   left:   7%;
   width:  24%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 0.35rem 0.4rem;
-  border: 2px solid var(--black);
-  background: var(--lightest-orange);
   cursor: pointer;
-  transition: background 300ms ease, color 300ms ease;
-  box-shadow: inset 0 0 0 1px var(--black);
-  gap: 1px;
+}
+
+.tv-badge-svg {
+  width: 100%;
+  height: auto;
+  display: block;
 }
 
 .tv-wrapper:hover .tv-badge,
 .tv-wrapper:focus .tv-badge {
-  background: var(--black);
-  color: var(--lightest-orange);
-}
-
-.tv-badge-text {
-  font-family: var(--font-popup);
-  font-size: 0.55rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  line-height: 1;
-}
-
-.tv-badge-sub {
-  font-family: var(--font-popup);
-  font-size: 0.45rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  line-height: 1;
   opacity: 0.85;
 }
 
@@ -433,9 +410,60 @@ a:focus-visible {
 
 
 /* ==========================================================
-   6. CONTENT SECTION SYSTEM
+   6. METHODOLOGY SECTION
+   Gradient: lightest-orange → hero-orange, transition starts
+   at the very top (bottom of hero/TV) and completes before
+   the subheading appears.
+   ♿ Flowerspine is decorative — aria-hidden, no alt text needed.
+========================================================== */
+
+.methodology {
+  background: linear-gradient(
+    to bottom,
+    var(--lightest-orange) 0%,
+    var(--hero-orange) 28%
+  );
+  padding-top: 0;
+  padding-bottom: var(--space-20);
+}
+
+.methodology-inner {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 0 var(--content-pad);
+  position: relative;
+}
+
+/* Subheading sits at the point where gradient is fully hero-orange */
+.subheading-wrap {
+  padding-top: var(--space-16);
+}
+
+.subheading-svg {
+  width: 65%;
+  max-width: 880px;
+  height: auto;
+  display: block;
+}
+
+/* Flower spine — starts left, just below subheading, 75% wide */
+.spine-wrap {
+  margin-top: calc(-1 * var(--space-4));  /* slight overlap with subheading bottom */
+  width: 75%;
+}
+
+.spine-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  mix-blend-mode: multiply;  /* removes black background on golden section */
+}
+
+
+/* ==========================================================
+   7. CONTENT SECTION SYSTEM
+   Generic sections below methodology.
    Set --section-bg per section inline in HTML.
-   Reorder sections by moving <section> blocks — no CSS needed.
 ========================================================== */
 
 .content-section {
@@ -532,7 +560,7 @@ a:focus-visible {
   .primary-nav {
     position: fixed;
     inset: 0 0 auto 0;
-    background-color: var(--twilight);
+    background-color: var(--champagne);
     padding: calc(var(--header-height) + var(--space-4)) var(--content-pad) var(--space-8);
     border-bottom: 3px solid var(--hero-orange);
     box-shadow: var(--shadow-lg);
@@ -563,9 +591,19 @@ a:focus-visible {
   .hero-text {
     padding-right: 0;
     padding-top: 0;
+    padding-left: 0;
+  }
+
+  .hero-heading-svg {
+    max-width: 100%;
   }
 
   .hero-visual {
+    display: none;
+  }
+
+  /* Hide decorative spine on mobile — keeps layout clean */
+  .spine-wrap {
     display: none;
   }
 

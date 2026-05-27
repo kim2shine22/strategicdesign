@@ -63,12 +63,11 @@
       <div class="hero-inner">
 
         <div class="hero-text">
-          <h1 class="hero-heading">
-            Strategic<br />
-            Storytelling,<br />
-            A Work Horse<br />
-            Solution
-          </h1>
+          <img
+            src="assets/SVG/heroheading.svg"
+            alt="Strategic Storytelling, A Work Horse Solution"
+            class="hero-heading-svg"
+          />
         </div>
 
         <div class="hero-visual" aria-hidden="true">
@@ -84,20 +83,12 @@
 
             <!-- CRT screen area — glow activates on hover -->
             <div class="tv-screen-overlay" id="tv-screen">
-              <iframe
-                src="https://www.youtube.com/embed/mrV8kK5t0V8?autoplay=1&mute=1&loop=1&playlist=mrV8kK5t0V8&controls=0&rel=0&modestbranding=1"
-                title="Portfolio video preview"
-                frameborder="0"
-                allow="autoplay; fullscreen"
-                allowfullscreen
-                style="width:100%; height:100%; position:absolute; top:0; left:0;"
-              ></iframe>
+              <!-- YouTube iframe injected here by video.js when popup opens -->
             </div>
 
-            <!-- PG-rating style badge — positioned above bottom buttons -->
+            <!-- SVG label badge — positioned above bottom buttons -->
             <div class="tv-badge" aria-hidden="true">
-              <span class="tv-badge-text">FOR BEST VIEWING</span>
-              <span class="tv-badge-sub">CLICK FOR FULL SCREEN</span>
+              <img src="assets/SVG/label.svg" alt="" class="tv-badge-svg" />
             </div>
 
           </div>
@@ -106,21 +97,33 @@
       </div>
     </section>
 
-    <!--
-      ===================== SECTION TEMPLATE =====================
-      Copy this block to add new sections. Change id, aria-label,
-      and --section-bg to shift the background color.
-      Reorder sections by cutting and pasting blocks — no CSS needed.
+    <!-- ===================== METHODOLOGY ===================== -->
+    <section class="methodology" id="methodology" aria-label="Methodology">
+      <div class="methodology-inner">
 
-      <section class="content-section" id="methodology"
-               style="--section-bg: var(--hero-orange);"
-               aria-label="Methodology">
-        <div class="section-inner">
-          <h2 class="section-heading">Methodology</h2>
-          <div class="section-body">Content here.</div>
+        <div class="subheading-wrap">
+          <img
+            src="assets/SVG/subheading1.svg"
+            alt="The Methodology"
+            class="subheading-svg"
+          />
         </div>
-      </section>
-    -->
+
+        <!-- Decorative spine — hidden on mobile -->
+        <div class="spine-wrap" aria-hidden="true">
+          <img
+            src="assets/images/flowerspine.png"
+            alt=""
+            class="spine-img"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+
+        <!-- Methodology content goes here -->
+
+      </div>
+    </section>
 
   </main>
 
