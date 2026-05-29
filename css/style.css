@@ -258,20 +258,30 @@ a:focus-visible {
   align-items: flex-start;
   gap: 0;
   max-width: var(--maxw);
-  margin: 0 auto;
+  margin: -180px auto 0;
   padding: var(--space-2) var(--content-pad);
   width: 100%;
 }
 
-.hero-text {
-  padding-left: clamp(1rem, 2vw, 3rem);
-  padding-right: 0;
-  padding-top: 22%;
+/* Empty left column placeholder keeps TV in its column */
+.hero-inner::before {
+  content: '';
+  display: block;
+}
+
+/* .hero-text removed — heading is now in .hero-heading-wrap above the grid */
+
+/* Hero heading — full width row above the TV grid */
+.hero-heading-wrap {
+  width: 100%;
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: var(--space-6) var(--content-pad) 0;
 }
 
 .hero-heading-svg {
-  width: 100%;
-  max-width: 4500px;
+  width: 50%;
+  max-width: 2250px;
   height: auto;
   display: block;
 }
