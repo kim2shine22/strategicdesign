@@ -526,13 +526,11 @@ a:focus-visible {
    Adjust top in small increments if visual alignment needs tuning. */
 .spine-wrap {
   position: absolute;
-  top: -38px;
-  left: 70px;
+  top: -167px;
+  left: 165px;
   width: clamp(300px, 75vw, 1080px);
   z-index: 1;
   pointer-events: none;
-  transform: rotate(20deg);
-  transform-origin: top left;
 }
 
 .spine-img {
@@ -667,12 +665,18 @@ a:focus-visible {
 
   .hero-inner {
     grid-template-columns: 1fr;
-    padding: var(--space-12) var(--content-pad);
+    margin-top: 0;
+    padding: var(--space-4) var(--content-pad);
   }
 
   /* Hero shrinks to content on mobile — no viewport-height stretch */
   .hero {
     min-height: auto;
+  }
+
+  /* Heading: reduced top padding, full width on mobile */
+  .hero-heading-wrap {
+    padding-top: var(--space-6);
   }
 
   .hero-text {
@@ -682,7 +686,9 @@ a:focus-visible {
   }
 
   .hero-heading-svg {
+    width: 90%;
     max-width: 100%;
+    margin: 0 auto;
   }
 
   /* Hero TV hidden on mobile — mobile TV stack in hero section shows instead */
@@ -696,7 +702,7 @@ a:focus-visible {
     flex-direction: column;
     align-items: center;
     gap: var(--space-4);
-    padding: var(--space-4) 0 var(--space-6);
+    padding: var(--space-4) 0 var(--space-4);
   }
   .mobile-hero-tv {
     display: flex;
@@ -720,6 +726,22 @@ a:focus-visible {
     height: auto;
     display: block;
     border-radius: 4px;
+  }
+
+  /* hero-bottom: no auto-push on mobile, tight natural flow */
+  .hero-bottom {
+    margin-top: var(--space-4);
+  }
+
+  /* Methodology text: full width centered on mobile */
+  .methodology-text-wrap {
+    padding: 0 var(--content-pad) var(--space-4);
+  }
+
+  .methodology-text-svg {
+    width: 92%;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   /* Methodology: tighter min-height on mobile */
