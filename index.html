@@ -89,9 +89,8 @@
             muted
             loop
             playsinline
-            preload="metadata"
+            preload="none"
           >
-            <source src="assets/video/placeholder.mov" type="video/mp4" />
             <source src="assets/video/placeholder.mov" type="video/quicktime" />
           </video>
         </div>
@@ -114,9 +113,8 @@
                 muted
                 loop
                 playsinline
-                preload="metadata"
+                preload="none"
               >
-                <source src="assets/video/placeholder.mov" type="video/mp4" />
                 <source src="assets/video/placeholder.mov" type="video/quicktime" />
               </video>
             </div>
@@ -130,13 +128,31 @@
 
       </div>
 
-      <!-- Subheading anchored to bottom of hero by justify-content: space-between -->
-      <div class="hero-subheading">
-        <img
-          src="assets/SVG/subheading1.svg"
-          alt="The 7-step Methodology"
-          class="subheading-svg"
-        />
+      <!-- subheading1 + methodology intro text — grouped at bottom of hero -->
+      <div class="hero-bottom">
+
+        <div class="hero-subheading">
+          <img
+            src="assets/SVG/subheading1.svg"
+            alt="The 7-step Methodology"
+            class="subheading-svg"
+          />
+        </div>
+
+        <div class="methodology-text-wrap">
+          <img
+            src="assets/SVG/methodologytext.svg"
+            alt="The 7-step Process — methodology introduction"
+            class="methodology-text-svg"
+            loading="lazy"
+            decoding="async"
+          />
+          <div class="sr-only">
+            <p>To expose the throughline of my career, I outlined a 7-step process; it allows me to illustrate to you, through the 7 case studies below, how I made my life's work by fusing the lifeforce of your idea to the narrative spine of your team's existing infrasture to build fundable throughlines strong enough to move money, power, and people.</p>
+            <p>My 7-step process is a proven framework that helps teams turn messy, emerging needs into a clear, doable, investor-friendly roadmap — across any industry, public or private. My process translates your team's idea into a marketable, fundable, and actionable living, breathing, scalable operations.</p>
+          </div>
+        </div>
+
       </div>
 
     </section>
@@ -157,7 +173,7 @@
 
       <div class="methodology-inner">
 
-        <!-- Methodology step content goes here -->
+        <!-- Methodology step overlay divs go here -->
 
       </div>
     </section>

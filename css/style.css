@@ -22,6 +22,7 @@
   --twilight-dark:   #363957;
   --champagne:       #dcc8a8;
   --saffron:         #e5a04c;
+  --methodology-brown: #522000;
 
   /* Fonts */
   --font-display: 'Overpass Mono', monospace;
@@ -249,7 +250,8 @@ a:focus-visible {
   min-height: calc(100vh - var(--header-height));
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
+  overflow-x: hidden;
 }
 
 .hero-inner {
@@ -258,7 +260,7 @@ a:focus-visible {
   align-items: flex-start;
   gap: 0;
   max-width: var(--maxw);
-  margin: -180px auto 0;
+  margin: -205px auto 0;
   padding: var(--space-2) var(--content-pad);
   width: 100%;
 }
@@ -276,7 +278,7 @@ a:focus-visible {
   width: 100%;
   max-width: var(--maxw);
   margin: 0 auto;
-  padding: var(--space-6) var(--content-pad) 0;
+  padding: var(--space-16) var(--content-pad) 0;
 }
 
 .hero-heading-svg {
@@ -352,11 +354,29 @@ a:focus-visible {
 }
 
 
-/* Hero subheading — anchored to bottom of hero by space-between */
+/* Hero bottom — pushed to foot of hero by margin-top: auto */
+.hero-bottom {
+  margin-top: auto;
+}
+
+/* subheading1 — tight bottom padding, leads into methodology text */
 .hero-subheading {
   display: flex;
   justify-content: center;
-  padding: 0 var(--content-pad) var(--space-6);
+  padding: 0 var(--content-pad) var(--space-2);
+}
+
+/* Methodology text — left edge 30% from left, pulled up toward subheading1 */
+.methodology-text-wrap {
+  padding-bottom: var(--space-6);
+  margin-top: -5rem;
+}
+
+.methodology-text-svg {
+  display: block;
+  width: 62.5%;
+  height: auto;
+  margin-left: 30%;
 }
 
 .subheading-svg {
@@ -506,11 +526,13 @@ a:focus-visible {
    Adjust top in small increments if visual alignment needs tuning. */
 .spine-wrap {
   position: absolute;
-  top: -167px;   /* locked — do not change */
-  left: 165px;   /* locked — do not change */
+  top: -38px;
+  left: 70px;
   width: clamp(300px, 75vw, 1080px);
   z-index: 1;
   pointer-events: none;
+  transform: rotate(20deg);
+  transform-origin: top left;
 }
 
 .spine-img {
