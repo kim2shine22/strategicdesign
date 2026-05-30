@@ -1,4 +1,4 @@
-/* ==========================================================
+ /* ==========================================================
    style.css — Kim Matthews Portfolio
    Order: tokens → base → skip link → header → hero → sections → footer → responsive
 ========================================================== */
@@ -552,11 +552,11 @@ a:focus-visible {
 }
 
 /* Individual label positions — adjust top/left in DevTools, read back values to lock in */
-.step-label--1   { top: 2%;  left: 13%; width: 10%; }
-.step-label--234 { top: 22%; left: 26%; width: 31%; }
-.step-label--5   { top: 50%; left: 53%; width: 20%; }
-.step-label--6   { top: 60%; left: 69%; width: 19%; }
-.step-label--7   { top: 72%; left: 80%; width: 23%; }
+.step-label--1   { top: 10%; left: 31%; width: 11%; }
+.step-label--234 { top: 21%; left: 31%; width: 31%; }
+.step-label--5   { top: 41%; left: 31%; width: 20%; }
+.step-label--6   { top: 41%; left: 57%; width: 18%; }
+.step-label--7   { top: 51%; left: 72%; width: 23%; }
 
 /* Mobile TV stack — hidden on desktop, shown in hero on mobile */
 .mobile-hero-tv {
