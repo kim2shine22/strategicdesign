@@ -553,10 +553,10 @@ a:focus-visible {
 
 /* Individual label positions — adjust top/left in DevTools, read back values to lock in */
 .step-label--1   { top: 2%;  left: 13%; width: 10%; }
-.step-label--234 { top: 22%; left: 26%; width: 22%; }
-.step-label--5   { top: 50%; left: 53%; width: 14%; }
-.step-label--6   { top: 60%; left: 69%; width: 13%; }
-.step-label--7   { top: 72%; left: 80%; width: 16%; }
+.step-label--234 { top: 22%; left: 26%; width: 31%; }
+.step-label--5   { top: 50%; left: 53%; width: 20%; }
+.step-label--6   { top: 60%; left: 69%; width: 19%; }
+.step-label--7   { top: 72%; left: 80%; width: 23%; }
 
 /* Mobile TV stack — hidden on desktop, shown in hero on mobile */
 .mobile-hero-tv {
@@ -761,9 +761,9 @@ a:focus-visible {
     margin-right: auto;
   }
 
-  /* Spine and step labels hidden on mobile */
+  /* Spine and labels visible on mobile, scaled down */
   .spine-wrap {
-    display: none;
+    margin-top: 0;
   }
 
   /* Heading centered, full-width SVG on mobile */
