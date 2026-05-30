@@ -366,10 +366,12 @@ a:focus-visible {
   padding: 0 var(--content-pad) var(--space-2);
 }
 
-/* Methodology text — left edge 30% from left, pulled up toward subheading1 */
+/* Methodology text — text stays above spine on z-index */
 .methodology-text-wrap {
-  padding-bottom: var(--space-6);
-  margin-top: -5rem;
+  padding-bottom: 0;
+  margin-top: var(--space-2);
+  position: relative;
+  z-index: 2;
 }
 
 .methodology-text-svg {
@@ -521,23 +523,21 @@ a:focus-visible {
   display: block;
 }
 
-/* Flower spine — absolute to section, clips at overflow:hidden boundary.
-   top value aligns first flower with the heading row.
-   Adjust top in small increments if visual alignment needs tuning. */
+/* Flower spine — pulled up behind methodology text, z-index below text */
 .spine-wrap {
-  position: absolute;
-  top: -167px;
-  left: 165px;
-  width: clamp(300px, 75vw, 1080px);
-  z-index: 1;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
   pointer-events: none;
+  line-height: 0;
+  margin-top: -280px;
+  z-index: 1;
 }
 
 .spine-img {
   width: 100%;
   height: auto;
   display: block;
-  mix-blend-mode: multiply;
 }
 
 /* Mobile TV stack — hidden on desktop, shown in hero on mobile */
@@ -749,9 +749,9 @@ a:focus-visible {
     min-height: auto;
   }
 
-  /* Spine hidden on mobile — content reads cleanly without it */
+  /* Spine scales naturally on mobile */
   .spine-wrap {
-    display: none;
+    width: 100%;
   }
 
   /* Heading centered, full-width SVG on mobile */
@@ -789,9 +789,5 @@ a:focus-visible {
 
   .tv-wrapper {
     max-width: 640px;
-  }
-
-  .spine-wrap {
-    width: clamp(300px, 65vw, 800px);
   }
 }
