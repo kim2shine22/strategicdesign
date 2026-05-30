@@ -566,19 +566,28 @@ a:focus-visible {
   pointer-events: auto;
 }
 
-/* Gold glitter animation — pulsing drop-shadow */
-@keyframes goldGlitter {
-  0%   { filter: drop-shadow(0 0 6px rgba(247,187,67,0.8)) brightness(1.1); }
-  30%  { filter: drop-shadow(0 0 18px rgba(247,187,67,1)) drop-shadow(0 0 35px rgba(229,160,76,0.7)) brightness(1.3); }
-  60%  { filter: drop-shadow(0 0 8px rgba(247,187,67,0.9)) brightness(1.15); }
-  80%  { filter: drop-shadow(0 0 22px rgba(247,187,67,1)) drop-shadow(0 0 45px rgba(247,187,67,0.4)) brightness(1.35); }
-  100% { filter: drop-shadow(0 0 6px rgba(247,187,67,0.8)) brightness(1.1); }
+/* Twilight glitter — irregular rapid twinkle on label */
+@keyframes twilightGlitter {
+  0%   { filter: drop-shadow(0 0 3px var(--twilight)); }
+  12%  { filter: drop-shadow(0 0 18px var(--twilight)) drop-shadow(0 0 36px rgba(74,78,112,0.9)); }
+  25%  { filter: drop-shadow(0 0 2px var(--twilight-dark)); }
+  42%  { filter: drop-shadow(0 0 22px var(--twilight)) drop-shadow(0 0 44px rgba(74,78,112,0.6)) drop-shadow(0 0 8px var(--electric-blue)); }
+  58%  { filter: drop-shadow(0 0 4px var(--twilight)); }
+  70%  { filter: drop-shadow(0 0 16px var(--twilight)) drop-shadow(0 0 30px rgba(74,78,112,0.85)); }
+  83%  { filter: drop-shadow(0 0 2px var(--twilight-dark)); }
+  92%  { filter: drop-shadow(0 0 20px var(--twilight)) drop-shadow(0 0 40px rgba(74,78,112,0.7)); }
+  100% { filter: drop-shadow(0 0 3px var(--twilight)); }
 }
 
+/* Flower glow pulse — irregular twinkle */
 @keyframes flowerGlitterPulse {
-  0%   { opacity: 0.3; transform: scale(0.95); }
-  50%  { opacity: 0.75; transform: scale(1.08); }
-  100% { opacity: 0.3; transform: scale(0.95); }
+  0%   { opacity: 0.25; transform: scale(0.88); }
+  18%  { opacity: 0.9;  transform: scale(1.08); }
+  35%  { opacity: 0.2;  transform: scale(0.93); }
+  55%  { opacity: 1;    transform: scale(1.12); }
+  72%  { opacity: 0.3;  transform: scale(0.95); }
+  88%  { opacity: 0.85; transform: scale(1.06); }
+  100% { opacity: 0.25; transform: scale(0.88); }
 }
 
 /* Flower hotspot — invisible hover trigger over flower position */
@@ -595,7 +604,7 @@ a:focus-visible {
   height: 22%;
 }
 
-/* Flower glow overlay — radial gold burst on hover */
+/* Flower glow overlay — twilight radial burst on hover */
 .flower-glow {
   position: absolute;
   border-radius: 50%;
@@ -610,42 +619,45 @@ a:focus-visible {
   width: 16%;
   height: 24%;
   background: radial-gradient(ellipse at center,
-    rgba(247,187,67,0.65) 0%,
-    rgba(229,160,76,0.35) 40%,
-    transparent 70%
+    rgba(74,78,112,0.75) 0%,
+    rgba(74,78,112,0.4)  45%,
+    transparent 72%
   );
-  mix-blend-mode: screen;
+  mix-blend-mode: overlay;
 }
 .flower-glow--1.is-active {
   opacity: 1;
-  animation: flowerGlitterPulse 1.2s ease-in-out infinite;
+  box-shadow: 0 0 40px 20px rgba(74,78,112,0.45);
+  animation: flowerGlitterPulse 0.85s ease-in-out infinite;
 }
 
-/* Step label active (glitter) state */
+/* Step label active — twilight glitter */
 .step-label--1.is-active .step-label-svg {
-  animation: goldGlitter 1.2s ease-in-out infinite;
+  animation: twilightGlitter 0.9s ease-in-out infinite;
 }
 
 /* Defcard popup */
 .step-card {
   position: absolute;
-  z-index: 10;
   pointer-events: auto;
   opacity: 0;
   transform: translateY(6px) scale(0.97);
   transition: opacity 280ms ease, transform 280ms ease;
   transition-delay: 60ms;
-  filter: drop-shadow(0 8px 24px rgba(0,0,0,0.25));
+  filter: drop-shadow(0 8px 24px rgba(0,0,0,0.35));
+  z-index: 5;
 }
 .step-card.is-active {
   opacity: 1;
   transform: translateY(0) scale(1);
+  z-index: 200; /* above everything including header */
 }
 .step-card-svg {
   width: 100%;
   height: auto;
   display: block;
   border-radius: 4px;
+  filter: invert(1); /* white background → black */
 }
 .step-card--1 {
   top: 1%;
@@ -661,6 +673,7 @@ a:focus-visible {
   width: 100%;
   height: auto;
   display: block;
+  filter: invert(1);
 }
 
 /* Mobile TV stack — hidden on desktop, shown in hero on mobile */
