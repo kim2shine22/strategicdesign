@@ -530,7 +530,7 @@ a:focus-visible {
   position: relative;
   pointer-events: none;
   line-height: 0;
-  margin-top: -280px;
+  margin-top: -27px;
   z-index: 1;
 }
 
