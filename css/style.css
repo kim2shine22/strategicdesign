@@ -566,28 +566,26 @@ a:focus-visible {
   pointer-events: auto;
 }
 
-/* Twilight glitter — irregular rapid twinkle on label */
-@keyframes twilightGlitter {
-  0%   { filter: drop-shadow(0 0 3px var(--twilight)); }
-  12%  { filter: drop-shadow(0 0 18px var(--twilight)) drop-shadow(0 0 36px rgba(74,78,112,0.9)); }
-  25%  { filter: drop-shadow(0 0 2px var(--twilight-dark)); }
-  42%  { filter: drop-shadow(0 0 22px var(--twilight)) drop-shadow(0 0 44px rgba(74,78,112,0.6)) drop-shadow(0 0 8px var(--electric-blue)); }
-  58%  { filter: drop-shadow(0 0 4px var(--twilight)); }
-  70%  { filter: drop-shadow(0 0 16px var(--twilight)) drop-shadow(0 0 30px rgba(74,78,112,0.85)); }
-  83%  { filter: drop-shadow(0 0 2px var(--twilight-dark)); }
-  92%  { filter: drop-shadow(0 0 20px var(--twilight)) drop-shadow(0 0 40px rgba(74,78,112,0.7)); }
-  100% { filter: drop-shadow(0 0 3px var(--twilight)); }
+/* Silver Tinkerbell dust — single burst, plays once, holds */
+@keyframes silverGlitterBurst {
+  0%   { filter: drop-shadow(0 0 2px rgba(220,220,240,0.5)); }
+  10%  { filter: drop-shadow(0 0 30px #F0F0FF) drop-shadow(0 0 60px rgba(210,210,235,0.9)) brightness(1.65); }
+  24%  { filter: drop-shadow(0 0 6px rgba(200,200,225,0.4)) brightness(1.05); }
+  40%  { filter: drop-shadow(0 0 40px #FFFFFF) drop-shadow(0 0 80px rgba(210,210,240,0.75)) drop-shadow(0 0 14px #E8E8FF) brightness(1.8); }
+  56%  { filter: drop-shadow(0 0 5px rgba(190,190,220,0.3)); }
+  72%  { filter: drop-shadow(0 0 22px #E8E8F8) drop-shadow(0 0 44px rgba(200,200,230,0.6)) brightness(1.45); }
+  86%  { filter: drop-shadow(0 0 4px rgba(180,180,215,0.25)); }
+  100% { filter: drop-shadow(0 0 8px rgba(210,210,235,0.5)); }
 }
 
-/* Flower glow pulse — irregular twinkle */
-@keyframes flowerGlitterPulse {
-  0%   { opacity: 0.25; transform: scale(0.88); }
-  18%  { opacity: 0.9;  transform: scale(1.08); }
-  35%  { opacity: 0.2;  transform: scale(0.93); }
-  55%  { opacity: 1;    transform: scale(1.12); }
-  72%  { opacity: 0.3;  transform: scale(0.95); }
-  88%  { opacity: 0.85; transform: scale(1.06); }
-  100% { opacity: 0.25; transform: scale(0.88); }
+/* Flower silver burst — Tinkerbell light on the flower */
+@keyframes flowerSilverBurst {
+  0%   { opacity: 0.12; transform: scale(0.8);  }
+  14%  { opacity: 1;    transform: scale(1.28); }
+  30%  { opacity: 0.35; transform: scale(0.92); }
+  50%  { opacity: 0.98; transform: scale(1.18); }
+  70%  { opacity: 0.45; transform: scale(0.97); }
+  100% { opacity: 0.65; transform: scale(1.0);  }
 }
 
 /* Flower hotspot — invisible hover trigger over flower position */
@@ -604,13 +602,13 @@ a:focus-visible {
   height: 22%;
 }
 
-/* Flower glow overlay — twilight radial burst on hover */
+/* Flower glow overlay — silver-white screen blend, Tinkerbell light */
 .flower-glow {
   position: absolute;
   border-radius: 50%;
   pointer-events: none;
   opacity: 0;
-  transition: opacity 300ms ease;
+  transition: opacity 200ms ease;
   z-index: 2;
 }
 .flower-glow--1 {
@@ -619,21 +617,25 @@ a:focus-visible {
   width: 16%;
   height: 24%;
   background: radial-gradient(ellipse at center,
-    rgba(74,78,112,0.75) 0%,
-    rgba(74,78,112,0.4)  45%,
+    rgba(255,255,255,0.9)  0%,
+    rgba(220,220,245,0.55) 40%,
     transparent 72%
   );
-  mix-blend-mode: overlay;
+  mix-blend-mode: screen;
 }
 .flower-glow--1.is-active {
   opacity: 1;
-  box-shadow: 0 0 40px 20px rgba(74,78,112,0.45);
-  animation: flowerGlitterPulse 0.85s ease-in-out infinite;
+  animation: flowerSilverBurst 0.75s ease-out 1 forwards;
 }
 
-/* Step label active — twilight glitter */
+/* Step label active — silver glitter burst */
 .step-label--1.is-active .step-label-svg {
-  animation: twilightGlitter 0.9s ease-in-out infinite;
+  animation: silverGlitterBurst 0.75s ease-out 1 forwards;
+}
+
+/* Elevate spine-wrap above methodology text when card is open */
+.spine-wrap.has-active-card {
+  z-index: 3;
 }
 
 /* Defcard popup */
@@ -650,14 +652,13 @@ a:focus-visible {
 .step-card.is-active {
   opacity: 1;
   transform: translateY(0) scale(1);
-  z-index: 200; /* above everything including header */
+  z-index: 200;
 }
 .step-card-svg {
   width: 100%;
   height: auto;
   display: block;
   border-radius: 4px;
-  filter: invert(1); /* white background → black */
 }
 .step-card--1 {
   top: 1%;
@@ -673,7 +674,6 @@ a:focus-visible {
   width: 100%;
   height: auto;
   display: block;
-  filter: invert(1);
 }
 
 /* Mobile TV stack — hidden on desktop, shown in hero on mobile */
