@@ -1,10 +1,13 @@
 /* steps.js — step hover interactions
-   Pilot: Step 1 only. Extend by adding entries to STEPS array.
+   Pilot: Step 1. Extend STEPS array as defcards are produced.
 
-   On hover enter: single glitter burst fires on label + flower glow.
-   On hover leave: everything clears.
-   On re-hover: burst replays (force-reflow restarts the animation).
-   Card stays open while mouse is on it.
+   Any hover entry point (label, flower hotspot, OR defcard) triggers:
+   - Silver glitter burst on the step label
+   - Silver-white light burst on the corresponding flower
+   - Defcard fades in
+   - spine-wrap elevates above methodology text
+
+   On re-hover: burst replays (void offsetWidth restarts CSS animation).
 */
 
 (function () {
@@ -15,15 +18,15 @@
     /* { id: '234' }, { id: '5' }, { id: '6' }, { id: '7' } */
   ];
 
-  function qs(selector) {
-    return document.querySelector(selector);
-  }
+  function qs(sel) { return document.querySelector(sel); }
 
-  /* Force CSS animation to restart by removing class, flushing layout, re-adding */
-  function restartAnimation(el) {
+  var spineWrap = qs('.spine-wrap');
+
+  /* Restart a CSS animation by flushing layout between class removes/adds */
+  function restartAnim(el) {
     if (!el) return;
     el.classList.remove('is-active');
-    void el.offsetWidth; /* flush — tells browser to recalculate before next line */
+    void el.offsetWidth;
     el.classList.add('is-active');
   }
 
@@ -36,34 +39,30 @@
     if (!label) return;
 
     function activate() {
-      /* Restart burst animations fresh each hover */
-      restartAnimation(label);
-      restartAnimation(glow);
-      /* Card just fades in — no restart needed */
+      /* Restart glitter burst on every hover entry */
+      restartAnim(label);
+      restartAnim(glow);
+      /* Card fades in */
       if (card) card.classList.add('is-active');
+      /* Elevate spine-wrap above methodology text */
+      if (spineWrap) spineWrap.classList.add('has-active-card');
     }
 
     function deactivate() {
-      if (label) label.classList.remove('is-active');
-      if (glow)  glow.classList.remove('is-active');
-      if (card)  card.classList.remove('is-active');
+      if (label)     label.classList.remove('is-active');
+      if (glow)      glow.classList.remove('is-active');
+      if (card)      card.classList.remove('is-active');
+      if (spineWrap) spineWrap.classList.remove('has-active-card');
     }
 
-    [label, hotspot].forEach(function (el) {
+    /* All three entry points trigger full activate */
+    [label, hotspot, card].forEach(function (el) {
       if (!el) return;
       el.addEventListener('mouseenter', activate);
       el.addEventListener('mouseleave', deactivate);
     });
 
-    /* Card staying open while moused over */
-    if (card) {
-      card.addEventListener('mouseenter', function () {
-        if (card) card.classList.add('is-active');
-      });
-      card.addEventListener('mouseleave', deactivate);
-    }
-
-    /* Keyboard access */
+    /* Keyboard */
     label.addEventListener('focus', activate);
     label.addEventListener('blur',  deactivate);
     label.addEventListener('keydown', function (e) {
