@@ -22,7 +22,6 @@
   --twilight-dark:   #363957;
   --champagne:       #dcc8a8;
   --saffron:         #e5a04c;
-  --methodology-brown: #522000;
 
   /* Fonts */
   --font-display: 'Overpass Mono', monospace;
@@ -354,21 +353,27 @@ a:focus-visible {
 }
 
 
-/* Hero bottom — pushed to foot of hero by margin-top: auto */
+/* Hero bottom — margin-top: auto pushes it to foot of hero */
 .hero-bottom {
   margin-top: auto;
 }
 
-/* subheading1 — tight bottom padding, leads into methodology text */
+/* subheading1 — centered, tight padding before methodology text */
 .hero-subheading {
   display: flex;
   justify-content: center;
   padding: 0 var(--content-pad) var(--space-2);
 }
 
-/* Methodology text — text stays above spine on z-index */
+.subheading-svg {
+  width: 65%;
+  max-width: 880px;
+  height: auto;
+  display: block;
+}
+
+/* Methodology intro text — left edge at 30%, 25% larger than 50% baseline */
 .methodology-text-wrap {
-  padding-bottom: 0;
   margin-top: var(--space-2);
   position: relative;
   z-index: 2;
@@ -379,13 +384,6 @@ a:focus-visible {
   width: 62.5%;
   height: auto;
   margin-left: 30%;
-}
-
-.subheading-svg {
-  width: 65%;
-  max-width: 880px;
-  height: auto;
-  display: block;
 }
 
 
@@ -523,11 +521,11 @@ a:focus-visible {
   display: block;
 }
 
-/* Flower spine — pulled up behind methodology text, z-index below text */
+/* Flowerspine — full width, transparent PNG, no blend mode needed */
 .spine-wrap {
   width: 100%;
-  overflow: hidden;
   position: relative;
+  overflow: visible;
   pointer-events: none;
   line-height: 0;
   margin-top: -27px;
@@ -539,6 +537,26 @@ a:focus-visible {
   height: auto;
   display: block;
 }
+
+/* Step labels — absolutely positioned within spine-wrap, each independently movable */
+.step-label {
+  position: absolute;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.step-label-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Individual label positions — adjust top/left in DevTools, read back values to lock in */
+.step-label--1   { top: 2%;  left: 13%; width: 10%; }
+.step-label--234 { top: 22%; left: 26%; width: 22%; }
+.step-label--5   { top: 50%; left: 53%; width: 14%; }
+.step-label--6   { top: 60%; left: 69%; width: 13%; }
+.step-label--7   { top: 72%; left: 80%; width: 16%; }
 
 /* Mobile TV stack — hidden on desktop, shown in hero on mobile */
 .mobile-hero-tv {
@@ -669,12 +687,12 @@ a:focus-visible {
     padding: var(--space-4) var(--content-pad);
   }
 
-  /* Hero shrinks to content on mobile — no viewport-height stretch */
+  /* Hero shrinks to content on mobile */
   .hero {
     min-height: auto;
   }
 
-  /* Heading: reduced top padding, full width on mobile */
+  /* Hero heading: reduced top padding on mobile */
   .hero-heading-wrap {
     padding-top: var(--space-6);
   }
@@ -686,9 +704,7 @@ a:focus-visible {
   }
 
   .hero-heading-svg {
-    width: 90%;
     max-width: 100%;
-    margin: 0 auto;
   }
 
   /* Hero TV hidden on mobile — mobile TV stack in hero section shows instead */
@@ -702,7 +718,7 @@ a:focus-visible {
     flex-direction: column;
     align-items: center;
     gap: var(--space-4);
-    padding: var(--space-4) 0 var(--space-4);
+    padding: var(--space-4) 0 var(--space-6);
   }
   .mobile-hero-tv {
     display: flex;
@@ -728,30 +744,26 @@ a:focus-visible {
     border-radius: 4px;
   }
 
-  /* hero-bottom: no auto-push on mobile, tight natural flow */
+  /* Methodology: tighter min-height on mobile */
+  .methodology {
+    min-height: auto;
+  }
+
+  /* hero-bottom: no auto-push on mobile */
   .hero-bottom {
     margin-top: var(--space-4);
   }
 
   /* Methodology text: full width centered on mobile */
-  .methodology-text-wrap {
-    padding: 0 var(--content-pad) var(--space-4);
-  }
-
   .methodology-text-svg {
     width: 92%;
     margin-left: auto;
     margin-right: auto;
   }
 
-  /* Methodology: tighter min-height on mobile */
-  .methodology {
-    min-height: auto;
-  }
-
-  /* Spine scales naturally on mobile */
+  /* Spine and step labels hidden on mobile */
   .spine-wrap {
-    width: 100%;
+    display: none;
   }
 
   /* Heading centered, full-width SVG on mobile */
