@@ -1,4 +1,4 @@
- /* ==========================================================
+/* ==========================================================
    style.css — Kim Matthews Portfolio
    Order: tokens → base → skip link → header → hero → sections → footer → responsive
 ========================================================== */
@@ -558,6 +558,111 @@ a:focus-visible {
 .step-label--6   { top: 41%; left: 57%; width: 18%; }
 .step-label--7   { top: 51%; left: 72%; width: 23%; }
 
+/* Step labels are interactive — restore pointer events */
+.step-label {
+  cursor: pointer;
+}
+.step-label--1 {
+  pointer-events: auto;
+}
+
+/* Gold glitter animation — pulsing drop-shadow */
+@keyframes goldGlitter {
+  0%   { filter: drop-shadow(0 0 6px rgba(247,187,67,0.8)) brightness(1.1); }
+  30%  { filter: drop-shadow(0 0 18px rgba(247,187,67,1)) drop-shadow(0 0 35px rgba(229,160,76,0.7)) brightness(1.3); }
+  60%  { filter: drop-shadow(0 0 8px rgba(247,187,67,0.9)) brightness(1.15); }
+  80%  { filter: drop-shadow(0 0 22px rgba(247,187,67,1)) drop-shadow(0 0 45px rgba(247,187,67,0.4)) brightness(1.35); }
+  100% { filter: drop-shadow(0 0 6px rgba(247,187,67,0.8)) brightness(1.1); }
+}
+
+@keyframes flowerGlitterPulse {
+  0%   { opacity: 0.3; transform: scale(0.95); }
+  50%  { opacity: 0.75; transform: scale(1.08); }
+  100% { opacity: 0.3; transform: scale(0.95); }
+}
+
+/* Flower hotspot — invisible hover trigger over flower position */
+.flower-hotspot {
+  position: absolute;
+  z-index: 4;
+  pointer-events: auto;
+  cursor: pointer;
+}
+.flower-hotspot--1 {
+  top: 0%;
+  left: 1%;
+  width: 14%;
+  height: 22%;
+}
+
+/* Flower glow overlay — radial gold burst on hover */
+.flower-glow {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 300ms ease;
+  z-index: 2;
+}
+.flower-glow--1 {
+  top: -1%;
+  left: 0%;
+  width: 16%;
+  height: 24%;
+  background: radial-gradient(ellipse at center,
+    rgba(247,187,67,0.65) 0%,
+    rgba(229,160,76,0.35) 40%,
+    transparent 70%
+  );
+  mix-blend-mode: screen;
+}
+.flower-glow--1.is-active {
+  opacity: 1;
+  animation: flowerGlitterPulse 1.2s ease-in-out infinite;
+}
+
+/* Step label active (glitter) state */
+.step-label--1.is-active .step-label-svg {
+  animation: goldGlitter 1.2s ease-in-out infinite;
+}
+
+/* Defcard popup */
+.step-card {
+  position: absolute;
+  z-index: 10;
+  pointer-events: auto;
+  opacity: 0;
+  transform: translateY(6px) scale(0.97);
+  transition: opacity 280ms ease, transform 280ms ease;
+  transition-delay: 60ms;
+  filter: drop-shadow(0 8px 24px rgba(0,0,0,0.25));
+}
+.step-card.is-active {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+.step-card-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 4px;
+}
+.step-card--1 {
+  top: 1%;
+  left: 44%;
+  width: 28%;
+}
+
+/* Mobile step cards — hidden on desktop, stacked below spine on mobile */
+.step-cards-mobile {
+  display: none;
+}
+.step-card-mobile-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
 /* Mobile TV stack — hidden on desktop, shown in hero on mobile */
 .mobile-hero-tv {
   display: none;
@@ -764,6 +869,14 @@ a:focus-visible {
   /* Spine and labels visible on mobile, scaled down */
   .spine-wrap {
     margin-top: 0;
+  }
+
+  /* Mobile step cards — shown below spine */
+  .step-cards-mobile {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    padding: var(--space-6) var(--content-pad);
   }
 
   /* Heading centered, full-width SVG on mobile */

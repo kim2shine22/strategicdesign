@@ -162,9 +162,22 @@
             loading="lazy"
             decoding="async"
           />
-          <div class="step-label step-label--1">
-            <img src="assets/SVG/step1.svg" alt="Step 1" class="step-label-svg" />
+
+          <!-- STEP 1 — pilot hover group -->
+          <!-- Invisible hotspot over flower 1 (top-left cluster) -->
+          <div class="flower-hotspot flower-hotspot--1" aria-hidden="true"></div>
+          <!-- Gold glitter glow overlay on flower 1 -->
+          <div class="flower-glow flower-glow--1" aria-hidden="true"></div>
+          <!-- Step label -->
+          <div class="step-label step-label--1" tabindex="0" role="button" aria-label="Step 1: The Mandate — hover to learn more">
+            <img src="assets/SVG/step1.svg" alt="Group 1: The Mandate" class="step-label-svg" />
           </div>
+          <!-- Defcard popup -->
+          <div class="step-card step-card--1" role="tooltip" aria-label="Step 1 definition card">
+            <img src="assets/SVG/step1defcard.svg" alt="Step 1: The Mandate — definition" class="step-card-svg" />
+          </div>
+
+          <!-- Steps 2–7 labels (hover not yet wired — pilot step 1 only) -->
           <div class="step-label step-label--234">
             <img src="assets/SVG/steps234.svg" alt="Steps 2, 3 and 4" class="step-label-svg" />
           </div>
@@ -177,6 +190,14 @@
           <div class="step-label step-label--7">
             <img src="assets/SVG/step7.svg" alt="Step 7" class="step-label-svg" />
           </div>
+        </div>
+
+        <!-- Mobile step cards — stacked below spine, shown only on mobile -->
+        <div class="step-cards-mobile" aria-label="7-step methodology definitions">
+          <div class="step-card-mobile">
+            <img src="assets/SVG/step1defcard.svg" alt="Step 1: The Mandate" class="step-card-mobile-svg" />
+          </div>
+          <!-- Steps 2–7 defcard images to be added here as they are produced -->
         </div>
 
       </div>
@@ -231,6 +252,7 @@
 
   <script src="js/nav.js" defer></script>
   <script src="js/video.js" defer></script>
+  <script src="js/steps.js" defer></script>
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
