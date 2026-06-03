@@ -8,25 +8,26 @@
 (function () {
   'use strict';
 
-  var VIDEO_SRC = 'assets/video/placeholder.mov';
+  var VIDEO_SRC = 'assets/video/hero-film-v1.mp4';
 
   var tvUnit   = document.getElementById('tv-unit');
   var modal    = document.getElementById('video-modal');
   var backdrop = document.getElementById('modal-backdrop');
   var closeBtn = document.getElementById('modal-close');
-  var iframe   = document.getElementById('video-iframe');
+  var videoEl  = document.getElementById('modal-video');
 
-  if (!tvUnit || !modal || !iframe) return;
+  if (!tvUnit || !modal || !videoEl) return;
 
   function openModal () {
-    iframe.src = VIDEO_SRC;
+    videoEl.src = VIDEO_SRC;
     modal.removeAttribute('hidden');
     document.body.style.overflow = 'hidden';
     setTimeout(function () { closeBtn.focus(); }, 50);
   }
 
   function closeModal () {
-    iframe.src = '';
+    videoEl.pause();
+    videoEl.src = '';
     modal.setAttribute('hidden', '');
     document.body.style.overflow = '';
     tvUnit.focus();
