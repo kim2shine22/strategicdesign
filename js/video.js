@@ -8,7 +8,7 @@
 (function () {
   'use strict';
 
-  var VIDEO_SRC = 'assets/video/hero-film-v1.mp4';
+  var VIDEO_SRC = 'assets/video/hero-film-1.mp4';
 
   var tvUnit     = document.getElementById('tv-unit');
   var modal      = document.getElementById('video-modal');

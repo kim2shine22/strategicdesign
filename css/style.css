@@ -309,9 +309,17 @@ a:focus-visible {
   transition: filter 400ms ease;
 }
 
+/* Orange glow on hover and keyboard focus — filter lives on image so transition works */
 .tv-wrapper:hover .tv-image,
-.tv-wrapper:focus .tv-image {
+.tv-wrapper:focus-visible .tv-image {
   filter: brightness(1.1) drop-shadow(0 0 25px rgba(247, 187, 67, 0.8));
+}
+
+/* Keyboard focus ring — distinct from hover glow, meets WCAG 2.4.11 Focus Appearance */
+.tv-wrapper:focus-visible {
+  outline: 3px solid var(--hero-orange);
+  outline-offset: 6px;
+  border-radius: 2px;
 }
 
 .tv-screen-overlay {
@@ -324,6 +332,29 @@ a:focus-visible {
   overflow: hidden;
   cursor: pointer;
   transition: box-shadow 400ms ease;
+}
+
+/* Backlit glow — CRT warm-up effect on hover/focus
+   ♿ Screen reader prompt is in aria-label on .tv-wrapper — no text needed here */
+.tv-screen-overlay::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: transparent;
+  transition: background 400ms ease;
+  pointer-events: none;
+  z-index: 2;
+  border-radius: 6px;
+}
+
+.tv-wrapper:hover .tv-screen-overlay::after,
+.tv-wrapper:focus-visible .tv-screen-overlay::after {
+  background: radial-gradient(ellipse at center,
+    rgba(247, 187, 67, 0.50)  0%,
+    rgba(247, 187, 67, 0.22) 45%,
+    rgba(247, 187, 67, 0.06) 75%,
+    transparent              100%
+  );
 }
 
 .tv-video {
@@ -350,7 +381,7 @@ a:focus-visible {
 }
 
 .tv-wrapper:hover .tv-badge,
-.tv-wrapper:focus .tv-badge {
+.tv-wrapper:focus-visible .tv-badge {
   opacity: 0.85;
 }
 
@@ -476,14 +507,12 @@ a:focus-visible {
   overflow: hidden;
 }
 
-.video-modal-frame video {
+.video-modal-frame iframe {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   border: 0;
-  background: var(--black);
-  object-fit: contain;
 }
 
 
@@ -931,5 +960,10 @@ a:focus-visible {
 
   .tv-wrapper {
     max-width: 640px;
+  }
+
+  /* Reduce negative overlap at medium widths — prevents hero elements crossing */
+  .hero-inner {
+    margin-top: -120px;
   }
 }
