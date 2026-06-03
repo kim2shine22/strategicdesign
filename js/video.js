@@ -10,24 +10,30 @@
 
   var VIDEO_SRC = 'assets/video/hero-film-v1.mp4';
 
-  var tvUnit   = document.getElementById('tv-unit');
-  var modal    = document.getElementById('video-modal');
-  var backdrop = document.getElementById('modal-backdrop');
-  var closeBtn = document.getElementById('modal-close');
-  var videoEl  = document.getElementById('modal-video');
+  var tvUnit     = document.getElementById('tv-unit');
+  var modal      = document.getElementById('video-modal');
+  var backdrop   = document.getElementById('modal-backdrop');
+  var closeBtn   = document.getElementById('modal-close');
+  var modalVideo = document.getElementById('modal-video');
 
-  if (!tvUnit || !modal || !videoEl) return;
+  if (!tvUnit || !modal || !modalVideo) return;
 
   function openModal () {
-    videoEl.src = VIDEO_SRC;
+    modalVideo.src = VIDEO_SRC;
     modal.removeAttribute('hidden');
     document.body.style.overflow = 'hidden';
+    modalVideo.load();
+    var playPromise = modalVideo.play();
+    if (playPromise !== undefined) {
+      playPromise.catch(function () { /* autoplay blocked — user can press play */ });
+    }
     setTimeout(function () { closeBtn.focus(); }, 50);
   }
 
   function closeModal () {
-    videoEl.pause();
-    videoEl.src = '';
+    modalVideo.pause();
+    modalVideo.removeAttribute('src');
+    modalVideo.load();
     modal.setAttribute('hidden', '');
     document.body.style.overflow = '';
     tvUnit.focus();
@@ -54,7 +60,7 @@
   modal.addEventListener('keydown', function (e) {
     if (e.key !== 'Tab') return;
     var focusable = modal.querySelectorAll(
-      'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+      'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"]), video[controls]'
     );
     var first = focusable[0];
     var last  = focusable[focusable.length - 1];
