@@ -101,7 +101,6 @@ a:focus-visible {
   left: var(--space-4);
   z-index: 9999;
   padding: var(--space-2) var(--space-4);
-  background: var(--twilight);
   color: var(--white);
   font-family: var(--font-label);
   font-size: var(--text-sm);
@@ -322,8 +321,6 @@ a:focus-visible {
   border-radius: 2px;
 }
 
-/* Screen hover ring — gold border glow AROUND the screen, nothing over the video
-   ♿ Accessible label lives in aria-label on .tv-wrapper */
 .tv-screen-overlay {
   position: absolute;
   top:    36%;
@@ -333,16 +330,30 @@ a:focus-visible {
   border-radius: 6px;
   overflow: hidden;
   cursor: pointer;
-  box-shadow: none;
   transition: box-shadow 400ms ease;
 }
 
-.tv-wrapper:hover .tv-screen-overlay,
-.tv-wrapper:focus-visible .tv-screen-overlay {
-  box-shadow:
-    0 0 0 2px rgba(247, 187, 67, 0.9),
-    0 0 18px 6px rgba(247, 187, 67, 0.45),
-    0 0 36px 14px rgba(247, 187, 67, 0.15);
+/* Play indicator — ♿ visible cue for both mouse and keyboard users (WCAG 1.4.1, 2.4.11) */
+.tv-screen-overlay::after {
+  content: '▶';
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0);
+  color: transparent;
+  font-size: clamp(1.5rem, 2.5vw, 2.25rem);
+  transition: background 300ms ease, color 300ms ease;
+  pointer-events: none;
+  z-index: 2;
+  border-radius: 6px;
+}
+
+.tv-wrapper:hover .tv-screen-overlay::after,
+.tv-wrapper:focus-visible .tv-screen-overlay::after {
+  background: rgba(0, 0, 0, 0.42);
+  color: rgba(255, 255, 255, 0.92);
 }
 
 .tv-video {
@@ -351,7 +362,7 @@ a:focus-visible {
   left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: fill;
 }
 
 .tv-badge {
