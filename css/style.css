@@ -101,6 +101,7 @@ a:focus-visible {
   left: var(--space-4);
   z-index: 9999;
   padding: var(--space-2) var(--space-4);
+  background: var(--twilight);
   color: var(--white);
   font-family: var(--font-label);
   font-size: var(--text-sm);
@@ -309,9 +310,10 @@ a:focus-visible {
 }
 
 /* Orange glow on hover and keyboard focus — filter lives on image so transition works */
+/* Whole-TV backlit warm glow — hover/focus cue, nothing on the screen itself */
 .tv-wrapper:hover .tv-image,
 .tv-wrapper:focus-visible .tv-image {
-  filter: brightness(1.1) drop-shadow(0 0 25px rgba(247, 187, 67, 0.8));
+  filter: brightness(1.12) drop-shadow(0 0 35px rgba(247, 187, 67, 0.9)) drop-shadow(0 0 60px rgba(247, 187, 67, 0.4));
 }
 
 /* Keyboard focus ring — distinct from hover glow, meets WCAG 2.4.11 Focus Appearance */
@@ -321,6 +323,8 @@ a:focus-visible {
   border-radius: 2px;
 }
 
+/* No overlay, no arrow — screen plays clean
+   ♿ Hover/click cue is the whole TV backlit glow; aria-label on .tv-wrapper covers screen readers */
 .tv-screen-overlay {
   position: absolute;
   top:    36%;
@@ -330,30 +334,6 @@ a:focus-visible {
   border-radius: 6px;
   overflow: hidden;
   cursor: pointer;
-  transition: box-shadow 400ms ease;
-}
-
-/* Play indicator — ♿ visible cue for both mouse and keyboard users (WCAG 1.4.1, 2.4.11) */
-.tv-screen-overlay::after {
-  content: '▶';
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(0, 0, 0, 0);
-  color: transparent;
-  font-size: clamp(1.5rem, 2.5vw, 2.25rem);
-  transition: background 300ms ease, color 300ms ease;
-  pointer-events: none;
-  z-index: 2;
-  border-radius: 6px;
-}
-
-.tv-wrapper:hover .tv-screen-overlay::after,
-.tv-wrapper:focus-visible .tv-screen-overlay::after {
-  background: rgba(0, 0, 0, 0.42);
-  color: rgba(255, 255, 255, 0.92);
 }
 
 .tv-video {
