@@ -322,6 +322,8 @@ a:focus-visible {
   border-radius: 2px;
 }
 
+/* Screen hover ring — gold border glow AROUND the screen, nothing over the video
+   ♿ Accessible label lives in aria-label on .tv-wrapper */
 .tv-screen-overlay {
   position: absolute;
   top:    36%;
@@ -331,30 +333,16 @@ a:focus-visible {
   border-radius: 6px;
   overflow: hidden;
   cursor: pointer;
+  box-shadow: none;
   transition: box-shadow 400ms ease;
 }
 
-/* Backlit glow — CRT warm-up effect on hover/focus
-   ♿ Screen reader prompt is in aria-label on .tv-wrapper — no text needed here */
-.tv-screen-overlay::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: transparent;
-  transition: background 400ms ease;
-  pointer-events: none;
-  z-index: 2;
-  border-radius: 6px;
-}
-
-.tv-wrapper:hover .tv-screen-overlay::after,
-.tv-wrapper:focus-visible .tv-screen-overlay::after {
-  background: radial-gradient(ellipse at center,
-    rgba(247, 187, 67, 0.50)  0%,
-    rgba(247, 187, 67, 0.22) 45%,
-    rgba(247, 187, 67, 0.06) 75%,
-    transparent              100%
-  );
+.tv-wrapper:hover .tv-screen-overlay,
+.tv-wrapper:focus-visible .tv-screen-overlay {
+  box-shadow:
+    0 0 0 2px rgba(247, 187, 67, 0.9),
+    0 0 18px 6px rgba(247, 187, 67, 0.45),
+    0 0 36px 14px rgba(247, 187, 67, 0.15);
 }
 
 .tv-video {
