@@ -45,7 +45,7 @@
       <nav id="primary-nav" class="primary-nav" aria-label="Primary navigation">
         <ul role="list">
           <li><a href="#home">Home</a></li>
-          <li><a href="#methodology">Methodology</a></li>
+          <li><a href="#methodology">7-Step Process</a></li>
           <li><a href="#case-studies">Case Studies</a></li>
           <li><a href="#resume">Resume</a></li>
           <li><a href="#contact">Contact</a></li>
@@ -125,6 +125,102 @@
         </div>
 
       </div>
+
+      <!-- Q&A SUBSECTION — extends hero, sits directly under TV -->
+      <div class="hero-qa">
+        <div class="hero-qa-inner">
+
+          <!-- qasubheading: very large, left-aligned at hero heading margin,
+               top-aligned with the bottom of the TV -->
+          <div class="qa-subheading-wrap">
+            <img
+              src="assets/SVG/qasubheading.svg"
+              alt="Questions and Answers"
+              class="qa-subheading-svg"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+
+          <!-- Three question cards evenly spaced left to right -->
+          <div class="qa-cards-row">
+
+            <div class="qa-card-wrap"
+                 role="button"
+                 tabindex="0"
+                 data-transcript="assets/SVG/q1transcript.svg"
+                 data-transcript-alt="Question 1 — full transcript"
+                 aria-label="Question 1 — click to read full transcript"
+                 aria-haspopup="dialog">
+              <img
+                src="assets/images/flower.png"
+                alt=""
+                class="qa-flower"
+                aria-hidden="true"
+                loading="lazy"
+                decoding="async"
+              />
+              <img
+                src="assets/SVG/q1hero.svg"
+                alt="Question 1"
+                class="qa-card-svg"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+
+            <div class="qa-card-wrap"
+                 role="button"
+                 tabindex="0"
+                 data-transcript="assets/SVG/q2transcript.svg"
+                 data-transcript-alt="Question 2 — full transcript"
+                 aria-label="Question 2 — click to read full transcript"
+                 aria-haspopup="dialog">
+              <img
+                src="assets/images/flower.png"
+                alt=""
+                class="qa-flower"
+                aria-hidden="true"
+                loading="lazy"
+                decoding="async"
+              />
+              <img
+                src="assets/SVG/q2hero.svg"
+                alt="Question 2"
+                class="qa-card-svg"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+
+            <div class="qa-card-wrap"
+                 role="button"
+                 tabindex="0"
+                 data-transcript="assets/SVG/q3transcript.svg"
+                 data-transcript-alt="Question 3 — full transcript"
+                 aria-label="Question 3 — click to read full transcript"
+                 aria-haspopup="dialog">
+              <img
+                src="assets/images/flower.png"
+                alt=""
+                class="qa-flower"
+                aria-hidden="true"
+                loading="lazy"
+                decoding="async"
+              />
+              <img
+                src="assets/SVG/q3hero.svg"
+                alt="Question 3"
+                class="qa-card-svg"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+
+          </div><!-- /.qa-cards-row -->
+
+        </div><!-- /.hero-qa-inner -->
+      </div><!-- /.hero-qa -->
 
       <!-- hero-bottom: subheading, methodology intro text, and spine grouped at foot of hero -->
       <div class="hero-bottom">
@@ -247,9 +343,30 @@
     </div>
   </div>
 
+  <!-- ===================== QA TRANSCRIPT MODAL ===================== -->
+  <div
+    class="qa-modal"
+    id="qa-modal"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Full transcript"
+    hidden
+  >
+    <div class="qa-modal-backdrop" id="qa-modal-backdrop"></div>
+    <div class="qa-modal-content">
+      <button class="qa-modal-close" id="qa-modal-close" aria-label="Close transcript">
+        <span aria-hidden="true">✕</span>
+      </button>
+      <div class="qa-modal-frame">
+        <img id="qa-modal-img" src="" alt="" class="qa-modal-img" />
+      </div>
+    </div>
+  </div>
+
   <script src="js/nav.js" defer></script>
   <script src="js/video.js" defer></script>
   <script src="js/steps.js" defer></script>
+  <script src="js/qa.js" defer></script>
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>

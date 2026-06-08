@@ -374,17 +374,17 @@ a:focus-visible {
 .hero-subheading {
   display: flex;
   justify-content: center;
-  padding: 0 var(--content-pad) var(--space-2);
+  padding: 0;            /* removed content-pad so SVG can reach full hero width */
 }
 
 .subheading-svg {
-  width: 65%;
-  max-width: 880px;
+  width: 100%;           /* fills the full hero container — practical maximum */
+  max-width: none;       /* overrides reset.css max-width:100% so nothing clamps it */
   height: auto;
   display: block;
 }
 
-/* Methodology intro text — left edge at 30%, 25% larger than 50% baseline */
+/* Methodology intro text — centered under subheading1 */
 .methodology-text-wrap {
   margin-top: var(--space-2);
   position: relative;
@@ -395,7 +395,130 @@ a:focus-visible {
   display: block;
   width: 62.5%;
   height: auto;
-  margin-left: 30%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* bloomcta — centered CTA under methodology text */
+.bloom-cta-svg {
+  display: block;
+  width: clamp(200px, 36%, 520px);
+  height: auto;
+  margin: var(--space-4) auto 0;
+}
+
+
+/* ==========================================================
+   Q&A SUBSECTION — within hero, directly under TV
+   DevTools tuning points:
+     • .hero-qa margin-top — move qasubheading up/down to align
+       with TV bottom
+     • .qa-subheading-svg width — scale heading up/down
+     • .qa-flower margin-top negative value — controls how deep
+       the flower overlaps into the bottom of each q card
+========================================================== */
+
+.hero-qa {
+  width: 100%;
+  margin-top: -93px;   /* confirmed in DevTools */
+  padding: 0 var(--content-pad) var(--space-20);
+}
+
+.hero-qa-inner {
+  max-width: var(--maxw);
+  margin: 0 auto;
+}
+
+/* qasubheading — very large, left edge matches hero heading margin */
+.qa-subheading-wrap {
+  margin-bottom: var(--space-10);
+}
+
+.qa-subheading-svg {
+  display: block;
+  /* "Very large" — adjust width in DevTools to taste */
+  width: clamp(240px, 38%, 560px);
+  height: auto;
+  /* No extra left offset needed — hero-qa-inner padding = content-pad,
+     same left margin as the hero heading SVG */
+}
+
+/* Three q cards evenly distributed across full width */
+.qa-cards-row {
+  display: flex;
+  align-items: flex-start;
+  gap: clamp(var(--space-6), 3vw, var(--space-10));
+}
+
+/* Each card is an equal third */
+.qa-card-wrap {
+  flex: 1;
+  min-width: 0;
+  overflow: visible;
+  cursor: pointer;
+  position: relative;
+}
+
+.qa-card-wrap:focus-visible {
+  outline: 3px solid var(--hero-orange);
+  outline-offset: 6px;
+  border-radius: 2px;
+}
+
+/* Card SVG — no hover transform, no filter; the flower is the interactive element */
+.qa-card-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  position: relative;
+  z-index: 1;
+}
+
+/* Flower — sits at top of card, overlaps card top edge.
+   pointer-events: auto so JS can catch mouseenter for the silver burst.
+   Negative margin-bottom pulls the card up into the flower.
+   Tune margin-bottom in DevTools — bigger negative = more overlap.
+   Using clamp() so it scales with viewport rather than being a fixed pixel hit. */
+.qa-flower {
+  display: block;
+  width: clamp(160px, 70%, 380px);
+  height: auto;
+  margin: 0 auto -20px; /* slight overlap — flower perches at top edge of card */
+  position: relative;
+  z-index: 2;
+  pointer-events: auto;    /* enables hover without breaking click-bubble to parent */
+  transition: filter 300ms ease;
+}
+
+/* Silver burst on flower hover — same Tinkerbell animation as flowerspine blooms.
+   drop-shadow follows the flower's alpha channel so it glows around the
+   flower shape only, never touching the card text below. */
+.qa-flower.is-hovering {
+  animation: silverGlitterBurst 0.75s ease-out 1 forwards;
+}
+
+/* Mobile: stack cards vertically */
+@media (max-width: 768px) {
+  .hero-qa {
+    padding-bottom: var(--space-12);
+  }
+  .qa-subheading-svg {
+    width: 88%;
+    max-width: 100%;
+  }
+  .qa-cards-row {
+    flex-direction: column;
+    align-items: center;   /* center each card when stacked */
+    gap: var(--space-20);  /* generous gap between stacked cards on mobile */
+  }
+  .qa-card-wrap {
+    width: 88%;            /* prevent full-bleed on narrow screens */
+    max-width: 420px;
+  }
+  .qa-flower {
+    width: clamp(120px, 55%, 240px);
+    margin: 0 auto -100px; /* tighter overlap on small screens */
+  }
 }
 
 
@@ -496,6 +619,81 @@ a:focus-visible {
 
 
 /* ==========================================================
+   QA TRANSCRIPT MODAL
+   Wide format to match the open-book density of transcript SVGs.
+   ♿ role="dialog", aria-modal, focus trap in qa.js
+========================================================== */
+
+.qa-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 600;           /* above video modal (500) */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.qa-modal[hidden] {
+  display: none;
+}
+
+.qa-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.90);
+  cursor: pointer;
+}
+
+/* Wide container — transcript SVGs are dense open-book spreads */
+.qa-modal-content {
+  position: relative;
+  z-index: 601;
+  width: min(1100px, 94vw);
+}
+
+.qa-modal-close {
+  position: absolute;
+  top: -2.5rem;
+  right: 0;
+  background: none;
+  border: none;
+  color: var(--white);
+  font-size: 1.25rem;
+  cursor: pointer;
+  padding: var(--space-2);
+  line-height: 1;
+  opacity: 0.8;
+  transition: opacity 150ms ease;
+}
+
+.qa-modal-close:hover {
+  opacity: 1;
+}
+
+.qa-modal-close:focus-visible {
+  outline: 3px solid var(--hero-orange);
+  outline-offset: 3px;
+}
+
+/* Transcript image fills the modal width — height follows SVG aspect ratio.
+   Background is lightest-orange so transparent SVGs render correctly
+   (without this, a transparent SVG reads as black against the dark backdrop) */
+.qa-modal-frame {
+  width: 100%;
+  overflow: hidden;
+  border-radius: 4px;
+  box-shadow: 0 16px 60px rgba(0, 0, 0, 0.60);
+  background-color: var(--lightest-orange);
+}
+
+.qa-modal-img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+
+/* ==========================================================
    6. METHODOLOGY SECTION
    Background: lightest-orange — the spine and heading sit on
    this cream ground. overflow:hidden clips spine at section
@@ -570,11 +768,12 @@ a:focus-visible {
 .step-label--6   { top: 41%; left: 57%; width: 18%; }
 .step-label--7   { top: 51%; left: 72%; width: 23%; }
 
-/* Step labels are interactive — restore pointer events */
-.step-label {
-  cursor: pointer;
-}
-.step-label--1 {
+/* Step labels are interactive — restore pointer events for all */
+.step-label--1,
+.step-label--234,
+.step-label--5,
+.step-label--6,
+.step-label--7 {
   pointer-events: auto;
 }
 
@@ -600,6 +799,15 @@ a:focus-visible {
   100% { opacity: 0.65; transform: scale(1.0);  }
 }
 
+/* Step label active — silver glitter burst fires on all labels */
+.step-label--1.is-active   .step-label-svg,
+.step-label--234.is-active .step-label-svg,
+.step-label--5.is-active   .step-label-svg,
+.step-label--6.is-active   .step-label-svg,
+.step-label--7.is-active   .step-label-svg {
+  animation: silverGlitterBurst 0.75s ease-out 1 forwards;
+}
+
 /* Flower hotspot — invisible hover trigger over flower position */
 .flower-hotspot {
   position: absolute;
@@ -607,12 +815,15 @@ a:focus-visible {
   pointer-events: auto;
   cursor: pointer;
 }
-.flower-hotspot--1 {
-  top: 0%;
-  left: 1%;
-  width: 14%;
-  height: 22%;
-}
+/* ── Hotspot positions — ALL placeholder. Tune each in DevTools.
+   Selector → adjust top/left/width/height until it covers its bloom exactly. */
+.flower-hotspot--1 { top:  0%;  left:  1%;  width: 14%; height: 22%; }
+.flower-hotspot--2 { top:  9%;  left:  4%;  width: 12%; height: 18%; }  /* placeholder */
+.flower-hotspot--3 { top: 16%;  left: 10%;  width: 12%; height: 18%; }  /* placeholder */
+.flower-hotspot--4 { top: 23%;  left: 17%;  width: 12%; height: 18%; }  /* placeholder */
+.flower-hotspot--5 { top: 36%;  left: 14%;  width: 12%; height: 18%; }  /* placeholder */
+.flower-hotspot--6 { top: 48%;  left: 42%;  width: 12%; height: 18%; }  /* placeholder */
+.flower-hotspot--7 { top: 58%;  left: 60%;  width: 12%; height: 18%; }  /* placeholder */
 
 /* Flower glow overlay — silver-white screen blend, Tinkerbell light */
 .flower-glow {
@@ -623,11 +834,23 @@ a:focus-visible {
   transition: opacity 200ms ease;
   z-index: 2;
 }
-.flower-glow--1 {
-  top: -1%;
-  left: 0%;
-  width: 16%;
-  height: 24%;
+/* ── Glow positions mirror hotspot positions (slightly larger for the halo) */
+.flower-glow--1 { top: -1%; left:  0%;  width: 16%; height: 24%; }
+.flower-glow--2 { top:  8%; left:  3%;  width: 14%; height: 20%; }  /* placeholder */
+.flower-glow--3 { top: 15%; left:  9%;  width: 14%; height: 20%; }  /* placeholder */
+.flower-glow--4 { top: 22%; left: 16%;  width: 14%; height: 20%; }  /* placeholder */
+.flower-glow--5 { top: 35%; left: 13%;  width: 14%; height: 20%; }  /* placeholder */
+.flower-glow--6 { top: 47%; left: 41%;  width: 14%; height: 20%; }  /* placeholder */
+.flower-glow--7 { top: 57%; left: 59%;  width: 14%; height: 20%; }  /* placeholder */
+
+/* All glows use same radial gradient */
+.flower-glow--1,
+.flower-glow--2,
+.flower-glow--3,
+.flower-glow--4,
+.flower-glow--5,
+.flower-glow--6,
+.flower-glow--7 {
   background: radial-gradient(ellipse at center,
     rgba(255,255,255,0.9)  0%,
     rgba(220,220,245,0.55) 40%,
@@ -635,14 +858,17 @@ a:focus-visible {
   );
   mix-blend-mode: screen;
 }
-.flower-glow--1.is-active {
+
+/* is-active fires the Tinkerbell burst on every glow */
+.flower-glow--1.is-active,
+.flower-glow--2.is-active,
+.flower-glow--3.is-active,
+.flower-glow--4.is-active,
+.flower-glow--5.is-active,
+.flower-glow--6.is-active,
+.flower-glow--7.is-active {
   opacity: 1;
   animation: flowerSilverBurst 0.75s ease-out 1 forwards;
-}
-
-/* Step label active — silver glitter burst */
-.step-label--1.is-active .step-label-svg {
-  animation: silverGlitterBurst 0.75s ease-out 1 forwards;
 }
 
 /* Elevate spine-wrap above methodology text when card is open */
@@ -650,7 +876,7 @@ a:focus-visible {
   z-index: 3;
 }
 
-/* Defcard popup */
+/* Defcard popup — shared transition */
 .step-card {
   position: absolute;
   pointer-events: auto;
@@ -672,11 +898,17 @@ a:focus-visible {
   display: block;
   border-radius: 4px;
 }
-.step-card--1 {
-  top: 1%;
-  left: 44%;
-  width: 28%;
-}
+
+/* ── Card positions — ALL placeholder except step 1 (confirmed).
+   Tune each in DevTools: move popup so it's readable and doesn't
+   overlap its own flower. Step 1 is the baseline reference.     */
+.step-card--1 { top:  1%; left: 44%; width: 28%; }
+.step-card--2 { top:  7%; left: 18%; width: 28%; }  /* placeholder */
+.step-card--3 { top: 13%; left: 24%; width: 28%; }  /* placeholder */
+.step-card--4 { top: 19%; left: 30%; width: 28%; }  /* placeholder */
+.step-card--5 { top: 33%; left: 28%; width: 28%; }  /* placeholder */
+.step-card--6 { top: 45%; left: 54%; width: 28%; }  /* placeholder */
+.step-card--7 { top: 55%; left: 66%; width: 28%; }  /* placeholder */
 
 /* Mobile step cards — hidden on desktop, stacked below spine on mobile */
 .step-cards-mobile {
