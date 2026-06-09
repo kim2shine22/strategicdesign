@@ -495,7 +495,7 @@ a:focus-visible {
   .qa-subheading-svg {
     width: 45%;            /* substantially smaller on mobile so it doesn't dwarf the hero */
     max-width: 100%;
-    margin: var(--space-8) auto 0; /* raised: was --space-16, pulls cluster up toward video */
+    margin: var(--space-16) auto 0; /* dropped down toward bloomcta (was --space-8) */
   }
 
   /* bloomcta readable on mobile — larger share of width than desktop clamp gives */
