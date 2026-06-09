@@ -271,7 +271,7 @@ a:focus-visible {
 }
 
 .hero-heading-svg {
-  width: 50%;
+  width: 82.5%;        /* 65% larger than prior 50% */
   max-width: 2250px;
   height: auto;
   display: block;
@@ -394,7 +394,7 @@ a:focus-visible {
 
 .methodology-text-svg {
   display: block;
-  width: 62.5%;
+  width: 93.75%;       /* 50% larger than prior 62.5% */
   height: auto;
   margin-left: auto;
   margin-right: auto;
