@@ -533,7 +533,7 @@ a:focus-visible {
     display: block;
     width: 60%;                  /* tune in DevTools */
     max-width: 220px;
-    margin: 0 auto -90px;        /* overlap depth — tune in DevTools */
+    margin: 0 auto -40px;        /* overlap depth — lifted from -90px so flower clears the question text; tune in DevTools */
     position: relative;
     z-index: 2;
   }
@@ -569,14 +569,17 @@ a:focus-visible {
   border-radius: 4px;
 }
 
-/* "Tap to play with sound" SVG image cue — visible only on mobile
-   (parent .hero-mobile-media is display:none on desktop). */
+/* "Tap to play with sound" cue — soundlabel.svg, centered under the
+   video preview. Visible only on mobile (parent is display:none on desktop).
+   Width ≈ 75% of the video's max-width (300px) so it reads as a caption
+   that belongs to the screen above it. Sits as close under the video as
+   the parent gap allows. */
 .hero-mobile-cue {
   display: block;
-  width: 70%;
-  max-width: 280px;
+  width: 75%;
+  max-width: 225px;
   height: auto;
-  margin: var(--space-3) auto 0;
+  margin: 0 auto;
 }
 
 /* ==========================================================
@@ -1110,7 +1113,7 @@ a:focus-visible {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: var(--space-4);
+    gap: var(--space-2);
     padding: var(--space-4) 0 var(--space-6);
   }
 
