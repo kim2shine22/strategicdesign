@@ -288,6 +288,7 @@ a:focus-visible {
   width: 100%;
   max-width: 960px;
   cursor: pointer;
+  z-index: 3; /* lifts antenna in front of the hero heading instead of behind it */
 }
 
 .tv-image {
@@ -832,7 +833,7 @@ a:focus-visible {
 
 /* Individual label positions — adjust top/left in DevTools, read back values to lock in */
 .step-label--1   { top: 10%; left: 31%; width: 11%; }
-.step-label--2   { top: 17%; left: 31%; width: 11%; } /* spaced evenly between step 1 and 5 */
+.step-label--2   { top: 17%; left: 31%; width: 11%; } /* tune width per-label so RENDERED FONT matches across all 7 */
 .step-label--3   { top: 24%; left: 31%; width: 11%; }
 .step-label--4   { top: 31%; left: 31%; width: 11%; }
 .step-label--5   { top: 41%; left: 31%; width: 20%; }
