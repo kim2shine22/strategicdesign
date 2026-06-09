@@ -388,7 +388,9 @@ a:focus-visible {
   margin-right: auto;
 }
 
-/* bloomcta — centered CTA under methodology text */
+/* bloomcta — centered CTA under qasubheading.
+   Desktop width via clamp; mobile width bumped up in the media query
+   so the call-to-action stays readable on a narrow screen. */
 .bloom-cta-svg {
   display: block;
   width: clamp(200px, 36%, 520px);
@@ -493,13 +495,26 @@ a:focus-visible {
   .qa-subheading-svg {
     width: 45%;            /* substantially smaller on mobile so it doesn't dwarf the hero */
     max-width: 100%;
-    margin: var(--space-16) auto 0; /* push down clear of hero video + center */
+    margin: var(--space-8) auto 0; /* raised: was --space-16, pulls cluster up toward video */
+  }
+
+  /* bloomcta readable on mobile — larger share of width than desktop clamp gives */
+  .bloom-cta-svg {
+    width: 70%;
+    max-width: 360px;
+    margin: var(--space-4) auto 0;
+  }
+
+  /* Subheading wrap holds qasubheading + bloomcta centered */
+  .qa-subheading-wrap {
+    text-align: center;
+    margin-bottom: var(--space-6); /* tighter: brings first card up toward the CTA */
   }
 
   .qa-cards-row {
     flex-direction: column;
     align-items: center;   /* center each card when stacked */
-    gap: var(--space-12);  /* tighter gap now that flowers are gone */
+    gap: var(--space-4);   /* tightened from --space-12 so the three cluster closer */
   }
 
   .qa-card-wrap {
@@ -507,11 +522,20 @@ a:focus-visible {
     max-width: 320px;
   }
 
-  /* Flowers visible on mobile — perch at top of each stacked card.
-     Overlap (-20px) inherited from desktop rule; tune here if needed
-     once confirmed in DevTools on a real phone width. */
+  /* Flowers visible on mobile — perch on top of each card, overlapping
+     slightly INTO the top of the circle, above all question text.
+     The negative margin-bottom pulls the card up into the flower so the
+     flower's lower petals sit over the circle's top edge.
+     ── DevTools tuning: make the margin-bottom MORE negative to push the
+        flower deeper into the circle, LESS negative to lift it off.
+        Adjust width to scale the flower itself. */
   .qa-flower {
     display: block;
+    width: 60%;                  /* tune in DevTools */
+    max-width: 220px;
+    margin: 0 auto -90px;        /* overlap depth — tune in DevTools */
+    position: relative;
+    z-index: 2;
   }
 }
 
