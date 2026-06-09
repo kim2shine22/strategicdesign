@@ -2,14 +2,13 @@
    ─────────────────────────────────────────────────
    Each step has:
      id       → suffix for flower-hotspot--N, flower-glow--N, step-card--N
-     labelId  → suffix for step-label--N (steps 2–4 share 'step-label--234')
+     labelId  → suffix for step-label--N
 
    Hover any flower hotspot, its step label, OR its open defcard → activate.
    On re-hover the glitter burst replays.
 
-   Steps 2–4 share one visual label (step-label--234). Keyboard focus on
-   that label opens step 2's card (the group representative). Flowers 3 & 4
-   are mouse / touch only.
+   Steps 2, 3, 4 are now three SEPARATE labels (step-label--2, --3, --4),
+   each with its own defcard popup — previously they shared step-label--234.
 
    Positions of hotspot/glow/card divs for steps 2–7 are PLACEHOLDERS.
    Tune each in DevTools, then lock the values into style.css.
@@ -18,15 +17,16 @@
 (function () {
   'use strict';
 
-  /* id = DOM suffix, labelId = which step-label to animate */
+  /* id = DOM suffix, labelId = which step-label to animate.
+     Steps 2, 3, 4 are now three separate labels with their own popups. */
   var STEPS = [
-    { id: '1', labelId: '1'   },
-    { id: '2', labelId: '234' },  /* keyboard on label--234 shows card 2 */
-    { id: '3', labelId: '234' },  /* mouse/touch only for card 3 */
-    { id: '4', labelId: '234' },  /* mouse/touch only for card 4 */
-    { id: '5', labelId: '5'   },
-    { id: '6', labelId: '6'   },
-    { id: '7', labelId: '7'   }
+    { id: '1', labelId: '1' },
+    { id: '2', labelId: '2' },
+    { id: '3', labelId: '3' },
+    { id: '4', labelId: '4' },
+    { id: '5', labelId: '5' },
+    { id: '6', labelId: '6' },
+    { id: '7', labelId: '7' }
   ];
 
   function qs(sel) { return document.querySelector(sel); }
@@ -42,7 +42,7 @@
   }
 
   /* Track which steps have already bound keyboard events to a shared label,
-     so we don't stack duplicate handlers on step-label--234. */
+     so we don't stack duplicate handlers. */
   var labelKeyboardBound = {};
 
   STEPS.forEach(function (step) {
