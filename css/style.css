@@ -515,9 +515,18 @@ a:focus-visible {
   }
 }
 
-/* Mobile TV + video in hero — hidden on desktop */
+/* Mobile TV + video in hero — hidden on desktop.
+   Tappable: opens the video modal (wired in video.js). */
 .hero-mobile-media {
   display: none;
+  cursor: pointer;
+  position: relative;
+}
+
+.hero-mobile-media:focus-visible {
+  outline: 3px solid var(--hero-orange);
+  outline-offset: 6px;
+  border-radius: 2px;
 }
 
 .hero-mobile-tv {
@@ -534,6 +543,19 @@ a:focus-visible {
   height: auto;
   display: block;
   border-radius: 4px;
+}
+
+/* "Tap to play with sound" cue — visible only on mobile (parent is display:none
+   on desktop). Sits under the preview as a clear playback affordance. */
+.hero-mobile-cue {
+  display: block;
+  margin-top: var(--space-2);
+  font-family: var(--font-label);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--twilight);
+  text-align: center;
+  letter-spacing: 0.02em;
 }
 
 /* ==========================================================
