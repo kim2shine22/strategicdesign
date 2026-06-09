@@ -507,9 +507,11 @@ a:focus-visible {
     max-width: 320px;
   }
 
-  /* Flowers are PNGs — hidden on mobile so only the qXhero SVG cards show */
+  /* Flowers visible on mobile — perch at top of each stacked card.
+     Overlap (-20px) inherited from desktop rule; tune here if needed
+     once confirmed in DevTools on a real phone width. */
   .qa-flower {
-    display: none;
+    display: block;
   }
 }
 
