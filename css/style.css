@@ -271,7 +271,7 @@ a:focus-visible {
 }
 
 .hero-heading-svg {
-  width: 73%;          /* eased from 82.5% — restores side margins, stays large */
+  width: 36.5%;        /* 50% smaller than prior 73% — new SVG artwork renders larger */
   max-width: 2250px;
   height: auto;
   display: block;
