@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git -C /Users/kimmatthews/Documents/GitHub/m2-hw2-matthews-kim/strategicdesign add css/style.css)",
+      "Bash(git -C:*)"
+    ]
+  }
+}
