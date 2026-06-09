@@ -233,8 +233,8 @@ a:focus-visible {
   background-color: var(--lightest-orange);
   background-image: linear-gradient(
     to bottom,
-    var(--lightest-orange) 45%,
-    var(--hero-orange) 90%
+    var(--lightest-orange) 70%,
+    var(--hero-orange) 100%
   );
   min-height: calc(100vh - var(--header-height));
   display: flex;
@@ -429,6 +429,7 @@ a:focus-visible {
 
 /* qasubheading — very large, left edge matches hero heading margin */
 .qa-subheading-wrap {
+  margin-top: var(--space-16);   /* drops the whole Q&A group down the page (desktop) */
   margin-bottom: var(--space-2); /* tightened from --space-10 — pulls cards up close to heading */
 }
 
@@ -517,9 +518,12 @@ a:focus-visible {
     margin: var(--space-4) auto var(--space-6);
   }
 
-  /* Subheading wrap holds qasubheading + bloomcta centered */
+  /* Subheading wrap holds qasubheading + bloomcta centered.
+     margin-top reset to 0 here so the desktop --space-16 drop doesn't
+     leak into mobile (mobile heading spacing is set on .qa-subheading-svg). */
   .qa-subheading-wrap {
     text-align: center;
+    margin-top: 0;
     margin-bottom: var(--space-6); /* tighter: brings first card up toward the CTA */
   }
 
