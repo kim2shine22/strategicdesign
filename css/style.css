@@ -1,4 +1,4 @@
- /* ==========================================================
+/* ==========================================================
    style.css — Kim Matthews Portfolio
    Order: tokens → base → skip link → header → hero → sections → footer → responsive
 ========================================================== */
@@ -832,14 +832,18 @@ a:focus-visible {
 
 /* Individual label positions — adjust top/left in DevTools, read back values to lock in */
 .step-label--1   { top: 10%; left: 31%; width: 11%; }
-.step-label--234 { top: 21%; left: 31%; width: 31%; }
+.step-label--2   { top: 17%; left: 31%; width: 11%; } /* spaced evenly between step 1 and 5 */
+.step-label--3   { top: 24%; left: 31%; width: 11%; }
+.step-label--4   { top: 31%; left: 31%; width: 11%; }
 .step-label--5   { top: 41%; left: 31%; width: 20%; }
 .step-label--6   { top: 41%; left: 57%; width: 18%; }
 .step-label--7   { top: 51%; left: 72%; width: 23%; }
 
 /* Step labels are interactive — restore pointer events for all */
 .step-label--1,
-.step-label--234,
+.step-label--2,
+.step-label--3,
+.step-label--4,
 .step-label--5,
 .step-label--6,
 .step-label--7 {
@@ -870,7 +874,9 @@ a:focus-visible {
 
 /* Step label active — silver glitter burst fires on all labels */
 .step-label--1.is-active .step-label-svg,
-.step-label--234.is-active .step-label-svg,
+.step-label--2.is-active .step-label-svg,
+.step-label--3.is-active .step-label-svg,
+.step-label--4.is-active .step-label-svg,
 .step-label--5.is-active .step-label-svg,
 .step-label--6.is-active .step-label-svg,
 .step-label--7.is-active .step-label-svg {
@@ -976,9 +982,9 @@ a:focus-visible {
    Tune each in DevTools: move popup so it's readable and doesn't
    overlap its own flower. Step 1 is the baseline reference. */
 .step-card--1 { top: 1%;  left: 44%; width: 28%; }
-.step-card--2 { top: 7%;  left: 18%; width: 28%; } /* placeholder */
-.step-card--3 { top: 13%; left: 24%; width: 28%; } /* placeholder */
-.step-card--4 { top: 19%; left: 30%; width: 28%; } /* placeholder */
+.step-card--2 { top: 17%; left: 44%; width: 28%; } /* aligned to label row; tune in DevTools */
+.step-card--3 { top: 24%; left: 44%; width: 28%; }
+.step-card--4 { top: 31%; left: 44%; width: 28%; }
 .step-card--5 { top: 33%; left: 28%; width: 28%; } /* placeholder */
 .step-card--6 { top: 45%; left: 54%; width: 28%; } /* placeholder */
 .step-card--7 { top: 55%; left: 66%; width: 28%; } /* placeholder */
