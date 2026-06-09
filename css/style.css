@@ -49,6 +49,10 @@ Edit values here to update the entire site.
   --maxw: 1440px;
   --header-height: 60px;
   --content-pad: clamp(1rem, 4vw, 3rem);
+  /* Step labels — single source of truth for label type size across all 7.
+     clamp(min, fluid, max): never smaller than 1.4rem, scales ~2.6% of viewport
+     width, capped at 2.6rem on wide monitors. Edit here to resize all labels. */
+  --step-label-h: clamp(1.4rem, 2.6vw, 2.6rem);
   /* Shadows */
   --shadow-sm: 0 1px 3px rgba(0,0,0,0.12);
   --shadow-md: 0 4px 12px rgba(0,0,0,0.15);
@@ -727,26 +731,35 @@ edges. min-height prevents collapse while inner is sparse.
   height: auto;
   display: block;
 }
-/* Step labels — absolutely positioned within spine-wrap, each independently movable */
+/* Step labels — absolutely positioned within spine-wrap, each independently movable.
+   Sized by HEIGHT, not width: a shared clamp() height gives every label the same
+   rendered type size regardless of how long its phrase is. Width is auto, so each
+   label takes only the width its own content needs — left edges line up where the
+   `left` anchor places them, right edges stay naturally ragged. To scale all seven
+   labels up or down at once, edit the single --step-label-h token below. */
 .step-label {
   position: absolute;
   z-index: 3;
   pointer-events: none;
+  height: var(--step-label-h);
+  width: auto;
 }
+/* SVG fills the container height; width follows its intrinsic aspect ratio */
 .step-label-svg {
-  width: 100%;
-  height: auto;
+  height: 100%;
+  width: auto;
   display: block;
 }
-/* Individual label positions — adjust top/left in DevTools, read back values to lock in */
-.step-label--1 { top: 10%; left: 31%; width: 11%; }
-.step-label--2 { top: 17%; left: 31%; width: 11%; } /* tune width per-label so RENDERED FONT
-matches across all 7 */
-.step-label--3 { top: 24%; left: 31%; width: 11%; }
-.step-label--4 { top: 31%; left: 31%; width: 11%; }
-.step-label--5 { top: 41%; left: 31%; width: 20%; }
-.step-label--6 { top: 41%; left: 57%; width: 18%; }
-.step-label--7 { top: 51%; left: 72%; width: 23%; }
+/* Individual label positions — only top/left anchors here.
+   Size is uniform via --step-label-h; no per-label width tuning needed.
+   Adjust top/left in DevTools, read back values to lock in. */
+.step-label--1 { top: 10%; left: 31%; }
+.step-label--2 { top: 17%; left: 31%; }
+.step-label--3 { top: 24%; left: 31%; }
+.step-label--4 { top: 31%; left: 31%; }
+.step-label--5 { top: 41%; left: 31%; }
+.step-label--6 { top: 41%; left: 57%; }
+.step-label--7 { top: 51%; left: 72%; }
 /* Step labels are interactive — restore pointer events for all */
 .step-label--1,
 .step-label--2,
