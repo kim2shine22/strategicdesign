@@ -388,14 +388,14 @@ a:focus-visible {
   margin-right: auto;
 }
 
-/* bloomcta — centered CTA under qasubheading.
-   Desktop width via clamp; mobile width bumped up in the media query
-   so the call-to-action stays readable on a narrow screen. */
+/* bloomcta — centered CTA below the three question cards.
+   Now a sibling after .qa-cards-row, so it spans the inner width and centers.
+   Desktop width via clamp; mobile width bumped up in the media query. */
 .bloom-cta-svg {
   display: block;
   width: clamp(200px, 36%, 520px);
   height: auto;
-  margin: var(--space-4) auto 0;
+  margin: var(--space-10) auto 0; /* clearance below cards; centered */
 }
 
 /* ==========================================================
@@ -416,11 +416,20 @@ a:focus-visible {
 .hero-qa-inner {
   max-width: var(--maxw);
   margin: 0 auto;
+  /* Flex column so each child's vertical position can be set with `order`,
+     letting desktop and mobile stack the same elements differently.
+     Desktop: heading (1) → cards (2) → bloomcta (3, below cards). */
+  display: flex;
+  flex-direction: column;
 }
+
+.qa-subheading-wrap { order: 1; }
+.qa-cards-row       { order: 2; }
+.bloom-cta-svg      { order: 3; }
 
 /* qasubheading — very large, left edge matches hero heading margin */
 .qa-subheading-wrap {
-  margin-bottom: var(--space-10);
+  margin-bottom: var(--space-2); /* tightened from --space-10 — pulls cards up close to heading */
 }
 
 .qa-subheading-svg {
@@ -472,7 +481,7 @@ a:focus-visible {
   display: block;
   width: clamp(160px, 70%, 380px);
   height: auto;
-  margin: 0 auto -20px; /* slight overlap — flower perches at top edge of card */
+  margin: 0 auto -70px; /* overlap into top of card circle — deepened from -20px; tune in DevTools */
   position: relative;
   z-index: 2;
   pointer-events: auto; /* enables hover without breaking click-bubble to parent */
@@ -498,11 +507,14 @@ a:focus-visible {
     margin: var(--space-16) auto 0; /* dropped down toward bloomcta (was --space-8) */
   }
 
-  /* bloomcta readable on mobile — larger share of width than desktop clamp gives */
+  /* bloomcta readable on mobile — larger share of width than desktop clamp gives.
+     Mobile order: heading (1) → bloomcta (2, above cards) → cards (3).
+     Desktop keeps bloomcta below the cards via its base order. */
   .bloom-cta-svg {
+    order: 2;
     width: 70%;
     max-width: 360px;
-    margin: var(--space-4) auto 0;
+    margin: var(--space-4) auto var(--space-6);
   }
 
   /* Subheading wrap holds qasubheading + bloomcta centered */
@@ -512,6 +524,7 @@ a:focus-visible {
   }
 
   .qa-cards-row {
+    order: 3;              /* below bloomcta on mobile (bloomcta is order 2) */
     flex-direction: column;
     align-items: center;   /* center each card when stacked */
     gap: var(--space-4);   /* tightened from --space-12 so the three cluster closer */
