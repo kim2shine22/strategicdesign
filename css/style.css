@@ -569,17 +569,14 @@ a:focus-visible {
   border-radius: 4px;
 }
 
-/* "Tap to play with sound" cue — visible only on mobile (parent is display:none
-   on desktop). Sits under the preview as a clear playback affordance. */
+/* "Tap to play with sound" SVG image cue — visible only on mobile
+   (parent .hero-mobile-media is display:none on desktop). */
 .hero-mobile-cue {
   display: block;
-  margin-top: var(--space-2);
-  font-family: var(--font-label);
-  font-size: var(--text-sm);
-  font-weight: 600;
-  color: var(--twilight);
-  text-align: center;
-  letter-spacing: 0.02em;
+  width: 70%;
+  max-width: 280px;
+  height: auto;
+  margin: var(--space-3) auto 0;
 }
 
 /* ==========================================================
