@@ -366,6 +366,18 @@ a:focus-visible {
   padding: 0; /* removed content-pad so SVG can reach full hero width */
 }
 
+/* subheading1 ("The 7-step Process") — scoped to its wrapper so it is sized
+   independently of the methodology heading, which shares the .subheading-svg
+   class. clamp() lets it scale ~2X larger with the viewport: never below
+   480px, ideally ~95% of the hero width, capped near the layout max so it
+   doesn't overflow on very wide monitors. Adjust the middle value to taste. */
+.hero-subheading .subheading-svg {
+  width: clamp(480px, 95vw, 1400px);
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
 .subheading-svg {
   width: 100%;       /* fills the full hero container — practical maximum */
   max-width: none;   /* overrides reset.css max-width:100% so nothing clamps it */
