@@ -3,58 +3,56 @@
    Order: tokens → base → skip link → header → hero → sections → footer → responsive
 ========================================================== */
 
-
 /* ==========================================================
    1. DESIGN TOKENS
    Edit values here to update the entire site.
 ========================================================== */
-
 :root {
   /* Colors */
-  --hero-orange:     #f7bb43;
-  --case-orange:     #ce6219;
-  --electric-blue:   #07a6f7;
-  --baby-blue:       #0de0fe;
-  --white:           #ffffff;
-  --black:           #000000;
+  --hero-orange: #f7bb43;
+  --case-orange: #ce6219;
+  --electric-blue: #07a6f7;
+  --baby-blue: #0de0fe;
+  --white: #ffffff;
+  --black: #000000;
   --lightest-orange: #fbf1da;
-  --twilight:        #4A4E70;
-  --twilight-dark:   #363957;
-  --champagne:       #dcc8a8;
-  --saffron:         #e5a04c;
+  --twilight: #4A4E70;
+  --twilight-dark: #363957;
+  --champagne: #dcc8a8;
+  --saffron: #e5a04c;
 
   /* Fonts */
   --font-display: 'Overpass Mono', monospace;
-  --font-label:   'IBM Plex Sans', sans-serif;
-  --font-accent:  'Special Elite', 'Courier Prime', monospace;
+  --font-label: 'IBM Plex Sans', sans-serif;
+  --font-accent: 'Special Elite', 'Courier Prime', monospace;
 
   /* Type scale */
-  --text-sm:   0.875rem;
+  --text-sm: 0.875rem;
   --text-base: 1rem;
-  --text-lg:   1.125rem;
-  --text-xl:   1.25rem;
-  --text-2xl:  1.5rem;
-  --text-3xl:  1.875rem;
-  --text-4xl:  2.25rem;
-  --text-5xl:  3rem;
-  --text-6xl:  3.75rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 1.875rem;
+  --text-4xl: 2.25rem;
+  --text-5xl: 3rem;
+  --text-6xl: 3.75rem;
 
   /* Spacing */
-  --space-1:  0.25rem;
-  --space-2:  0.5rem;
-  --space-3:  0.75rem;
-  --space-4:  1rem;
-  --space-6:  1.5rem;
-  --space-8:  2rem;
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
   --space-10: 2.5rem;
   --space-12: 3rem;
   --space-16: 4rem;
   --space-20: 5rem;
 
   /* Layout */
-  --maxw:          1440px;
+  --maxw: 1440px;
   --header-height: 60px;
-  --content-pad:   clamp(1rem, 4vw, 3rem);
+  --content-pad: clamp(1rem, 4vw, 3rem);
 
   /* Shadows */
   --shadow-sm: 0 1px 3px rgba(0,0,0,0.12);
@@ -62,11 +60,9 @@
   --shadow-lg: 0 8px 30px rgba(0,0,0,0.20);
 }
 
-
 /* ==========================================================
    2. BASE
 ========================================================== */
-
 body {
   font-family: var(--font-label);
   font-size: var(--text-base);
@@ -90,11 +86,9 @@ a:focus-visible {
   border-radius: 2px;
 }
 
-
 /* ==========================================================
    3. SKIP LINK — accessibility
 ========================================================== */
-
 .skip-link {
   position: absolute;
   top: -100%;
@@ -125,12 +119,10 @@ a:focus-visible {
   border: 0;
 }
 
-
 /* ==========================================================
    4. HEADER
    ♿ White on Twilight = 5.74:1 contrast — passes WCAG AA
 ========================================================== */
-
 .site-header {
   position: sticky;
   top: 0;
@@ -233,12 +225,10 @@ a:focus-visible {
   transform: translateY(-9px) rotate(-45deg);
 }
 
-
 /* ==========================================================
    5. HERO
    ♿ Black on #fbf1da = 17.8:1 — exceeds WCAG AAA
 ========================================================== */
-
 .hero {
   background-color: var(--lightest-orange);
   background-image: linear-gradient(
@@ -327,9 +317,9 @@ a:focus-visible {
    ♿ Hover/click cue is the whole TV backlit glow; aria-label on .tv-wrapper covers screen readers */
 .tv-screen-overlay {
   position: absolute;
-  top:    36%;
-  left:   7%;
-  width:  65%;
+  top: 36%;
+  left: 7%;
+  width: 65%;
   height: 46%;
   border-radius: 6px;
   overflow: hidden;
@@ -347,9 +337,9 @@ a:focus-visible {
 
 .tv-badge {
   position: absolute;
-  top:    87%;
-  left:   7%;
-  width:  24%;
+  top: 87%;
+  left: 7%;
+  width: 24%;
   cursor: pointer;
 }
 
@@ -364,7 +354,6 @@ a:focus-visible {
   opacity: 0.85;
 }
 
-
 /* Hero bottom — margin-top: auto pushes it to foot of hero */
 .hero-bottom {
   margin-top: auto;
@@ -374,12 +363,12 @@ a:focus-visible {
 .hero-subheading {
   display: flex;
   justify-content: center;
-  padding: 0;            /* removed content-pad so SVG can reach full hero width */
+  padding: 0; /* removed content-pad so SVG can reach full hero width */
 }
 
 .subheading-svg {
-  width: 100%;           /* fills the full hero container — practical maximum */
-  max-width: none;       /* overrides reset.css max-width:100% so nothing clamps it */
+  width: 100%;       /* fills the full hero container — practical maximum */
+  max-width: none;   /* overrides reset.css max-width:100% so nothing clamps it */
   height: auto;
   display: block;
 }
@@ -407,7 +396,6 @@ a:focus-visible {
   margin: var(--space-4) auto 0;
 }
 
-
 /* ==========================================================
    Q&A SUBSECTION — within hero, directly under TV
    DevTools tuning points:
@@ -417,10 +405,9 @@ a:focus-visible {
      • .qa-flower margin-top negative value — controls how deep
        the flower overlaps into the bottom of each q card
 ========================================================== */
-
 .hero-qa {
   width: 100%;
-  margin-top: -93px;   /* confirmed in DevTools */
+  margin-top: -93px; /* confirmed in DevTools */
   padding: 0 var(--content-pad) var(--space-20);
 }
 
@@ -486,7 +473,7 @@ a:focus-visible {
   margin: 0 auto -20px; /* slight overlap — flower perches at top edge of card */
   position: relative;
   z-index: 2;
-  pointer-events: auto;    /* enables hover without breaking click-bubble to parent */
+  pointer-events: auto; /* enables hover without breaking click-bubble to parent */
   transition: filter 300ms ease;
 }
 
@@ -502,26 +489,29 @@ a:focus-visible {
   .hero-qa {
     padding-bottom: var(--space-12);
   }
+
   .qa-subheading-svg {
     width: 45%;            /* substantially smaller on mobile so it doesn't dwarf the hero */
     max-width: 100%;
-    margin: var(--space-16) auto 0;  /* push down clear of hero video + center */
+    margin: var(--space-16) auto 0; /* push down clear of hero video + center */
   }
+
   .qa-cards-row {
     flex-direction: column;
     align-items: center;   /* center each card when stacked */
     gap: var(--space-12);  /* tighter gap now that flowers are gone */
   }
+
   .qa-card-wrap {
     width: 60%;            /* smaller card footprint on mobile */
     max-width: 320px;
   }
+
   /* Flowers are PNGs — hidden on mobile so only the qXhero SVG cards show */
   .qa-flower {
     display: none;
   }
 }
-
 
 /* Mobile TV + video in hero — hidden on desktop */
 .hero-mobile-media {
@@ -544,12 +534,10 @@ a:focus-visible {
   border-radius: 4px;
 }
 
-
 /* ==========================================================
    VIDEO POPUP MODAL
    ♿ Uses role="dialog", aria-modal, focus trap in video.js
 ========================================================== */
-
 .video-modal {
   position: fixed;
   inset: 0;
@@ -618,17 +606,15 @@ a:focus-visible {
   border: 0;
 }
 
-
 /* ==========================================================
    QA TRANSCRIPT MODAL
    Wide format to match the open-book density of transcript SVGs.
    ♿ role="dialog", aria-modal, focus trap in qa.js
 ========================================================== */
-
 .qa-modal {
   position: fixed;
   inset: 0;
-  z-index: 600;           /* above video modal (500) */
+  z-index: 600; /* above video modal (500) */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -693,7 +679,6 @@ a:focus-visible {
   height: auto;
 }
 
-
 /* ==========================================================
    6. METHODOLOGY SECTION
    Background: lightest-orange — the spine and heading sit on
@@ -701,7 +686,6 @@ a:focus-visible {
    edges. min-height prevents collapse while inner is sparse.
    ♿ Spine and mobile TV are decorative — aria-hidden.
 ========================================================== */
-
 .methodology {
   background: var(--hero-orange);
   padding-top: 0;
@@ -715,7 +699,7 @@ a:focus-visible {
   margin: 0 auto;
   padding: 0 var(--content-pad);
   position: relative;
-  z-index: 2;  /* sits above spine (z-index: 1) */
+  z-index: 2; /* sits above spine (z-index: 1) */
 }
 
 /* Section heading — centered, above spine content */
@@ -792,20 +776,20 @@ a:focus-visible {
 
 /* Flower silver burst — Tinkerbell light on the flower */
 @keyframes flowerSilverBurst {
-  0%   { opacity: 0.12; transform: scale(0.8);  }
+  0%   { opacity: 0.12; transform: scale(0.8); }
   14%  { opacity: 1;    transform: scale(1.28); }
   30%  { opacity: 0.35; transform: scale(0.92); }
   50%  { opacity: 0.98; transform: scale(1.18); }
   70%  { opacity: 0.45; transform: scale(0.97); }
-  100% { opacity: 0.65; transform: scale(1.0);  }
+  100% { opacity: 0.65; transform: scale(1.0); }
 }
 
 /* Step label active — silver glitter burst fires on all labels */
-.step-label--1.is-active   .step-label-svg,
+.step-label--1.is-active .step-label-svg,
 .step-label--234.is-active .step-label-svg,
-.step-label--5.is-active   .step-label-svg,
-.step-label--6.is-active   .step-label-svg,
-.step-label--7.is-active   .step-label-svg {
+.step-label--5.is-active .step-label-svg,
+.step-label--6.is-active .step-label-svg,
+.step-label--7.is-active .step-label-svg {
   animation: silverGlitterBurst 0.75s ease-out 1 forwards;
 }
 
@@ -816,15 +800,16 @@ a:focus-visible {
   pointer-events: auto;
   cursor: pointer;
 }
+
 /* ── Hotspot positions — ALL placeholder. Tune each in DevTools.
    Selector → adjust top/left/width/height until it covers its bloom exactly. */
-.flower-hotspot--1 { top:  0%;  left:  1%;  width: 14%; height: 22%; }
-.flower-hotspot--2 { top:  9%;  left:  4%;  width: 12%; height: 18%; }  /* placeholder */
-.flower-hotspot--3 { top: 16%;  left: 10%;  width: 12%; height: 18%; }  /* placeholder */
-.flower-hotspot--4 { top: 23%;  left: 17%;  width: 12%; height: 18%; }  /* placeholder */
-.flower-hotspot--5 { top: 36%;  left: 14%;  width: 12%; height: 18%; }  /* placeholder */
-.flower-hotspot--6 { top: 48%;  left: 42%;  width: 12%; height: 18%; }  /* placeholder */
-.flower-hotspot--7 { top: 58%;  left: 60%;  width: 12%; height: 18%; }  /* placeholder */
+.flower-hotspot--1 { top: 0%;  left: 1%;  width: 14%; height: 22%; }
+.flower-hotspot--2 { top: 9%;  left: 4%;  width: 12%; height: 18%; } /* placeholder */
+.flower-hotspot--3 { top: 16%; left: 10%; width: 12%; height: 18%; } /* placeholder */
+.flower-hotspot--4 { top: 23%; left: 17%; width: 12%; height: 18%; } /* placeholder */
+.flower-hotspot--5 { top: 36%; left: 14%; width: 12%; height: 18%; } /* placeholder */
+.flower-hotspot--6 { top: 48%; left: 42%; width: 12%; height: 18%; } /* placeholder */
+.flower-hotspot--7 { top: 58%; left: 60%; width: 12%; height: 18%; } /* placeholder */
 
 /* Flower glow overlay — silver-white screen blend, Tinkerbell light */
 .flower-glow {
@@ -835,14 +820,15 @@ a:focus-visible {
   transition: opacity 200ms ease;
   z-index: 2;
 }
+
 /* ── Glow positions mirror hotspot positions (slightly larger for the halo) */
-.flower-glow--1 { top: -1%; left:  0%;  width: 16%; height: 24%; }
-.flower-glow--2 { top:  8%; left:  3%;  width: 14%; height: 20%; }  /* placeholder */
-.flower-glow--3 { top: 15%; left:  9%;  width: 14%; height: 20%; }  /* placeholder */
-.flower-glow--4 { top: 22%; left: 16%;  width: 14%; height: 20%; }  /* placeholder */
-.flower-glow--5 { top: 35%; left: 13%;  width: 14%; height: 20%; }  /* placeholder */
-.flower-glow--6 { top: 47%; left: 41%;  width: 14%; height: 20%; }  /* placeholder */
-.flower-glow--7 { top: 57%; left: 59%;  width: 14%; height: 20%; }  /* placeholder */
+.flower-glow--1 { top: -1%; left: 0%;  width: 16%; height: 24%; }
+.flower-glow--2 { top: 8%;  left: 3%;  width: 14%; height: 20%; } /* placeholder */
+.flower-glow--3 { top: 15%; left: 9%;  width: 14%; height: 20%; } /* placeholder */
+.flower-glow--4 { top: 22%; left: 16%; width: 14%; height: 20%; } /* placeholder */
+.flower-glow--5 { top: 35%; left: 13%; width: 14%; height: 20%; } /* placeholder */
+.flower-glow--6 { top: 47%; left: 41%; width: 14%; height: 20%; } /* placeholder */
+.flower-glow--7 { top: 57%; left: 59%; width: 14%; height: 20%; } /* placeholder */
 
 /* All glows use same radial gradient */
 .flower-glow--1,
@@ -853,7 +839,7 @@ a:focus-visible {
 .flower-glow--6,
 .flower-glow--7 {
   background: radial-gradient(ellipse at center,
-    rgba(255,255,255,0.9)  0%,
+    rgba(255,255,255,0.9) 0%,
     rgba(220,220,245,0.55) 40%,
     transparent 72%
   );
@@ -888,11 +874,13 @@ a:focus-visible {
   filter: drop-shadow(0 8px 24px rgba(0,0,0,0.35));
   z-index: 5;
 }
+
 .step-card.is-active {
   opacity: 1;
   transform: translateY(0) scale(1);
   z-index: 200;
 }
+
 .step-card-svg {
   width: 100%;
   height: auto;
@@ -902,19 +890,20 @@ a:focus-visible {
 
 /* ── Card positions — ALL placeholder except step 1 (confirmed).
    Tune each in DevTools: move popup so it's readable and doesn't
-   overlap its own flower. Step 1 is the baseline reference.     */
-.step-card--1 { top:  1%; left: 44%; width: 28%; }
-.step-card--2 { top:  7%; left: 18%; width: 28%; }  /* placeholder */
-.step-card--3 { top: 13%; left: 24%; width: 28%; }  /* placeholder */
-.step-card--4 { top: 19%; left: 30%; width: 28%; }  /* placeholder */
-.step-card--5 { top: 33%; left: 28%; width: 28%; }  /* placeholder */
-.step-card--6 { top: 45%; left: 54%; width: 28%; }  /* placeholder */
-.step-card--7 { top: 55%; left: 66%; width: 28%; }  /* placeholder */
+   overlap its own flower. Step 1 is the baseline reference. */
+.step-card--1 { top: 1%;  left: 44%; width: 28%; }
+.step-card--2 { top: 7%;  left: 18%; width: 28%; } /* placeholder */
+.step-card--3 { top: 13%; left: 24%; width: 28%; } /* placeholder */
+.step-card--4 { top: 19%; left: 30%; width: 28%; } /* placeholder */
+.step-card--5 { top: 33%; left: 28%; width: 28%; } /* placeholder */
+.step-card--6 { top: 45%; left: 54%; width: 28%; } /* placeholder */
+.step-card--7 { top: 55%; left: 66%; width: 28%; } /* placeholder */
 
 /* Mobile step cards — hidden on desktop, stacked below spine on mobile */
 .step-cards-mobile {
   display: none;
 }
+
 .step-card-mobile-svg {
   width: 100%;
   height: auto;
@@ -928,13 +917,11 @@ a:focus-visible {
 
 /* placeholder — mobile-tv-wrap removed from methodology */
 
-
 /* ==========================================================
    7. CONTENT SECTION SYSTEM
    Generic sections below methodology.
    Set --section-bg per section inline in HTML.
 ========================================================== */
-
 .content-section {
   --section-bg: var(--white);
   background-color: var(--section-bg);
@@ -968,9 +955,9 @@ a:focus-visible {
   gap: var(--space-3);
 }
 
-.graphic-block.label-above  { flex-direction: column-reverse; }
-.graphic-block.label-right  { flex-direction: row; align-items: center; }
-.graphic-block.label-left   { flex-direction: row-reverse; align-items: center; }
+.graphic-block.label-above { flex-direction: column-reverse; }
+.graphic-block.label-right { flex-direction: row; align-items: center; }
+.graphic-block.label-left  { flex-direction: row-reverse; align-items: center; }
 
 .graphic-label {
   font-family: var(--font-label);
@@ -980,11 +967,9 @@ a:focus-visible {
   letter-spacing: 0.03em;
 }
 
-
 /* ==========================================================
    8. FOOTER
 ========================================================== */
-
 .site-footer {
   background-color: var(--twilight);
   color: var(--white);
@@ -1005,13 +990,11 @@ a:focus-visible {
   opacity: 0.8;
 }
 
-
 /* ==========================================================
    9. RESPONSIVE — MOBILE (max 768px)
    TV hidden on hero. Mobile TV shown in methodology.
    Spine hidden on mobile. Clean single column.
 ========================================================== */
-
 @media (max-width: 768px) {
 
   .nav-toggle {
@@ -1066,7 +1049,9 @@ a:focus-visible {
     padding-left: 0;
   }
 
+  /* Hero heading: full width on mobile — base rule is 50%, written for desktop */
   .hero-heading-svg {
+    width: 100%;
     max-width: 100%;
   }
 
@@ -1083,6 +1068,7 @@ a:focus-visible {
     gap: var(--space-4);
     padding: var(--space-4) 0 var(--space-6);
   }
+
   .mobile-hero-tv {
     display: flex;
     flex-direction: column;
@@ -1158,12 +1144,10 @@ a:focus-visible {
   }
 }
 
-
 /* ==========================================================
    10. RESPONSIVE — MEDIUM (769px–1100px)
    TV scales down, two-column layout maintained.
 ========================================================== */
-
 @media (min-width: 769px) and (max-width: 1100px) {
 
   .hero-heading-svg {
