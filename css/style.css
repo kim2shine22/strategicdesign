@@ -430,7 +430,13 @@ a:focus-visible {
 /* qasubheading — very large, left edge matches hero heading margin */
 .qa-subheading-wrap {
   margin-top: var(--space-16);   /* drops the whole Q&A group down the page (desktop) */
-  margin-bottom: var(--space-2); /* tightened from --space-10 — pulls cards up close to heading */
+  margin-bottom: 0;              /* closed gap to the flower row below (was --space-2) */
+}
+
+/* Pull the flower/card row up toward the heading on desktop — closes the gap.
+   Overridden back to 0 in the mobile media query. */
+.qa-cards-row {
+  margin-top: calc(var(--space-12) * -1); /* tune in DevTools to close the gap exactly */
 }
 
 .qa-subheading-svg {
@@ -529,6 +535,7 @@ a:focus-visible {
 
   .qa-cards-row {
     order: 3;              /* below bloomcta on mobile (bloomcta is order 2) */
+    margin-top: 0;         /* reset desktop negative margin — mobile stacks normally */
     flex-direction: column;
     align-items: center;   /* center each card when stacked */
     gap: var(--space-4);   /* tightened from --space-12 so the three cluster closer */
