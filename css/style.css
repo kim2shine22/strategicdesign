@@ -1,11 +1,11 @@
 /* ==========================================================
-   style.css — Kim Matthews Portfolio
-   Order: tokens → base → skip link → header → hero → sections → footer → responsive
+style.css — Kim Matthews Portfolio
+Order: tokens → base → skip link → header → hero → sections → footer →
+responsive
 ========================================================== */
-
 /* ==========================================================
-   1. DESIGN TOKENS
-   Edit values here to update the entire site.
+1. DESIGN TOKENS
+Edit values here to update the entire site.
 ========================================================== */
 :root {
   /* Colors */
@@ -20,12 +20,10 @@
   --twilight-dark: #363957;
   --champagne: #dcc8a8;
   --saffron: #e5a04c;
-
   /* Fonts */
   --font-display: 'Overpass Mono', monospace;
   --font-label: 'IBM Plex Sans', sans-serif;
   --font-accent: 'Special Elite', 'Courier Prime', monospace;
-
   /* Type scale */
   --text-sm: 0.875rem;
   --text-base: 1rem;
@@ -36,7 +34,6 @@
   --text-4xl: 2.25rem;
   --text-5xl: 3rem;
   --text-6xl: 3.75rem;
-
   /* Spacing */
   --space-1: 0.25rem;
   --space-2: 0.5rem;
@@ -48,20 +45,17 @@
   --space-12: 3rem;
   --space-16: 4rem;
   --space-20: 5rem;
-
   /* Layout */
   --maxw: 1440px;
   --header-height: 60px;
   --content-pad: clamp(1rem, 4vw, 3rem);
-
   /* Shadows */
   --shadow-sm: 0 1px 3px rgba(0,0,0,0.12);
   --shadow-md: 0 4px 12px rgba(0,0,0,0.15);
   --shadow-lg: 0 8px 30px rgba(0,0,0,0.20);
 }
-
 /* ==========================================================
-   2. BASE
+2. BASE
 ========================================================== */
 body {
   font-family: var(--font-label);
@@ -69,25 +63,21 @@ body {
   color: var(--black);
   background-color: var(--white);
 }
-
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-display);
   line-height: 1.2;
 }
-
 a {
   color: inherit;
   text-decoration: none;
 }
-
 a:focus-visible {
   outline: 3px solid var(--hero-orange);
   outline-offset: 3px;
   border-radius: 2px;
 }
-
 /* ==========================================================
-   3. SKIP LINK — accessibility
+3. SKIP LINK — accessibility
 ========================================================== */
 .skip-link {
   position: absolute;
@@ -102,11 +92,9 @@ a:focus-visible {
   font-weight: 600;
   border-radius: 0 0 4px 4px;
 }
-
 .skip-link:focus {
   top: 0;
 }
-
 .sr-only {
   position: absolute;
   width: 1px;
@@ -118,10 +106,9 @@ a:focus-visible {
   white-space: nowrap;
   border: 0;
 }
-
 /* ==========================================================
-   4. HEADER
-   ♿ White on Twilight = 5.74:1 contrast — passes WCAG AA
+4. HEADER
+♿ White on Twilight = 5.74:1 contrast — passes WCAG AA
 ========================================================== */
 .site-header {
   position: sticky;
@@ -131,7 +118,6 @@ a:focus-visible {
   background-color: var(--champagne);
   box-shadow: var(--shadow-sm);
 }
-
 .header-inner {
   display: flex;
   align-items: flex-end;
@@ -141,7 +127,6 @@ a:focus-visible {
   padding: 0 var(--content-pad) var(--space-2);
   height: 100%;
 }
-
 .site-title {
   font-family: var(--font-label);
   font-size: var(--text-base);
@@ -150,17 +135,14 @@ a:focus-visible {
   letter-spacing: 0.01em;
   white-space: nowrap;
 }
-
 .site-title:hover {
   opacity: 0.85;
 }
-
 .primary-nav ul {
   display: flex;
   align-items: center;
   gap: var(--space-6);
 }
-
 .primary-nav a {
   font-family: var(--font-label);
   font-size: var(--text-sm);
@@ -171,7 +153,6 @@ a:focus-visible {
   padding: var(--space-1) 0;
   position: relative;
 }
-
 .primary-nav a::after {
   content: '';
   position: absolute;
@@ -182,16 +163,13 @@ a:focus-visible {
   background-color: var(--hero-orange);
   transition: width 250ms ease;
 }
-
 .primary-nav a:hover::after,
 .primary-nav a[aria-current="page"]::after {
   width: 100%;
 }
-
 .primary-nav a:hover {
   opacity: 0.85;
 }
-
 /* Hamburger — hidden on desktop */
 .nav-toggle {
   display: none;
@@ -205,7 +183,6 @@ a:focus-visible {
   padding: 0;
   z-index: 110;
 }
-
 .bar {
   display: block;
   width: 100%;
@@ -214,7 +191,6 @@ a:focus-visible {
   border-radius: 2px;
   transition: transform 250ms ease, opacity 150ms ease;
 }
-
 .nav-toggle[aria-expanded="true"] .bar:nth-child(1) {
   transform: translateY(9px) rotate(45deg);
 }
@@ -224,17 +200,16 @@ a:focus-visible {
 .nav-toggle[aria-expanded="true"] .bar:nth-child(3) {
   transform: translateY(-9px) rotate(-45deg);
 }
-
 /* ==========================================================
-   5. HERO
-   ♿ Black on #fbf1da = 17.8:1 — exceeds WCAG AAA
+5. HERO
+♿ Black on #fbf1da = 17.8:1 — exceeds WCAG AAA
 ========================================================== */
 .hero {
   background-color: var(--lightest-orange);
   background-image: linear-gradient(
-    to bottom,
-    var(--lightest-orange) 20%,
-    var(--hero-orange) 65%
+  to bottom,
+  var(--lightest-orange) 20%,
+  var(--hero-orange) 65%
   );
   min-height: calc(100vh - var(--header-height));
   display: flex;
@@ -242,47 +217,41 @@ a:focus-visible {
   justify-content: flex-start;
   overflow-x: hidden;
 }
-
 .hero-inner {
   display: grid;
   grid-template-columns: 0.65fr 1.35fr;
   align-items: flex-start;
   gap: 0;
   max-width: var(--maxw);
-  margin: -205px auto 0;
+  margin: -357px auto 0;
   padding: var(--space-2) var(--content-pad);
   width: 100%;
 }
-
 /* Empty left column placeholder keeps TV in its column */
 .hero-inner::before {
   content: '';
   display: block;
 }
-
 /* .hero-text removed — heading is now in .hero-heading-wrap above the grid */
-
 /* Hero heading — full width row above the TV grid */
 .hero-heading-wrap {
   width: 100%;
   max-width: var(--maxw);
   margin: 0 auto;
-  padding: var(--space-4) var(--content-pad) 0; /* top reduced from --space-16 — heading sits close to header */
+  padding: var(--space-4) var(--content-pad) 0; /* top reduced from --space-16 — heading sits
+  close to header */
 }
-
 .hero-heading-svg {
-  width: 36.5%;        /* 50% smaller than prior 73% — new SVG artwork renders larger */
+  width: 36.5%; /* 50% smaller than prior 73% — new SVG artwork renders larger */
   max-width: 2250px;
   height: auto;
   display: block;
 }
-
 .hero-visual {
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
 }
-
 .tv-wrapper {
   position: relative;
   width: 100%;
@@ -290,7 +259,6 @@ a:focus-visible {
   cursor: pointer;
   z-index: 3; /* lifts antenna in front of the hero heading instead of behind it */
 }
-
 .tv-image {
   width: 100%;
   height: auto;
@@ -299,23 +267,22 @@ a:focus-visible {
   filter: none;
   transition: filter 400ms ease;
 }
-
 /* Orange glow on hover and keyboard focus — filter lives on image so transition works */
 /* Whole-TV backlit warm glow — hover/focus cue, nothing on the screen itself */
 .tv-wrapper:hover .tv-image,
 .tv-wrapper:focus-visible .tv-image {
-  filter: brightness(1.12) drop-shadow(0 0 35px rgba(247, 187, 67, 0.9)) drop-shadow(0 0 60px rgba(247, 187, 67, 0.4));
+  filter: brightness(1.12) drop-shadow(0 0 35px rgba(247, 187, 67, 0.9)) drop-shadow(0 0 60px
+  rgba(247, 187, 67, 0.4));
 }
-
 /* Keyboard focus ring — distinct from hover glow, meets WCAG 2.4.11 Focus Appearance */
 .tv-wrapper:focus-visible {
   outline: 3px solid var(--hero-orange);
   outline-offset: 6px;
   border-radius: 2px;
 }
-
 /* No overlay, no arrow — screen plays clean
-   ♿ Hover/click cue is the whole TV backlit glow; aria-label on .tv-wrapper covers screen readers */
+♿ Hover/click cue is the whole TV backlit glow; aria-label on .tv-wrapper covers screen
+readers */
 .tv-screen-overlay {
   position: absolute;
   top: 36%;
@@ -326,7 +293,6 @@ a:focus-visible {
   overflow: hidden;
   cursor: pointer;
 }
-
 .tv-video {
   position: absolute;
   top: 0;
@@ -335,7 +301,6 @@ a:focus-visible {
   height: 100%;
   object-fit: fill;
 }
-
 .tv-badge {
   position: absolute;
   top: 87%;
@@ -343,131 +308,114 @@ a:focus-visible {
   width: 24%;
   cursor: pointer;
 }
-
 .tv-badge-svg {
   width: 100%;
   height: auto;
   display: block;
 }
-
 .tv-wrapper:hover .tv-badge,
 .tv-wrapper:focus-visible .tv-badge {
   opacity: 0.85;
 }
-
 /* Hero bottom — margin-top: auto pushes it to foot of hero */
 .hero-bottom {
   margin-top: auto;
 }
-
 /* subheading1 — centered, tight padding before methodology text */
 .hero-subheading {
   display: flex;
   justify-content: center;
   padding: 0; /* removed content-pad so SVG can reach full hero width */
 }
-
 /* subheading1 ("The 7-step Process") — scoped to its wrapper so it is sized
-   independently of the methodology heading, which shares the .subheading-svg
-   class. clamp() lets it scale ~2X larger with the viewport: never below
-   480px, ideally ~95% of the hero width, capped near the layout max so it
-   doesn't overflow on very wide monitors. Adjust the middle value to taste. */
+independently of the methodology heading, which shares the .subheading-svg
+class. clamp() lets it scale ~2X larger with the viewport: never below
+480px, ideally ~95% of the hero width, capped near the layout max so it
+doesn't overflow on very wide monitors. Adjust the middle value to taste. */
 .hero-subheading .subheading-svg {
   width: clamp(480px, 95vw, 1400px);
   max-width: 100%;
   height: auto;
   display: block;
 }
-
 .subheading-svg {
-  width: 100%;       /* fills the full hero container — practical maximum */
-  max-width: none;   /* overrides reset.css max-width:100% so nothing clamps it */
+  width: 100%; /* fills the full hero container — practical maximum */
+  max-width: none; /* overrides reset.css max-width:100% so nothing clamps it */
   height: auto;
   display: block;
 }
-
 /* Methodology intro text — centered under subheading1 */
 .methodology-text-wrap {
   margin-top: var(--space-2);
   position: relative;
   z-index: 2;
 }
-
 .methodology-text-svg {
   display: block;
-  width: 81%;          /* eased from 93.75% — restores side margins, stays large */
+  width: 81%; /* eased from 93.75% — restores side margins, stays large */
   height: auto;
   margin-left: auto;
   margin-right: auto;
 }
-
 /* bloomcta — centered CTA below the three question cards.
-   Now a sibling after .qa-cards-row, so it spans the inner width and centers.
-   Desktop width via clamp; mobile width bumped up in the media query. */
+Now a sibling after .qa-cards-row, so it spans the inner width and centers.
+Desktop width via clamp; mobile width bumped up in the media query. */
 .bloom-cta-svg {
   display: block;
   width: clamp(200px, 36%, 520px);
   height: auto;
   margin: var(--space-10) auto 0; /* clearance below cards; centered */
 }
-
 /* ==========================================================
-   Q&A SUBSECTION — within hero, directly under TV
-   DevTools tuning points:
-     • .hero-qa margin-top — move qasubheading up/down to align
-       with TV bottom
-     • .qa-subheading-svg width — scale heading up/down
-     • .qa-flower margin-top negative value — controls how deep
-       the flower overlaps into the bottom of each q card
+Q&A SUBSECTION — within hero, directly under TV
+DevTools tuning points:
+"¢ .hero-qa margin-top — move qasubheading up/down to align
+with TV bottom
+"¢ .qa-subheading-svg width — scale heading up/down
+"¢ .qa-flower margin-top negative value — controls how deep
+the flower overlaps into the bottom of each q card
 ========================================================== */
 .hero-qa {
   width: 100%;
   margin-top: -93px; /* confirmed in DevTools */
   padding: 0 var(--content-pad) var(--space-20);
 }
-
 .hero-qa-inner {
   max-width: var(--maxw);
   margin: 0 auto;
   /* Flex column so each child's vertical position can be set with `order`,
-     letting desktop and mobile stack the same elements differently.
-     Desktop: heading (1) → cards (2) → bloomcta (3, below cards). */
+  letting desktop and mobile stack the same elements differently.
+  Desktop: heading (1) → cards (2) → bloomcta (3, below cards). */
   display: flex;
   flex-direction: column;
 }
-
 .qa-subheading-wrap { order: 1; }
-.qa-cards-row       { order: 2; }
-.bloom-cta-svg      { order: 3; }
-
+.qa-cards-row { order: 2; }
+.bloom-cta-svg { order: 3; }
 /* qasubheading — very large, left edge matches hero heading margin */
 .qa-subheading-wrap {
-  margin-top: var(--space-16);   /* drops the whole Q&A group down the page (desktop) */
-  margin-bottom: 0;              /* closed gap to the flower row below (was --space-2) */
+  margin-top: var(--space-16); /* drops the whole Q&A group down the page (desktop) */
+  margin-bottom: 0; /* closed gap to the flower row below (was --space-2) */
 }
-
 /* Pull the flower/card row up toward the heading on desktop — closes the gap.
-   Overridden back to 0 in the mobile media query. */
+Overridden back to 0 in the mobile media query. */
 .qa-cards-row {
   margin-top: calc(var(--space-12) * -1); /* tune in DevTools to close the gap exactly */
 }
-
 .qa-subheading-svg {
   display: block;
   /* "Very large" — adjust width in DevTools to taste */
   width: clamp(240px, 38%, 560px);
   height: auto;
   /* No extra left offset needed — hero-qa-inner padding = content-pad,
-     same left margin as the hero heading SVG */
+  same left margin as the hero heading SVG */
 }
-
 /* Three q cards evenly distributed across full width */
 .qa-cards-row {
   display: flex;
   align-items: flex-start;
   gap: clamp(var(--space-6), 3vw, var(--space-10));
 }
-
 /* Each card is an equal third */
 .qa-card-wrap {
   flex: 1;
@@ -476,13 +424,11 @@ a:focus-visible {
   cursor: pointer;
   position: relative;
 }
-
 .qa-card-wrap:focus-visible {
   outline: 3px solid var(--hero-orange);
   outline-offset: 6px;
   border-radius: 2px;
 }
-
 /* Card SVG — no hover transform, no filter; the flower is the interactive element */
 .qa-card-svg {
   display: block;
@@ -491,105 +437,95 @@ a:focus-visible {
   position: relative;
   z-index: 1;
 }
-
 /* Flower — sits at top of card, overlaps card top edge.
-   pointer-events: auto so JS can catch mouseenter for the silver burst.
-   Negative margin-bottom pulls the card up into the flower.
-   Tune margin-bottom in DevTools — bigger negative = more overlap.
-   Using clamp() so it scales with viewport rather than being a fixed pixel hit. */
+pointer-events: auto so JS can catch mouseenter for the silver burst.
+Negative margin-bottom pulls the card up into the flower.
+Tune margin-bottom in DevTools — bigger negative = more overlap.
+Using clamp() so it scales with viewport rather than being a fixed pixel hit. */
 .qa-flower {
   display: block;
   width: clamp(160px, 70%, 380px);
   height: auto;
-  margin: 0 auto -70px; /* overlap into top of card circle — deepened from -20px; tune in DevTools */
+  margin: 0 auto -70px; /* overlap into top of card circle — deepened from -20px; tune in
+  DevTools */
   position: relative;
   z-index: 2;
   pointer-events: auto; /* enables hover without breaking click-bubble to parent */
   transition: filter 300ms ease;
 }
-
 /* Silver burst on flower hover — same Tinkerbell animation as flowerspine blooms.
-   drop-shadow follows the flower's alpha channel so it glows around the
-   flower shape only, never touching the card text below. */
+drop-shadow follows the flower's alpha channel so it glows around the
+flower shape only, never touching the card text below. */
 .qa-flower.is-hovering {
   animation: silverGlitterBurst 0.75s ease-out 1 forwards;
 }
-
 /* Mobile: stack cards vertically */
 @media (max-width: 768px) {
   .hero-qa {
     padding-bottom: var(--space-12);
   }
-
   .qa-subheading-svg {
-    width: 45%;            /* substantially smaller on mobile so it doesn't dwarf the hero */
+    width: 45%; /* substantially smaller on mobile so it doesn't dwarf the hero */
     max-width: 100%;
     margin: var(--space-16) auto 0; /* dropped down toward bloomcta (was --space-8) */
   }
-
   /* bloomcta readable on mobile — larger share of width than desktop clamp gives.
-     Mobile order: heading (1) → bloomcta (2, above cards) → cards (3).
-     Desktop keeps bloomcta below the cards via its base order. */
+  Mobile order: heading (1) → bloomcta (2, above cards) → cards (3).
+  Desktop keeps bloomcta below the cards via its base order. */
   .bloom-cta-svg {
     order: 2;
     width: 70%;
     max-width: 360px;
     margin: var(--space-4) auto var(--space-6);
   }
-
   /* Subheading wrap holds qasubheading + bloomcta centered.
-     margin-top reset to 0 here so the desktop --space-16 drop doesn't
-     leak into mobile (mobile heading spacing is set on .qa-subheading-svg). */
+  margin-top reset to 0 here so the desktop --space-16 drop doesn't
+  leak into mobile (mobile heading spacing is set on .qa-subheading-svg). */
   .qa-subheading-wrap {
     text-align: center;
     margin-top: 0;
     margin-bottom: var(--space-6); /* tighter: brings first card up toward the CTA */
   }
-
   .qa-cards-row {
-    order: 3;              /* below bloomcta on mobile (bloomcta is order 2) */
-    margin-top: 0;         /* reset desktop negative margin — mobile stacks normally */
+    order: 3; /* below bloomcta on mobile (bloomcta is order 2) */
+    margin-top: 0; /* reset desktop negative margin — mobile stacks normally */
     flex-direction: column;
-    align-items: center;   /* center each card when stacked */
-    gap: var(--space-4);   /* tightened from --space-12 so the three cluster closer */
+    align-items: center; /* center each card when stacked */
+    gap: var(--space-4); /* tightened from --space-12 so the three cluster closer */
   }
-
   .qa-card-wrap {
-    width: 60%;            /* smaller card footprint on mobile */
+    width: 60%; /* smaller card footprint on mobile */
     max-width: 320px;
   }
-
   /* Flowers visible on mobile — perch on top of each card, overlapping
-     slightly INTO the top of the circle, above all question text.
-     The negative margin-bottom pulls the card up into the flower so the
-     flower's lower petals sit over the circle's top edge.
-     ── DevTools tuning: make the margin-bottom MORE negative to push the
-        flower deeper into the circle, LESS negative to lift it off.
-        Adjust width to scale the flower itself. */
+  slightly INTO the top of the circle, above all question text.
+  The negative margin-bottom pulls the card up into the flower so the
+  flower's lower petals sit over the circle's top edge.
+  ── DevTools tuning: make the margin-bottom MORE negative to push the
+  flower deeper into the circle, LESS negative to lift it off.
+  Adjust width to scale the flower itself. */
   .qa-flower {
     display: block;
-    width: 60%;                  /* tune in DevTools */
+    width: 60%; /* tune in DevTools */
     max-width: 220px;
-    margin: 0 auto -40px;        /* overlap depth — lifted from -90px so flower clears the question text; tune in DevTools */
+    margin: 0 auto -40px; /* overlap depth — lifted from -90px so flower clears the
+    question text; tune in DevTools */
     position: relative;
     z-index: 2;
   }
 }
-
 /* Mobile TV + video in hero — hidden on desktop.
-   Tappable: opens the video modal (wired in video.js). */
+Tappable: opens the video modal (wired in video.js). */
 .hero-mobile-media {
   display: none;
   cursor: pointer;
   position: relative;
 }
-
 .hero-mobile-media:focus-visible {
   outline: 3px solid var(--hero-orange);
   outline-offset: 6px;
   border-radius: 2px;
 }
-
 .hero-mobile-tv {
   width: 100%;
   max-width: 130px;
@@ -597,7 +533,6 @@ a:focus-visible {
   display: block;
   mix-blend-mode: multiply;
 }
-
 .hero-mobile-video {
   width: 100%;
   max-width: 300px;
@@ -605,12 +540,11 @@ a:focus-visible {
   display: block;
   border-radius: 4px;
 }
-
 /* "Tap to play with sound" cue — soundlabel.svg, centered under the
-   video preview. Visible only on mobile (parent is display:none on desktop).
-   Width ≈ 75% of the video's max-width (300px) so it reads as a caption
-   that belongs to the screen above it. Sits as close under the video as
-   the parent gap allows. */
+video preview. Visible only on mobile (parent is display:none on desktop).
+Width ≈ 75% of the video's max-width (300px) so it reads as a caption
+that belongs to the screen above it. Sits as close under the video as
+the parent gap allows. */
 .hero-mobile-cue {
   display: block;
   width: 75%;
@@ -618,10 +552,9 @@ a:focus-visible {
   height: auto;
   margin: 0 auto;
 }
-
 /* ==========================================================
-   VIDEO POPUP MODAL
-   ♿ Uses role="dialog", aria-modal, focus trap in video.js
+VIDEO POPUP MODAL
+♿ Uses role="dialog", aria-modal, focus trap in video.js
 ========================================================== */
 .video-modal {
   position: fixed;
@@ -631,18 +564,15 @@ a:focus-visible {
   align-items: center;
   justify-content: center;
 }
-
 .video-modal[hidden] {
   display: none;
 }
-
 .video-modal-backdrop {
   position: absolute;
   inset: 0;
   background: rgba(0, 0, 0, 0.85);
   cursor: pointer;
 }
-
 .video-modal-content {
   position: relative;
   z-index: 501;
@@ -651,7 +581,6 @@ a:focus-visible {
   border: 3px solid var(--twilight);
   box-shadow: var(--shadow-lg);
 }
-
 .video-modal-close {
   position: absolute;
   top: -2.5rem;
@@ -666,23 +595,19 @@ a:focus-visible {
   opacity: 0.8;
   transition: opacity 150ms ease;
 }
-
 .video-modal-close:hover {
   opacity: 1;
 }
-
 .video-modal-close:focus-visible {
   outline: 3px solid var(--hero-orange);
   outline-offset: 3px;
 }
-
 .video-modal-frame {
   position: relative;
   padding-bottom: 56.25%; /* 16:9 */
   height: 0;
   overflow: hidden;
 }
-
 .video-modal-frame iframe {
   position: absolute;
   inset: 0;
@@ -690,11 +615,10 @@ a:focus-visible {
   height: 100%;
   border: 0;
 }
-
 /* ==========================================================
-   QA TRANSCRIPT MODAL
-   Wide format to match the open-book density of transcript SVGs.
-   ♿ role="dialog", aria-modal, focus trap in qa.js
+QA TRANSCRIPT MODAL
+Wide format to match the open-book density of transcript SVGs.
+♿ role="dialog", aria-modal, focus trap in qa.js
 ========================================================== */
 .qa-modal {
   position: fixed;
@@ -704,25 +628,21 @@ a:focus-visible {
   align-items: center;
   justify-content: center;
 }
-
 .qa-modal[hidden] {
   display: none;
 }
-
 .qa-modal-backdrop {
   position: absolute;
   inset: 0;
   background: rgba(0, 0, 0, 0.90);
   cursor: pointer;
 }
-
 /* Wide container — transcript SVGs are dense open-book spreads */
 .qa-modal-content {
   position: relative;
   z-index: 601;
   width: min(1100px, 94vw);
 }
-
 .qa-modal-close {
   position: absolute;
   top: -2.5rem;
@@ -737,19 +657,16 @@ a:focus-visible {
   opacity: 0.8;
   transition: opacity 150ms ease;
 }
-
 .qa-modal-close:hover {
   opacity: 1;
 }
-
 .qa-modal-close:focus-visible {
   outline: 3px solid var(--hero-orange);
   outline-offset: 3px;
 }
-
 /* Transcript image fills the modal width — height follows SVG aspect ratio.
-   Background is lightest-orange so transparent SVGs render correctly
-   (without this, a transparent SVG reads as black against the dark backdrop) */
+Background is lightest-orange so transparent SVGs render correctly
+(without this, a transparent SVG reads as black against the dark backdrop) */
 .qa-modal-frame {
   width: 100%;
   overflow: hidden;
@@ -757,19 +674,17 @@ a:focus-visible {
   box-shadow: 0 16px 60px rgba(0, 0, 0, 0.60);
   background-color: var(--lightest-orange);
 }
-
 .qa-modal-img {
   display: block;
   width: 100%;
   height: auto;
 }
-
 /* ==========================================================
-   6. METHODOLOGY SECTION
-   Background: lightest-orange — the spine and heading sit on
-   this cream ground. overflow:hidden clips spine at section
-   edges. min-height prevents collapse while inner is sparse.
-   ♿ Spine and mobile TV are decorative — aria-hidden.
+6. METHODOLOGY SECTION
+Background: lightest-orange — the spine and heading sit on
+this cream ground. overflow:hidden clips spine at section
+edges. min-height prevents collapse while inner is sparse.
+♿ Spine and mobile TV are decorative — aria-hidden.
 ========================================================== */
 .methodology {
   background: var(--hero-orange);
@@ -778,7 +693,6 @@ a:focus-visible {
   position: relative;
   min-height: clamp(800px, 130vh, 1600px);
 }
-
 .methodology-inner {
   max-width: var(--maxw);
   margin: 0 auto;
@@ -786,21 +700,18 @@ a:focus-visible {
   position: relative;
   z-index: 2; /* sits above spine (z-index: 1) */
 }
-
 /* Section heading — centered, above spine content */
 .methodology-heading {
   display: flex;
   justify-content: center;
   padding: 0 var(--content-pad) var(--space-6);
 }
-
 .subheading-svg {
   width: 65%;
   max-width: 880px;
   height: auto;
   display: block;
 }
-
 /* Flowerspine — full width, transparent PNG, no blend mode needed */
 .spine-wrap {
   width: 100%;
@@ -811,35 +722,31 @@ a:focus-visible {
   margin-top: -27px;
   z-index: 1;
 }
-
 .spine-img {
   width: 100%;
   height: auto;
   display: block;
 }
-
 /* Step labels — absolutely positioned within spine-wrap, each independently movable */
 .step-label {
   position: absolute;
   z-index: 3;
   pointer-events: none;
 }
-
 .step-label-svg {
   width: 100%;
   height: auto;
   display: block;
 }
-
 /* Individual label positions — adjust top/left in DevTools, read back values to lock in */
-.step-label--1   { top: 10%; left: 31%; width: 11%; }
-.step-label--2   { top: 17%; left: 31%; width: 11%; } /* tune width per-label so RENDERED FONT matches across all 7 */
-.step-label--3   { top: 24%; left: 31%; width: 11%; }
-.step-label--4   { top: 31%; left: 31%; width: 11%; }
-.step-label--5   { top: 41%; left: 31%; width: 20%; }
-.step-label--6   { top: 41%; left: 57%; width: 18%; }
-.step-label--7   { top: 51%; left: 72%; width: 23%; }
-
+.step-label--1 { top: 10%; left: 31%; width: 11%; }
+.step-label--2 { top: 17%; left: 31%; width: 11%; } /* tune width per-label so RENDERED FONT
+matches across all 7 */
+.step-label--3 { top: 24%; left: 31%; width: 11%; }
+.step-label--4 { top: 31%; left: 31%; width: 11%; }
+.step-label--5 { top: 41%; left: 31%; width: 20%; }
+.step-label--6 { top: 41%; left: 57%; width: 18%; }
+.step-label--7 { top: 51%; left: 72%; width: 23%; }
 /* Step labels are interactive — restore pointer events for all */
 .step-label--1,
 .step-label--2,
@@ -850,29 +757,29 @@ a:focus-visible {
 .step-label--7 {
   pointer-events: auto;
 }
-
 /* Silver Tinkerbell dust — single burst, plays once, holds */
 @keyframes silverGlitterBurst {
-  0%   { filter: drop-shadow(0 0 2px rgba(220,220,240,0.5)); }
-  10%  { filter: drop-shadow(0 0 30px #F0F0FF) drop-shadow(0 0 60px rgba(210,210,235,0.9)) brightness(1.65); }
-  24%  { filter: drop-shadow(0 0 6px rgba(200,200,225,0.4)) brightness(1.05); }
-  40%  { filter: drop-shadow(0 0 40px #FFFFFF) drop-shadow(0 0 80px rgba(210,210,240,0.75)) drop-shadow(0 0 14px #E8E8FF) brightness(1.8); }
-  56%  { filter: drop-shadow(0 0 5px rgba(190,190,220,0.3)); }
-  72%  { filter: drop-shadow(0 0 22px #E8E8F8) drop-shadow(0 0 44px rgba(200,200,230,0.6)) brightness(1.45); }
-  86%  { filter: drop-shadow(0 0 4px rgba(180,180,215,0.25)); }
+  0% { filter: drop-shadow(0 0 2px rgba(220,220,240,0.5)); }
+  10% { filter: drop-shadow(0 0 30px #F0F0FF) drop-shadow(0 0 60px rgba(210,210,235,0.9))
+    brightness(1.65); }
+  24% { filter: drop-shadow(0 0 6px rgba(200,200,225,0.4)) brightness(1.05); }
+  40% { filter: drop-shadow(0 0 40px #FFFFFF) drop-shadow(0 0 80px rgba(210,210,240,0.75))
+    drop-shadow(0 0 14px #E8E8FF) brightness(1.8); }
+  56% { filter: drop-shadow(0 0 5px rgba(190,190,220,0.3)); }
+  72% { filter: drop-shadow(0 0 22px #E8E8F8) drop-shadow(0 0 44px rgba(200,200,230,0.6))
+    brightness(1.45); }
+  86% { filter: drop-shadow(0 0 4px rgba(180,180,215,0.25)); }
   100% { filter: drop-shadow(0 0 8px rgba(210,210,235,0.5)); }
 }
-
 /* Flower silver burst — Tinkerbell light on the flower */
 @keyframes flowerSilverBurst {
-  0%   { opacity: 0.12; transform: scale(0.8); }
-  14%  { opacity: 1;    transform: scale(1.28); }
-  30%  { opacity: 0.35; transform: scale(0.92); }
-  50%  { opacity: 0.98; transform: scale(1.18); }
-  70%  { opacity: 0.45; transform: scale(0.97); }
+  0% { opacity: 0.12; transform: scale(0.8); }
+  14% { opacity: 1; transform: scale(1.28); }
+  30% { opacity: 0.35; transform: scale(0.92); }
+  50% { opacity: 0.98; transform: scale(1.18); }
+  70% { opacity: 0.45; transform: scale(0.97); }
   100% { opacity: 0.65; transform: scale(1.0); }
 }
-
 /* Step label active — silver glitter burst fires on all labels */
 .step-label--1.is-active .step-label-svg,
 .step-label--2.is-active .step-label-svg,
@@ -883,7 +790,6 @@ a:focus-visible {
 .step-label--7.is-active .step-label-svg {
   animation: silverGlitterBurst 0.75s ease-out 1 forwards;
 }
-
 /* Flower hotspot — invisible hover trigger over flower position */
 .flower-hotspot {
   position: absolute;
@@ -891,17 +797,15 @@ a:focus-visible {
   pointer-events: auto;
   cursor: pointer;
 }
-
 /* ── Hotspot positions — ALL placeholder. Tune each in DevTools.
-   Selector → adjust top/left/width/height until it covers its bloom exactly. */
-.flower-hotspot--1 { top: 0%;  left: 1%;  width: 14%; height: 22%; }
-.flower-hotspot--2 { top: 9%;  left: 4%;  width: 12%; height: 18%; } /* placeholder */
+Selector → adjust top/left/width/height until it covers its bloom exactly. */
+.flower-hotspot--1 { top: 0%; left: 1%; width: 14%; height: 22%; }
+.flower-hotspot--2 { top: 9%; left: 4%; width: 12%; height: 18%; } /* placeholder */
 .flower-hotspot--3 { top: 16%; left: 10%; width: 12%; height: 18%; } /* placeholder */
 .flower-hotspot--4 { top: 23%; left: 17%; width: 12%; height: 18%; } /* placeholder */
 .flower-hotspot--5 { top: 36%; left: 14%; width: 12%; height: 18%; } /* placeholder */
 .flower-hotspot--6 { top: 48%; left: 42%; width: 12%; height: 18%; } /* placeholder */
 .flower-hotspot--7 { top: 58%; left: 60%; width: 12%; height: 18%; } /* placeholder */
-
 /* Flower glow overlay — silver-white screen blend, Tinkerbell light */
 .flower-glow {
   position: absolute;
@@ -911,16 +815,14 @@ a:focus-visible {
   transition: opacity 200ms ease;
   z-index: 2;
 }
-
 /* ── Glow positions mirror hotspot positions (slightly larger for the halo) */
-.flower-glow--1 { top: -1%; left: 0%;  width: 16%; height: 24%; }
-.flower-glow--2 { top: 8%;  left: 3%;  width: 14%; height: 20%; } /* placeholder */
-.flower-glow--3 { top: 15%; left: 9%;  width: 14%; height: 20%; } /* placeholder */
+.flower-glow--1 { top: -1%; left: 0%; width: 16%; height: 24%; }
+.flower-glow--2 { top: 8%; left: 3%; width: 14%; height: 20%; } /* placeholder */
+.flower-glow--3 { top: 15%; left: 9%; width: 14%; height: 20%; } /* placeholder */
 .flower-glow--4 { top: 22%; left: 16%; width: 14%; height: 20%; } /* placeholder */
 .flower-glow--5 { top: 35%; left: 13%; width: 14%; height: 20%; } /* placeholder */
 .flower-glow--6 { top: 47%; left: 41%; width: 14%; height: 20%; } /* placeholder */
 .flower-glow--7 { top: 57%; left: 59%; width: 14%; height: 20%; } /* placeholder */
-
 /* All glows use same radial gradient */
 .flower-glow--1,
 .flower-glow--2,
@@ -930,13 +832,12 @@ a:focus-visible {
 .flower-glow--6,
 .flower-glow--7 {
   background: radial-gradient(ellipse at center,
-    rgba(255,255,255,0.9) 0%,
-    rgba(220,220,245,0.55) 40%,
-    transparent 72%
+  rgba(255,255,255,0.9) 0%,
+  rgba(220,220,245,0.55) 40%,
+  transparent 72%
   );
   mix-blend-mode: screen;
 }
-
 /* is-active fires the Tinkerbell burst on every glow */
 .flower-glow--1.is-active,
 .flower-glow--2.is-active,
@@ -948,12 +849,10 @@ a:focus-visible {
   opacity: 1;
   animation: flowerSilverBurst 0.75s ease-out 1 forwards;
 }
-
 /* Elevate spine-wrap above methodology text when card is open */
 .spine-wrap.has-active-card {
   z-index: 3;
 }
-
 /* Defcard popup — shared transition */
 .step-card {
   position: absolute;
@@ -965,65 +864,55 @@ a:focus-visible {
   filter: drop-shadow(0 8px 24px rgba(0,0,0,0.35));
   z-index: 5;
 }
-
 .step-card.is-active {
   opacity: 1;
   transform: translateY(0) scale(1);
   z-index: 200;
 }
-
 .step-card-svg {
   width: 100%;
   height: auto;
   display: block;
   border-radius: 4px;
 }
-
 /* ── Card positions — ALL placeholder except step 1 (confirmed).
-   Tune each in DevTools: move popup so it's readable and doesn't
-   overlap its own flower. Step 1 is the baseline reference. */
-.step-card--1 { top: 1%;  left: 44%; width: 28%; }
+Tune each in DevTools: move popup so it's readable and doesn't
+overlap its own flower. Step 1 is the baseline reference. */
+.step-card--1 { top: 1%; left: 44%; width: 28%; }
 .step-card--2 { top: 17%; left: 44%; width: 28%; } /* aligned to label row; tune in DevTools */
 .step-card--3 { top: 24%; left: 44%; width: 28%; }
 .step-card--4 { top: 31%; left: 44%; width: 28%; }
 .step-card--5 { top: 33%; left: 28%; width: 28%; } /* placeholder */
 .step-card--6 { top: 45%; left: 54%; width: 28%; } /* placeholder */
 .step-card--7 { top: 55%; left: 66%; width: 28%; } /* placeholder */
-
 /* Mobile step cards — hidden on desktop, stacked below spine on mobile */
 .step-cards-mobile {
   display: none;
 }
-
 .step-card-mobile-svg {
   width: 100%;
   height: auto;
   display: block;
 }
-
 /* Mobile TV stack — hidden on desktop, shown in hero on mobile */
 .mobile-hero-tv {
   display: none;
 }
-
 /* placeholder — mobile-tv-wrap removed from methodology */
-
 /* ==========================================================
-   7. CONTENT SECTION SYSTEM
-   Generic sections below methodology.
-   Set --section-bg per section inline in HTML.
+7. CONTENT SECTION SYSTEM
+Generic sections below methodology.
+Set --section-bg per section inline in HTML.
 ========================================================== */
 .content-section {
   --section-bg: var(--white);
   background-color: var(--section-bg);
   padding: var(--space-20) var(--content-pad);
 }
-
 .section-inner {
   max-width: var(--maxw);
   margin: 0 auto;
 }
-
 .section-heading {
   font-family: var(--font-display);
   font-size: clamp(var(--text-2xl), 3vw, var(--text-5xl));
@@ -1031,25 +920,21 @@ a:focus-visible {
   color: var(--twilight);
   margin-bottom: var(--space-8);
 }
-
 .section-body {
   font-family: var(--font-label);
   font-size: var(--text-lg);
   line-height: 1.7;
   max-width: 72ch;
 }
-
 .graphic-block {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: var(--space-3);
 }
-
 .graphic-block.label-above { flex-direction: column-reverse; }
 .graphic-block.label-right { flex-direction: row; align-items: center; }
-.graphic-block.label-left  { flex-direction: row-reverse; align-items: center; }
-
+.graphic-block.label-left { flex-direction: row-reverse; align-items: center; }
 .graphic-label {
   font-family: var(--font-label);
   font-size: var(--text-sm);
@@ -1057,16 +942,14 @@ a:focus-visible {
   color: var(--twilight);
   letter-spacing: 0.03em;
 }
-
 /* ==========================================================
-   8. FOOTER
+8. FOOTER
 ========================================================== */
 .site-footer {
   background-color: var(--twilight);
   color: var(--white);
   padding: var(--space-8) var(--content-pad);
 }
-
 .footer-inner {
   max-width: var(--maxw);
   margin: 0 auto;
@@ -1074,24 +957,20 @@ a:focus-visible {
   align-items: center;
   justify-content: center;
 }
-
 .footer-inner p {
   font-family: var(--font-label);
   font-size: var(--text-sm);
   opacity: 0.8;
 }
-
 /* ==========================================================
-   9. RESPONSIVE — MOBILE (max 768px)
-   TV hidden on hero. Mobile TV shown in methodology.
-   Spine hidden on mobile. Clean single column.
+9. RESPONSIVE — MOBILE (max 768px)
+TV hidden on hero. Mobile TV shown in methodology.
+Spine hidden on mobile. Clean single column.
 ========================================================== */
 @media (max-width: 768px) {
-
   .nav-toggle {
     display: flex;
   }
-
   .primary-nav {
     position: fixed;
     inset: 0 0 auto 0;
@@ -1103,54 +982,44 @@ a:focus-visible {
     transition: transform 250ms ease;
     z-index: 99;
   }
-
   .primary-nav.is-open {
     transform: translateY(0);
   }
-
   .primary-nav ul {
     flex-direction: column;
     align-items: flex-start;
     gap: var(--space-4);
   }
-
   .primary-nav a {
     font-size: var(--text-base);
   }
-
   .hero-inner {
     grid-template-columns: 1fr;
     margin-top: 0;
     padding: var(--space-4) var(--content-pad);
   }
-
   /* Hero shrinks to content on mobile */
   .hero {
     min-height: auto;
   }
-
   /* Hero heading: reduced top padding on mobile */
   .hero-heading-wrap {
     padding-top: var(--space-6);
   }
-
   .hero-text {
     padding-right: 0;
     padding-top: 0;
     padding-left: 0;
   }
-
   /* Hero heading: full width on mobile — base rule is 50%, written for desktop */
   .hero-heading-svg {
     width: 100%;
     max-width: 100%;
   }
-
   /* Hero TV hidden on mobile — mobile TV stack in hero section shows instead */
   .hero-visual {
     display: none;
   }
-
   /* Hero mobile media — TV chassis + video stacked */
   .hero-mobile-media {
     display: flex;
@@ -1159,7 +1028,6 @@ a:focus-visible {
     gap: var(--space-2);
     padding: var(--space-4) 0 var(--space-6);
   }
-
   .mobile-hero-tv {
     display: flex;
     flex-direction: column;
@@ -1167,7 +1035,6 @@ a:focus-visible {
     gap: var(--space-4);
     padding: 0 var(--content-pad) var(--space-8);
   }
-
   .mobile-hero-tv-img {
     width: 65%;
     max-width: 260px;
@@ -1175,7 +1042,6 @@ a:focus-visible {
     display: block;
     mix-blend-mode: multiply;
   }
-
   .mobile-hero-video {
     width: 80%;
     max-width: 320px;
@@ -1183,29 +1049,24 @@ a:focus-visible {
     display: block;
     border-radius: 4px;
   }
-
   /* Methodology: tighter min-height on mobile */
   .methodology {
     min-height: auto;
   }
-
   /* hero-bottom: no auto-push on mobile */
   .hero-bottom {
     margin-top: var(--space-4);
   }
-
   /* Methodology text: full width centered on mobile */
   .methodology-text-svg {
     width: 92%;
     margin-left: auto;
     margin-right: auto;
   }
-
   /* Spine and labels visible on mobile, scaled down */
   .spine-wrap {
     margin-top: 0;
   }
-
   /* Mobile step cards — shown below spine */
   .step-cards-mobile {
     display: flex;
@@ -1213,42 +1074,34 @@ a:focus-visible {
     gap: var(--space-4);
     padding: var(--space-6) var(--content-pad);
   }
-
   /* Heading centered, full-width SVG on mobile */
   .methodology-heading {
     padding: var(--space-6) 0 var(--space-4);
   }
-
   .subheading-svg {
     width: 90%;
     max-width: 100%;
   }
-
   .content-section {
     padding: var(--space-12) var(--content-pad);
   }
-
   .graphic-block.label-right,
   .graphic-block.label-left {
     flex-direction: column;
     align-items: flex-start;
   }
 }
-
 /* ==========================================================
-   10. RESPONSIVE — MEDIUM (769px–1100px)
-   TV scales down, two-column layout maintained.
+10. RESPONSIVE — MEDIUM (769px–1100px)
+TV scales down, two-column layout maintained.
 ========================================================== */
 @media (min-width: 769px) and (max-width: 1100px) {
-
   .hero-heading-svg {
     max-width: 100%;
   }
-
   .tv-wrapper {
     max-width: 640px;
   }
-
   /* Reduce negative overlap at medium widths — prevents hero elements crossing */
   .hero-inner {
     margin-top: -120px;
