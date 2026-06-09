@@ -74,12 +74,25 @@
 
         <!-- hero-text removed — heading is now above the grid -->
 
-        <!-- Mobile-only: TV chassis + video stacked, no screen overlay -->
-        <div class="hero-mobile-media" aria-hidden="true">
+        <!-- Mobile-only: TV chassis + video stacked.
+             Tappable — opens the same #video-modal as the desktop TV,
+             where the film plays full-size WITH sound (click is the
+             user gesture browsers require to allow audio).
+             The preview itself stays muted — the only state browsers
+             permit for autoplay. -->
+        <div
+          class="hero-mobile-media"
+          id="tv-unit-mobile"
+          role="button"
+          tabindex="0"
+          aria-label="Watch portfolio video — tap to open full screen with sound"
+          aria-haspopup="dialog"
+        >
           <img
             src="assets/images/liltv.png"
             alt=""
             class="hero-mobile-tv"
+            aria-hidden="true"
             loading="eager"
             decoding="async"
           />
@@ -89,9 +102,11 @@
             muted
             playsinline
             preload="metadata"
+            aria-hidden="true"
           >
             <source src="assets/video/hero-film-1.mp4" type="video/mp4" />
           </video>
+          <span class="hero-mobile-cue" aria-hidden="true">Tap to play with sound</span>
         </div>
 
         <div class="hero-visual" aria-hidden="true">
