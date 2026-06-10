@@ -754,11 +754,11 @@ edges. min-height prevents collapse while inner is sparse.
    Size is uniform via --step-label-h; no per-label width tuning needed.
    Adjust top/left in DevTools, read back values to lock in. */
 .step-label--1 { top: 10%; left: 31%; }
-.step-label--2 { top: 17%; left: 31%; }
-.step-label--3 { top: 24%; left: 31%; }
+.step-label--2 { top: 22%; left: 31%; }
+.step-label--3 { top: 26%; left: 31%; }
 .step-label--4 { top: 31%; left: 31%; }
-.step-label--5 { top: 41%; left: 31%; }
-.step-label--6 { top: 41%; left: 57%; }
+.step-label--5 { top: 43%; left: 31%; }
+.step-label--6 { top: 43%; left: 57%; }
 .step-label--7 { top: 51%; left: 72%; }
 /* Step labels are interactive — restore pointer events for all */
 .step-label--1,
