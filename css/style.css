@@ -711,6 +711,20 @@ collapse while inner is sparse.
   justify-content: center;
   padding: 0 var(--content-pad) var(--space-6);
 }
+/* "The Debrief: Case Studies" — methodology section heading.
+   Centered wrapper; SVG sized to match the hero's "7-step Process"
+   subheading exactly: clamp(480px, 95vw, 1400px). */
+.debrief-heading {
+  display: flex;
+  justify-content: center;
+  padding: 0 var(--content-pad) var(--space-6);
+}
+.debrief-subheading-svg {
+  width: clamp(480px, 95vw, 1400px);
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
 .subheading-svg {
   width: 65%;
   max-width: 880px;
