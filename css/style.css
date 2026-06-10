@@ -685,13 +685,21 @@ Background is lightest-orange so transparent SVGs render correctly
 }
 /* ==========================================================
 6. METHODOLOGY SECTION
-Background: lightest-orange — the spine and heading sit on
-this cream ground. overflow:hidden clips spine at section
-edges. min-height prevents collapse while inner is sparse.
+Background: hero-orange → case-orange vertical gradient, mirroring
+the hero's gradient construction. Top sits flush with the hero's
+hero-orange so the spine reads continuous; resolves to full
+case-orange by the bottom. background-color is the fallback.
+overflow:hidden clips spine at section edges. min-height prevents
+collapse while inner is sparse.
 ♿ Spine and mobile TV are decorative — aria-hidden.
 ========================================================== */
 .methodology {
-  background: var(--hero-orange);
+  background-color: var(--case-orange);
+  background-image: linear-gradient(
+    to bottom,
+    var(--hero-orange) 0%,
+    var(--case-orange) 100%
+  );
   padding-top: 0;
   padding-bottom: var(--space-20);
   position: relative;
