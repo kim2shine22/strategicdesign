@@ -1,24 +1,20 @@
-/* steps.js — flower hover interactions, all 7 steps
-   ─────────────────────────────────────────────────
-   Each step has:
-     id       → suffix for flower-hotspot--N, flower-glow--N, step-card--N
-     labelId  → suffix for step-label--N
+/* steps.js — flowerspine step interactions
+   ─────────────────────────────────────────
+   DESKTOP: hover system on the flowerspine — hotspot/label/card
+   hover fires the glitter burst, glow, and defcard popup for all
+   7 steps. Unchanged behavior.
 
-   Hover any flower hotspot, its step label, OR its open defcard → activate.
-   On re-hover the glitter burst replays.
-
-   Steps 2, 3, 4 are now three SEPARATE labels (step-label--2, --3, --4),
-   each with its own defcard popup — previously they shared step-label--234.
-
-   Positions of hotspot/glow/card divs for steps 2–7 are PLACEHOLDERS.
-   Tune each in DevTools, then lock the values into style.css.
+   MOBILE: the spine is hidden (CSS); the .steps-mobile list shows
+   instead. Tapping a row (flower + label button) opens that step's
+   defcard in the #step-modal popup. Backdrop / ✕ / Escape close it.
+   ♿ focus trap + focus return, mirroring the QA transcript modal.
 */
 
 (function () {
   'use strict';
 
-  /* id = DOM suffix, labelId = which step-label to animate.
-     Steps 2, 3, 4 are now three separate labels with their own popups. */
+  /* ════════════════ DESKTOP HOVER SYSTEM ════════════════ */
+
   var STEPS = [
     { id: '1', labelId: '1' },
     { id: '2', labelId: '2' },
@@ -96,6 +92,78 @@
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape') deactivate();
     });
+  });
+
+  /* ════════════════ MOBILE DEFCARD MODAL ════════════════ */
+
+  var rows       = document.querySelectorAll('.step-mobile-row[data-defcard]');
+  var modal      = document.getElementById('step-modal');
+  var backdrop   = document.getElementById('step-modal-backdrop');
+  var closeBtn   = document.getElementById('step-modal-close');
+  var modalImg   = document.getElementById('step-modal-img');
+
+  if (!modal || !modalImg || !rows.length) return;
+
+  var lastFocused = null;
+
+  function openStepModal(src, alt, trigger) {
+    lastFocused = trigger || document.activeElement;
+    modalImg.src = src;
+    modalImg.alt = alt || 'Step definition';
+    modal.removeAttribute('hidden');
+    document.body.style.overflow = 'hidden';
+    setTimeout(function () { closeBtn.focus(); }, 60);
+  }
+
+  function closeStepModal() {
+    modal.setAttribute('hidden', '');
+    modalImg.src = '';
+    modalImg.alt = '';
+    document.body.style.overflow = '';
+    if (lastFocused && typeof lastFocused.focus === 'function') {
+      lastFocused.focus();
+    }
+  }
+
+  rows.forEach(function (row) {
+    /* <button> gives us click, tap, Enter, and Space for free */
+    row.addEventListener('click', function () {
+      openStepModal(row.dataset.defcard, row.getAttribute('aria-label'), row);
+    });
+  });
+
+  /* Image error handling */
+  modalImg.addEventListener('error', function () {
+    if (!modalImg.src || modalImg.src.indexOf('.svg') === -1) return;
+    console.error(
+      '[steps.js] Failed to load defcard SVG.\n' +
+      'Path attempted: ' + modalImg.src + '\n' +
+      'Check: (1) file exists in assets/SVG/, (2) filename matches exactly, ' +
+      '(3) file is committed and pushed to GitHub.'
+    );
+  });
+
+  /* Close triggers */
+  backdrop.addEventListener('click', closeStepModal);
+  closeBtn.addEventListener('click', closeStepModal);
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && !modal.hasAttribute('hidden')) closeStepModal();
+  });
+
+  /* Focus trap */
+  modal.addEventListener('keydown', function (e) {
+    if (e.key !== 'Tab') return;
+    var focusable = modal.querySelectorAll(
+      'button, [href], [tabindex]:not([tabindex="-1"])'
+    );
+    var first = focusable[0];
+    var last  = focusable[focusable.length - 1];
+    if (e.shiftKey) {
+      if (document.activeElement === first) { e.preventDefault(); last.focus(); }
+    } else {
+      if (document.activeElement === last)  { e.preventDefault(); first.focus(); }
+    }
   });
 
 }());
