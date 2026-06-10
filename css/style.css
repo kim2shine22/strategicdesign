@@ -52,7 +52,7 @@ Edit values here to update the entire site.
   /* Step labels — single source of truth for label type size across all 7.
      clamp(min, fluid, max): never smaller than 1.4rem, scales ~2.6% of viewport
      width, capped at 2.6rem on wide monitors. Edit here to resize all labels. */
-  --step-label-h: clamp(1.4rem, 2.6vw, 2.6rem);
+  --step-label-h: clamp(2.1rem, 3.9vw, 3.9rem);
   /* Shadows */
   --shadow-sm: 0 1px 3px rgba(0,0,0,0.12);
   --shadow-md: 0 4px 12px rgba(0,0,0,0.15);
