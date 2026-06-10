@@ -685,21 +685,14 @@ Background is lightest-orange so transparent SVGs render correctly
 }
 /* ==========================================================
 6. METHODOLOGY SECTION
-Background: hero-orange → case-orange vertical gradient, mirroring
-the hero's gradient construction. Top sits flush with the hero's
-hero-orange so the spine reads continuous; resolves to full
-case-orange by the bottom. background-color is the fallback.
+Background: solid case-orange — continues seamlessly from the bottom
+of the spine gradient (which resolves to case-orange at its lower edge).
 overflow:hidden clips spine at section edges. min-height prevents
 collapse while inner is sparse.
 ♿ Spine and mobile TV are decorative — aria-hidden.
 ========================================================== */
 .methodology {
   background-color: var(--case-orange);
-  background-image: linear-gradient(
-    to bottom,
-    var(--hero-orange) 0%,
-    var(--case-orange) 100%
-  );
   padding-top: 0;
   padding-bottom: var(--space-20);
   position: relative;
@@ -724,7 +717,11 @@ collapse while inner is sparse.
   height: auto;
   display: block;
 }
-/* Flowerspine — full width, transparent PNG, no blend mode needed */
+/* Flowerspine — full width, transparent PNG, no blend mode needed.
+   Gradient runs hero-orange (matching the hero ground above) at the top
+   down to full case-orange at the spine's bottom edge, so the color deepens
+   across the spine and lands on solid case-orange right where the spine ends.
+   The methodology section below continues as solid case-orange — no seam. */
 .spine-wrap {
   width: 100%;
   position: relative;
@@ -733,6 +730,11 @@ collapse while inner is sparse.
   line-height: 0;
   margin-top: -27px;
   z-index: 1;
+  background-image: linear-gradient(
+    to bottom,
+    var(--hero-orange) 0%,
+    var(--case-orange) 100%
+  );
 }
 .spine-img {
   width: 100%;
