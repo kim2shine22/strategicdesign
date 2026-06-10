@@ -1042,6 +1042,15 @@ overlap its own flower. Step 1 is the baseline reference. */
   height: clamp(2.25rem, 8vw, 3rem);
   width: auto;
 }
+/* bloomcta repeated below Step 7 — centered. Hidden with its parent
+   (.steps-mobile) on desktop; visible on mobile via the media query. */
+.steps-mobile-cta {
+  display: block;
+  width: 70%;
+  max-width: 360px;
+  height: auto;
+  margin: var(--space-6) auto var(--space-4);
+}
 /* Mobile TV stack — hidden on desktop, shown in hero on mobile */
 .mobile-hero-tv {
   display: none;
@@ -1235,12 +1244,24 @@ Spine hidden on mobile. Clean single column.
   .spine-wrap {
     display: none;
   }
-  /* Mobile steps list — flower + label rows, left-aligned, tappable */
+  /* Mobile steps list — flower + label rows, left-aligned, tappable.
+     Carries the hero-orange → case-orange gradient (the desktop spine's
+     job) so the steps section transitions smoothly into the solid
+     case-orange methodology/case-studies section below — no hard seam. */
   .steps-mobile {
     display: flex;
     flex-direction: column;
     gap: var(--space-6);
     padding: var(--space-6) var(--content-pad) var(--space-8);
+    background-image: linear-gradient(
+      to bottom,
+      var(--hero-orange) 0%,
+      var(--case-orange) 100%
+    );
+  }
+  /* Mobile: show only the 8 large (wide) case boxes; hide the narrow ones */
+  .case-card--narrow {
+    display: none;
   }
   /* Heading centered, full-width SVG on mobile */
   .methodology-heading {
