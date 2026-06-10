@@ -1036,9 +1036,10 @@ overlap its own flower. Step 1 is the baseline reference. */
 .step-mobile-flower--5 { --flower-size: 4.5rem; }
 .step-mobile-flower--6 { --flower-size: 5.25rem; }
 .step-mobile-flower--7 { --flower-size: 6rem; }
-/* Uniform label type size — height-based, same principle as desktop labels */
+/* Uniform label type size — height-based, same principle as desktop labels.
+   Sized up for mobile legibility; flowers are unaffected (separate vars). */
 .step-mobile-label {
-  height: clamp(1.25rem, 4.5vw, 1.75rem);
+  height: clamp(2.25rem, 8vw, 3rem);
   width: auto;
 }
 /* Mobile TV stack — hidden on desktop, shown in hero on mobile */
