@@ -725,6 +725,79 @@ collapse while inner is sparse.
   height: auto;
   display: block;
 }
+/* ==========================================================
+   CASE STUDY ROWS — 8 asymmetric card pairs below the debrief
+   heading. One wide + one narrow card per row, sides swapping
+   each row. Colors cycle saffron → electric-blue → baby-blue.
+   Cards slide in from the outer edges the first time they
+   scroll into view (.is-in added by js/cases.js), then hold.
+   Cards are empty shells — case study SVGs drop inside; each
+   card is a flex container so a dropped-in SVG centers itself.
+========================================================== */
+.case-rows {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(var(--space-6), 3vw, var(--space-10));
+  margin-top: var(--space-8);
+}
+.case-row {
+  display: flex;
+  gap: clamp(var(--space-4), 2vw, var(--space-8));
+  align-items: stretch;
+}
+/* Card shell — generous rounded corners, soft shadow, min-height
+   keeps the colored boxes visible; padding frames the title inside */
+.case-card {
+  border-radius: 24px;
+  box-shadow: var(--shadow-md);
+  min-height: clamp(220px, 24vw, 320px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: clamp(var(--space-4), 3vw, var(--space-8));
+}
+/* Title SVGs sit INSIDE the visible colored card — sized to a
+   comfortable share of the card width, never stretched to fill it */
+.case-card img,
+.case-card svg {
+  width: clamp(160px, 70%, 560px);
+  height: auto;
+  display: block;
+}
+/* Asymmetric widths — wide ≈ 62%, narrow ≈ 38% */
+.case-card--wide   { flex: 1 1 62%; }
+.case-card--narrow { flex: 1 1 38%; }
+/* Color cycle */
+.case-card--saffron  { background-color: var(--saffron); }
+.case-card--electric { background-color: var(--electric-blue); }
+.case-card--baby     { background-color: var(--baby-blue); }
+/* Slide-in from the outer edges — the hidden starting state only applies
+   once js/cases.js has confirmed it is running (it adds .js-anim to body).
+   If the script is missing or fails, the boxes are simply visible — the
+   section can never render blank. Once .is-in lands, a card settles to
+   rest and never moves again. */
+.js-anim .case-from-left,
+.js-anim .case-from-right {
+  opacity: 0;
+  transition: opacity 600ms ease-out, transform 600ms ease-out;
+  will-change: opacity, transform;
+}
+.js-anim .case-from-left  { transform: translateX(-64px); }
+.js-anim .case-from-right { transform: translateX(64px); }
+.js-anim .case-from-left.is-in,
+.js-anim .case-from-right.is-in {
+  opacity: 1;
+  transform: translateX(0);
+}
+/* Reduced motion — cards simply appear, no slide
+   (reset.css also zeroes transition durations globally) */
+@media (prefers-reduced-motion: reduce) {
+  .js-anim .case-from-left,
+  .js-anim .case-from-right {
+    transform: none;
+  }
+}
 .subheading-svg {
   width: 65%;
   max-width: 880px;
@@ -1089,6 +1162,22 @@ Spine hidden on mobile. Clean single column.
   /* Methodology: tighter min-height on mobile */
   .methodology {
     min-height: auto;
+  }
+  /* Case rows stack vertically on mobile — every card full width */
+  .case-row {
+    flex-direction: column;
+  }
+  .case-card--wide,
+  .case-card--narrow {
+    flex: 1 1 auto;
+    width: 100%;
+  }
+  /* Shorter slide distance on small screens so cards never start offscreen */
+  .js-anim .case-from-left  { transform: translateX(-32px); }
+  .js-anim .case-from-right { transform: translateX(32px); }
+  .js-anim .case-from-left.is-in,
+  .js-anim .case-from-right.is-in {
+    transform: translateX(0);
   }
   /* hero-bottom: no auto-push on mobile */
   .hero-bottom {
