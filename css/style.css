@@ -53,6 +53,9 @@ Edit values here to update the entire site.
      clamp(min, fluid, max): never smaller than 1.4rem, scales ~2.6% of viewport
      width, capped at 2.6rem on wide monitors. Edit here to resize all labels. */
   --step-label-h: clamp(1.365rem, 2.535vw, 2.535rem);
+  /* Largest mobile step flower (step 7) — smaller flowers center within this
+     column so all step labels share one left edge */
+  --flower-max: 6rem;
   /* Shadows */
   --shadow-sm: 0 1px 3px rgba(0,0,0,0.12);
   --shadow-md: 0 4px 12px rgba(0,0,0,0.15);
@@ -466,7 +469,7 @@ flower shape only, never touching the card text below. */
 /* Mobile: stack cards vertically */
 @media (max-width: 768px) {
   .hero-qa {
-    padding-bottom: var(--space-12);
+    padding-bottom: var(--space-4); /* tightened from --space-12 — pulls subheading1 up toward the Q3 card */
   }
   .qa-subheading-svg {
     width: 45%; /* substantially smaller on mobile so it doesn't dwarf the hero */
@@ -995,14 +998,48 @@ overlap its own flower. Step 1 is the baseline reference. */
 .step-card--5 { top: 33%; left: 28%; width: 28%; } /* placeholder */
 .step-card--6 { top: 45%; left: 54%; width: 28%; } /* placeholder */
 .step-card--7 { top: 55%; left: 66%; width: 28%; } /* placeholder */
-/* Mobile step cards — hidden on desktop, stacked below spine on mobile */
-.step-cards-mobile {
+/* ── Mobile steps list — hidden on desktop, shown in the 768px media query.
+   Each row is a real <button>: flower.png + step label SVG, tap → defcard
+   modal. Flower sizes graduate 1 (smallest) → 7 (largest) via per-row vars. */
+.steps-mobile {
   display: none;
 }
-.step-card-mobile-svg {
-  width: 100%;
+.step-mobile-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  text-align: left;
+}
+.step-mobile-row:focus-visible {
+  outline: 3px solid var(--hero-orange);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+/* Flower column reserves the width of the LARGEST flower so every label
+   starts at the same left edge — labels stay aligned with Step 1 */
+.step-mobile-flower {
+  width: var(--flower-size);
   height: auto;
-  display: block;
+  flex: 0 0 var(--flower-size);
+  margin-left: calc((var(--flower-max) - var(--flower-size)) / 2);
+  margin-right: calc((var(--flower-max) - var(--flower-size)) / 2);
+}
+/* Graduating flower sizes, smallest → largest */
+.step-mobile-flower--1 { --flower-size: 2.25rem; }
+.step-mobile-flower--2 { --flower-size: 2.75rem; }
+.step-mobile-flower--3 { --flower-size: 3.25rem; }
+.step-mobile-flower--4 { --flower-size: 3.75rem; }
+.step-mobile-flower--5 { --flower-size: 4.5rem; }
+.step-mobile-flower--6 { --flower-size: 5.25rem; }
+.step-mobile-flower--7 { --flower-size: 6rem; }
+/* Uniform label type size — height-based, same principle as desktop labels */
+.step-mobile-label {
+  height: clamp(1.25rem, 4.5vw, 1.75rem);
+  width: auto;
 }
 /* Mobile TV stack — hidden on desktop, shown in hero on mobile */
 .mobile-hero-tv {
@@ -1179,9 +1216,10 @@ Spine hidden on mobile. Clean single column.
   .js-anim .case-from-right.is-in {
     transform: translateX(0);
   }
-  /* hero-bottom: no auto-push on mobile */
+  /* hero-bottom: no auto-push on mobile; zero margin pulls subheading1
+     and methodologytext up close under the Q3 card */
   .hero-bottom {
-    margin-top: var(--space-4);
+    margin-top: 0;
   }
   /* Methodology text: full width centered on mobile */
   .methodology-text-svg {
@@ -1189,16 +1227,19 @@ Spine hidden on mobile. Clean single column.
     margin-left: auto;
     margin-right: auto;
   }
-  /* Spine and labels visible on mobile, scaled down */
+  /* Flowerspine hidden on mobile — the steps-mobile list replaces it.
+     Hiding spine-wrap also hides the desktop labels/hotspots/defcards
+     positioned inside it, so the ONLY way defcards appear on mobile is
+     the tap-to-open modal. */
   .spine-wrap {
-    margin-top: 0;
+    display: none;
   }
-  /* Mobile step cards — shown below spine */
-  .step-cards-mobile {
+  /* Mobile steps list — flower + label rows, left-aligned, tappable */
+  .steps-mobile {
     display: flex;
     flex-direction: column;
-    gap: var(--space-4);
-    padding: var(--space-6) var(--content-pad);
+    gap: var(--space-6);
+    padding: var(--space-6) var(--content-pad) var(--space-8);
   }
   /* Heading centered, full-width SVG on mobile */
   .methodology-heading {
