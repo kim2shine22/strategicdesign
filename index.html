@@ -392,7 +392,64 @@
           />
         </div>
 
-        <!-- Case study content goes here -->
+        <!-- ============ CASE STUDY ROWS ============
+             8 rows, each an asymmetric pair: one wide card + one narrow card.
+             Odd rows: narrow left / wide right. Even rows: wide left / narrow right.
+             Card colors cycle saffron → electric-blue → baby-blue.
+             Cards slide in from the outer edges on first scroll into view
+             (js/cases.js adds .is-in once; they never move again).
+             Each card is an empty shell — case study SVGs drop inside. -->
+        <div class="case-rows">
+
+          <!-- Row 1: narrow left, wide right -->
+          <div class="case-row">
+            <div class="case-card case-card--narrow case-card--saffron case-from-left"></div>
+            <div class="case-card case-card--wide case-card--electric case-from-right"></div>
+          </div>
+
+          <!-- Row 2: wide left, narrow right -->
+          <div class="case-row">
+            <div class="case-card case-card--wide case-card--baby case-from-left"></div>
+            <div class="case-card case-card--narrow case-card--saffron case-from-right"></div>
+          </div>
+
+          <!-- Row 3: narrow left, wide right -->
+          <div class="case-row">
+            <div class="case-card case-card--narrow case-card--electric case-from-left"></div>
+            <div class="case-card case-card--wide case-card--baby case-from-right"></div>
+          </div>
+
+          <!-- Row 4: wide left, narrow right -->
+          <div class="case-row">
+            <div class="case-card case-card--wide case-card--saffron case-from-left"></div>
+            <div class="case-card case-card--narrow case-card--electric case-from-right"></div>
+          </div>
+
+          <!-- Row 5: narrow left, wide right -->
+          <div class="case-row">
+            <div class="case-card case-card--narrow case-card--baby case-from-left"></div>
+            <div class="case-card case-card--wide case-card--saffron case-from-right"></div>
+          </div>
+
+          <!-- Row 6: wide left, narrow right -->
+          <div class="case-row">
+            <div class="case-card case-card--wide case-card--electric case-from-left"></div>
+            <div class="case-card case-card--narrow case-card--baby case-from-right"></div>
+          </div>
+
+          <!-- Row 7: narrow left, wide right -->
+          <div class="case-row">
+            <div class="case-card case-card--narrow case-card--saffron case-from-left"></div>
+            <div class="case-card case-card--wide case-card--electric case-from-right"></div>
+          </div>
+
+          <!-- Row 8: wide left, narrow right -->
+          <div class="case-row">
+            <div class="case-card case-card--wide case-card--baby case-from-left"></div>
+            <div class="case-card case-card--narrow case-card--saffron case-from-right"></div>
+          </div>
+
+        </div><!-- /.case-rows -->
 
       </div>
     </section>
@@ -456,6 +513,7 @@
   <script src="js/video.js" defer></script>
   <script src="js/steps.js" defer></script>
   <script src="js/qa.js" defer></script>
+  <script src="js/cases.js" defer></script>
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
