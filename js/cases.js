@@ -1,12 +1,13 @@
 /* cases.js — case study card scroll-in
    ─────────────────────────────────────
-   Cards start offset toward the outer edges (.case-from-left /
-   .case-from-right, set in CSS). When a card first scrolls into
-   view, .is-in is added and the observer releases it — the card
-   slides to rest ONCE and never moves again.
+   Cards slide in from the outer edges (.case-from-left /
+   .case-from-right) the first time they scroll into view,
+   then never move again.
 
-   Fallback: if IntersectionObserver is unavailable (very old
-   browsers), all cards are shown immediately with no animation.
+   Safety: the hidden starting state in CSS is scoped to
+   body.js-anim, which is only added here. If this script is
+   missing or fails, the boxes simply render visible — the
+   section can never appear blank.
 */
 
 (function () {
@@ -15,11 +16,11 @@
   var cards = document.querySelectorAll('.case-from-left, .case-from-right');
   if (!cards.length) return;
 
-  /* No observer support → show everything, skip animation */
-  if (!('IntersectionObserver' in window)) {
-    cards.forEach(function (card) { card.classList.add('is-in'); });
-    return;
-  }
+  /* No observer support → leave cards visible, skip animation */
+  if (!('IntersectionObserver' in window)) return;
+
+  /* Confirm JS is live — this activates the hidden starting state */
+  document.body.classList.add('js-anim');
 
   var observer = new IntersectionObserver(
     function (entries) {
