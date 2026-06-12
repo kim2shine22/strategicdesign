@@ -910,39 +910,15 @@ collapse while inner is sparse.
   pointer-events: auto;
   cursor: pointer;
 }
-/* ── DEBUG BLOCK — makes hotspots visible for DevTools positioning.
-   TO ACTIVATE: in DevTools Elements panel, click the <body> tag,
-   double-click its class attribute, and add: debug-hotspots
-   All hotspot boxes will appear as labeled orange overlays.
-   TO DEACTIVATE: remove debug-hotspots from <body>.
-   REMOVE THIS ENTIRE BLOCK once all hotspots are confirmed. ── */
-body.debug-hotspots .flower-hotspot {
-  background: rgba(255, 80, 0, 0.40);
-  border: 2px solid rgba(255, 80, 0, 0.90);
-  outline: 1px dashed #ffffff;
-  z-index: 999;
-}
-body.debug-hotspots .flower-hotspot::after {
-  content: attr(class);
-  position: absolute;
-  top: 2px;
-  left: 4px;
-  font-size: 10px;
-  font-family: monospace;
-  color: #ffffff;
-  white-space: nowrap;
-  pointer-events: none;
-  text-shadow: 0 1px 2px rgba(0,0,0,0.8);
-}
-/* ── Hotspot positions — ALL placeholder. Tune each in DevTools.
-Selector → adjust top/left/width/height until it covers its bloom exactly. */
-.flower-hotspot--1 { top: 0%; left: 1%; width: 14%; height: 22%; }
-.flower-hotspot--2 { top: 9%; left: 4%; width: 12%; height: 18%; } /* placeholder */
-.flower-hotspot--3 { top: 16%; left: 10%; width: 12%; height: 18%; } /* placeholder */
-.flower-hotspot--4 { top: 23%; left: 17%; width: 12%; height: 18%; } /* placeholder */
-.flower-hotspot--5 { top: 36%; left: 14%; width: 12%; height: 18%; } /* placeholder */
-.flower-hotspot--6 { top: 48%; left: 42%; width: 12%; height: 18%; } /* placeholder */
-.flower-hotspot--7 { top: 58%; left: 60%; width: 12%; height: 18%; } /* placeholder */
+/* ── Hotspot positions — confirmed from live page via readHotspots().
+   Glows mirror each hotspot at -1%/-1% offset, +2%/+2% larger. */
+.flower-hotspot--1 { top: -3.21%; left:  2.56%; width: 14%; height: 22%; }
+.flower-hotspot--2 { top:  9.22%; left: 14.39%; width: 12%; height: 18%; }
+.flower-hotspot--3 { top: 26.89%; left:  6.23%; width: 12%; height: 18%; }
+.flower-hotspot--4 { top: 32.41%; left: 18.20%; width: 12%; height: 18%; }
+.flower-hotspot--5 { top: 62.14%; left: 35.53%; width: 12%; height: 18%; }
+.flower-hotspot--6 { top: 48.11%; left: 48.35%; width: 12%; height: 18%; }
+.flower-hotspot--7 { top: 74.74%; left: 78.21%; width: 12%; height: 18%; }
 /* Flower glow overlay — silver-white screen blend, Tinkerbell light */
 .flower-glow {
   position: absolute;
@@ -953,13 +929,13 @@ Selector → adjust top/left/width/height until it covers its bloom exactly. */
   z-index: 2;
 }
 /* ── Glow positions mirror hotspot positions (slightly larger for the halo) */
-.flower-glow--1 { top: -1%; left: 0%; width: 16%; height: 24%; }
-.flower-glow--2 { top: 8%; left: 3%; width: 14%; height: 20%; } /* placeholder */
-.flower-glow--3 { top: 15%; left: 9%; width: 14%; height: 20%; } /* placeholder */
-.flower-glow--4 { top: 22%; left: 16%; width: 14%; height: 20%; } /* placeholder */
-.flower-glow--5 { top: 35%; left: 13%; width: 14%; height: 20%; } /* placeholder */
-.flower-glow--6 { top: 47%; left: 41%; width: 14%; height: 20%; } /* placeholder */
-.flower-glow--7 { top: 57%; left: 59%; width: 14%; height: 20%; } /* placeholder */
+.flower-glow--1 { top: -4.21%; left:  1.56%; width: 16%; height: 24%; }
+.flower-glow--2 { top:  8.22%; left: 13.39%; width: 14%; height: 20%; }
+.flower-glow--3 { top: 25.89%; left:  5.23%; width: 14%; height: 20%; }
+.flower-glow--4 { top: 31.41%; left: 17.20%; width: 14%; height: 20%; }
+.flower-glow--5 { top: 61.14%; left: 34.53%; width: 14%; height: 20%; }
+.flower-glow--6 { top: 47.11%; left: 47.35%; width: 14%; height: 20%; }
+.flower-glow--7 { top: 73.74%; left: 77.21%; width: 14%; height: 20%; }
 /* All glows use same radial gradient */
 .flower-glow--1,
 .flower-glow--2,
@@ -1012,16 +988,18 @@ Selector → adjust top/left/width/height until it covers its bloom exactly. */
   display: block;
   border-radius: 4px;
 }
-/* ── Card positions — ALL placeholder except step 1 (confirmed).
-Tune each in DevTools: move popup so it's readable and doesn't
-overlap its own flower. Step 1 is the baseline reference. */
-.step-card--1 { top: 1%; left: 44%; width: 28%; }
-.step-card--2 { top: 17%; left: 44%; width: 28%; } /* aligned to label row; tune in DevTools */
-.step-card--3 { top: 24%; left: 44%; width: 28%; }
-.step-card--4 { top: 31%; left: 44%; width: 28%; }
-.step-card--5 { top: 33%; left: 28%; width: 28%; } /* placeholder */
-.step-card--6 { top: 45%; left: 54%; width: 28%; } /* placeholder */
-.step-card--7 { top: 55%; left: 66%; width: 28%; } /* placeholder */
+/* ── Card positions — estimated from confirmed hotspot coordinates.
+Tune each in DevTools if needed: move popup so it's readable and doesn't
+overlap its own flower. Cards 1–4 appear right of their left-side flowers;
+card 5 above-right; card 6 above-right; card 7 above-left (flower too far
+right for card to go right). */
+.step-card--1 { top:  1%;  left: 44%; width: 28%; }
+.step-card--2 { top:  9%;  left: 44%; width: 28%; }
+.step-card--3 { top: 27%;  left: 44%; width: 28%; }
+.step-card--4 { top: 32%;  left: 44%; width: 28%; }
+.step-card--5 { top: 55%;  left: 55%; width: 28%; }
+.step-card--6 { top: 45%;  left: 63%; width: 28%; }
+.step-card--7 { top: 68%;  left: 36%; width: 28%; }
 /* ── Mobile steps list — hidden on desktop, shown in the 768px media query.
    Each row is a real <button>: flower.png + step label SVG, tap → defcard
    modal. Flower sizes graduate 1 (smallest) → 7 (largest) via per-row vars. */
