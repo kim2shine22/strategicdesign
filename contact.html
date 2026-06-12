@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Contact Kim Matthews — Strategic storytelling and public interest communications." />
+  <title>Contact — Kim Matthews Portfolio</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Overpass+Mono:wght@400;600;700&family=IBM+Plex+Sans:wght@300;400;500;600&family=Special+Elite&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/reset.css" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- ===================== HEADER ===================== -->
+  <header class="site-header" role="banner">
+    <div class="header-inner">
+
+      <a href="index.html" class="site-title" aria-label="Kim Matthews Portfolio — home">
+        Kim Matthews Portfolio
+      </a>
+
+      <button
+        class="nav-toggle"
+        aria-expanded="false"
+        aria-controls="primary-nav"
+        aria-label="Open navigation menu"
+      >
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+
+      <nav id="primary-nav" class="primary-nav" aria-label="Primary navigation">
+        <ul role="list">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="index.html#methodology">7-Step Process</a></li>
+          <li><a href="index.html#case-studies">Case Studies</a></li>
+          <li><a href="resume.html">Resume</a></li>
+          <li><a href="contact.html" aria-current="page">Contact</a></li>
+        </ul>
+      </nav>
+
+    </div>
+  </header>
+
+  <!-- ===================== MAIN ===================== -->
+  <main id="main-content">
+
+    <section class="contact-hero" aria-label="Contact">
+      <div class="contact-inner">
+
+        <!-- Contact card — SVG is visual; overlay buttons handle interactions -->
+        <div class="contact-card-wrap">
+
+          <img
+            src="assets/SVG/contact.svg"
+            alt="Contact card — Kim Matthews, kim@kmatthewsdesign.com, LinkedIn"
+            loading="eager"
+            decoding="async"
+          />
+
+          <!-- Email overlay — click to copy, no mailto -->
+          <button
+            class="contact-overlay contact-overlay--email"
+            aria-label="Copy email address: kim@kmatthewsdesign.com"
+            type="button"
+          >
+            <span class="copy-feedback" role="status" aria-live="polite"></span>
+          </button>
+
+          <!-- LinkedIn overlay — opens confirmation popup -->
+          <button
+            class="contact-overlay contact-overlay--linkedin"
+            aria-label="Visit Kim Matthews on LinkedIn"
+            type="button"
+          >
+          </button>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===================== LINKEDIN MODAL ===================== -->
+  <div id="linkedin-modal" hidden>
+    <div id="linkedin-backdrop" class="linkedin-modal-backdrop"></div>
+    <div class="linkedin-dialog" role="dialog" aria-modal="true" aria-labelledby="linkedin-dialog-msg">
+      <p id="linkedin-dialog-msg">Open Kim's LinkedIn profile in a new tab?</p>
+      <div class="linkedin-dialog-actions">
+        <button id="linkedin-stay" class="linkedin-btn-stay" type="button">Stay on site</button>
+        <a
+          id="linkedin-go"
+          class="linkedin-btn-go"
+          href="https://www.linkedin.com/in/kim-matthews-b6216a11/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >Visit LinkedIn</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="footer-inner">
+      <p>&copy; <span id="year"></span> Kim Matthews. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="js/nav.js" defer></script>
+  <script src="js/contact.js" defer></script>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+
+</body>
+</html>
