@@ -910,16 +910,15 @@ collapse while inner is sparse.
   pointer-events: auto;
   cursor: pointer;
 }
-/* ── Hotspot positions — confirmed from live page via readHotspots().
-   Glows mirror each hotspot at -1%/-1% offset, +2%/+2% larger.
-   Note: hotspot 5 and 7 positions are swapped vs. drag order. */
-.flower-hotspot--1 { top: -3.21%; left:  2.56%; width: 14%; height: 22%; }
-.flower-hotspot--2 { top:  9.22%; left: 14.39%; width: 12%; height: 18%; }
-.flower-hotspot--3 { top: 26.89%; left:  6.23%; width: 12%; height: 18%; }
-.flower-hotspot--4 { top: 32.41%; left: 18.20%; width: 12%; height: 18%; }
-.flower-hotspot--5 { top: 74.74%; left: 78.21%; width: 12%; height: 18%; }
-.flower-hotspot--6 { top: 48.11%; left: 48.35%; width: 12%; height: 18%; }
-.flower-hotspot--7 { top: 62.14%; left: 35.53%; width: 12%; height: 18%; }
+/* ── Hotspot positions — ALL placeholder. Tune each in DevTools.
+Selector → adjust top/left/width/height until it covers its bloom exactly. */
+.flower-hotspot--1 { top: 0%; left: 1%; width: 14%; height: 22%; }
+.flower-hotspot--2 { top: 9%; left: 4%; width: 12%; height: 18%; } /* placeholder */
+.flower-hotspot--3 { top: 16%; left: 10%; width: 12%; height: 18%; } /* placeholder */
+.flower-hotspot--4 { top: 23%; left: 17%; width: 12%; height: 18%; } /* placeholder */
+.flower-hotspot--5 { top: 36%; left: 14%; width: 12%; height: 18%; } /* placeholder */
+.flower-hotspot--6 { top: 48%; left: 42%; width: 12%; height: 18%; } /* placeholder */
+.flower-hotspot--7 { top: 58%; left: 60%; width: 12%; height: 18%; } /* placeholder */
 /* Flower glow overlay — silver-white screen blend, Tinkerbell light */
 .flower-glow {
   position: absolute;
@@ -930,13 +929,13 @@ collapse while inner is sparse.
   z-index: 2;
 }
 /* ── Glow positions mirror hotspot positions (slightly larger for the halo) */
-.flower-glow--1 { top: -4.21%; left:  1.56%; width: 16%; height: 24%; }
-.flower-glow--2 { top:  8.22%; left: 13.39%; width: 14%; height: 20%; }
-.flower-glow--3 { top: 25.89%; left:  5.23%; width: 14%; height: 20%; }
-.flower-glow--4 { top: 31.41%; left: 17.20%; width: 14%; height: 20%; }
-.flower-glow--5 { top: 73.74%; left: 77.21%; width: 14%; height: 20%; }
-.flower-glow--6 { top: 47.11%; left: 47.35%; width: 14%; height: 20%; }
-.flower-glow--7 { top: 61.14%; left: 34.53%; width: 14%; height: 20%; }
+.flower-glow--1 { top: -1%; left: 0%; width: 16%; height: 24%; }
+.flower-glow--2 { top: 8%; left: 3%; width: 14%; height: 20%; } /* placeholder */
+.flower-glow--3 { top: 15%; left: 9%; width: 14%; height: 20%; } /* placeholder */
+.flower-glow--4 { top: 22%; left: 16%; width: 14%; height: 20%; } /* placeholder */
+.flower-glow--5 { top: 35%; left: 13%; width: 14%; height: 20%; } /* placeholder */
+.flower-glow--6 { top: 47%; left: 41%; width: 14%; height: 20%; } /* placeholder */
+.flower-glow--7 { top: 57%; left: 59%; width: 14%; height: 20%; } /* placeholder */
 /* All glows use same radial gradient */
 .flower-glow--1,
 .flower-glow--2,
@@ -989,17 +988,16 @@ collapse while inner is sparse.
   display: block;
   border-radius: 4px;
 }
-/* ── Card positions — estimated from confirmed hotspot coordinates.
-   Tune each in DevTools if needed. Cards 1–4 appear right of their
-   left-side flowers. Card 5 above-left (flower is far right). Card 6
-   above-right. Card 7 above-right (flower is center-left). */
-.step-card--1 { top:  1%;  left: 44%; width: 28%; }
-.step-card--2 { top:  9%;  left: 44%; width: 28%; }
-.step-card--3 { top: 27%;  left: 44%; width: 28%; }
-.step-card--4 { top: 32%;  left: 44%; width: 28%; }
-.step-card--5 { top: 68%;  left: 36%; width: 28%; }
-.step-card--6 { top: 45%;  left: 63%; width: 28%; }
-.step-card--7 { top: 55%;  left: 55%; width: 28%; }
+/* ── Card positions — ALL placeholder except step 1 (confirmed).
+Tune each in DevTools: move popup so it's readable and doesn't
+overlap its own flower. Step 1 is the baseline reference. */
+.step-card--1 { top: 1%; left: 44%; width: 28%; }
+.step-card--2 { top: 17%; left: 44%; width: 28%; } /* aligned to label row; tune in DevTools */
+.step-card--3 { top: 24%; left: 44%; width: 28%; }
+.step-card--4 { top: 31%; left: 44%; width: 28%; }
+.step-card--5 { top: 33%; left: 28%; width: 28%; } /* placeholder */
+.step-card--6 { top: 45%; left: 54%; width: 28%; } /* placeholder */
+.step-card--7 { top: 55%; left: 66%; width: 28%; } /* placeholder */
 /* ── Mobile steps list — hidden on desktop, shown in the 768px media query.
    Each row is a real <button>: flower.png + step label SVG, tap → defcard
    modal. Flower sizes graduate 1 (smallest) → 7 (largest) via per-row vars. */
@@ -1112,9 +1110,8 @@ Set --section-bg per section inline in HTML.
 }
 /* ==========================================================
 8. CONTACT PAGE
-Background gradient continues the landing page color arc:
-case-orange (where case studies end) → twilight (footer color).
-Footer sits at exact twilight so there is no seam.
+Gradient continues the landing page color arc:
+case-orange → twilight (footer color). No seam at footer.
 ♿ White on twilight = 5.74:1 — passes WCAG AA
 ========================================================== */
 .contact-hero {
@@ -1129,7 +1126,31 @@ Footer sits at exact twilight so there is no seam.
   justify-content: center;
   padding: var(--space-20) var(--content-pad);
 }
-.contact-inner {
+
+/* ==========================================================
+   RESUME PAGE
+   Mirrors the home page spine gradient: hero-orange → case-orange.
+   Sits one step before the contact page in the site's color arc:
+   lightest-orange → hero-orange (hero) →
+   hero-orange → case-orange (spine / resume) →
+   case-orange → twilight (contact) → twilight (footer)
+========================================================== */
+.resume-hero {
+  min-height: calc(100vh - var(--header-height));
+  background-image: linear-gradient(
+    to bottom,
+    var(--hero-orange)  0%,
+    var(--case-orange) 100%
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-20) var(--content-pad);
+}
+
+/* Shared inner layout for contact and resume */
+.contact-inner,
+.resume-inner {
   max-width: var(--maxw);
   width: 100%;
   display: flex;
@@ -1137,16 +1158,21 @@ Footer sits at exact twilight so there is no seam.
   align-items: center;
   gap: var(--space-12);
 }
-.contact-svg-wrap {
+
+/* SVG content block — centered, scales with viewport */
+.contact-svg-wrap,
+.resume-svg-wrap {
   width: clamp(320px, 70%, 860px);
 }
-.contact-svg-wrap img {
+.contact-svg-wrap img,
+.resume-svg-wrap img {
   display: block;
   width: 100%;
   height: auto;
 }
 @media (max-width: 768px) {
-  .contact-svg-wrap {
+  .contact-svg-wrap,
+  .resume-svg-wrap {
     width: 90%;
   }
 }
@@ -1172,7 +1198,7 @@ Footer sits at exact twilight so there is no seam.
   opacity: 0.8;
 }
 /* ==========================================================
-9. RESPONSIVE — MOBILE (max 768px)
+10. RESPONSIVE — MOBILE (max 768px)
 TV hidden on hero. Mobile TV shown in methodology.
 Spine hidden on mobile. Clean single column.
 ========================================================== */
@@ -1333,7 +1359,7 @@ Spine hidden on mobile. Clean single column.
   }
 }
 /* ==========================================================
-10. RESPONSIVE — MEDIUM (769px–1100px)
+11. RESPONSIVE — MEDIUM (769px–1100px)
 TV scales down, two-column layout maintained.
 ========================================================== */
 @media (min-width: 769px) and (max-width: 1100px) {
