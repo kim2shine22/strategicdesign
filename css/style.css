@@ -910,8 +910,7 @@ collapse while inner is sparse.
   pointer-events: auto;
   cursor: pointer;
 }
-/* ── Hotspot positions — confirmed from live page via readHotspots().
-   5 and 7 are intentionally swapped to match their flowers on the spine. */
+/* ── Hotspot positions — confirmed from live page. 5 and 7 swapped. */
 .flower-hotspot--1 { top: -3.21%; left:  2.56%; width: 14%; height: 22%; }
 .flower-hotspot--2 { top:  9.22%; left: 14.39%; width: 12%; height: 18%; }
 .flower-hotspot--3 { top: 26.89%; left:  6.23%; width: 12%; height: 18%; }
@@ -988,8 +987,7 @@ collapse while inner is sparse.
   display: block;
   border-radius: 4px;
 }
-/* ── Card positions — estimated from confirmed hotspot coordinates.
-   5 and 7 swapped to match their flowers. Tune in DevTools as needed. */
+/* ── Card positions — estimated from confirmed hotspot coordinates. 5 and 7 swapped. */
 .step-card--1 { top:  1%;  left: 44%; width: 28%; }
 .step-card--2 { top:  9%;  left: 44%; width: 28%; }
 .step-card--3 { top: 27%;  left: 44%; width: 28%; }
@@ -1110,6 +1108,8 @@ Set --section-bg per section inline in HTML.
 /* ==========================================================
 8. CONTACT PAGE
 Gradient: case-orange → twilight (footer color). No seam at footer.
+Overlay buttons sit on top of the SVG card image, positioned by
+percentage so they scale with the card at every viewport width.
 ========================================================== */
 .contact-hero {
   min-height: calc(100vh - var(--header-height));
@@ -1122,6 +1122,147 @@ Gradient: case-orange → twilight (footer color). No seam at footer.
   align-items: center;
   justify-content: center;
   padding: var(--space-20) var(--content-pad);
+}
+.contact-inner {
+  max-width: var(--maxw);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-12);
+}
+
+/* Card wrap — position:relative so overlay buttons anchor to the img */
+.contact-card-wrap {
+  position: relative;
+  width: clamp(320px, 70%, 860px);
+}
+.contact-card-wrap img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Invisible overlay buttons — sit on top of SVG text areas */
+.contact-overlay {
+  position: absolute;
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Email overlay — tune top/left/width/height in DevTools to cover text */
+.contact-overlay--email {
+  top: 47%;
+  left: 10%;
+  width: 80%;
+  height: 12%;
+  cursor: copy;
+}
+.contact-overlay--email:hover,
+.contact-overlay--email:focus-visible {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+  outline: none;
+}
+
+/* LinkedIn overlay — tune to cover LinkedIn text */
+.contact-overlay--linkedin {
+  top: 68%;
+  left: 25%;
+  width: 50%;
+  height: 11%;
+  cursor: pointer;
+}
+.contact-overlay--linkedin:hover,
+.contact-overlay--linkedin:focus-visible {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+  outline: none;
+}
+
+/* Copy feedback tooltip — appears above the email area */
+.copy-feedback {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--twilight);
+  color: var(--white);
+  font-family: var(--font-mono);
+  font-size: clamp(0.75rem, 1.5vw, 0.875rem);
+  padding: 0.35rem 0.75rem;
+  border-radius: 6px;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+.copy-feedback.is-visible {
+  opacity: 1;
+}
+
+/* LinkedIn confirmation modal */
+.linkedin-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  z-index: 500;
+}
+.linkedin-dialog {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 501;
+  background: var(--twilight);
+  border-radius: 16px;
+  padding: clamp(1.5rem, 4vw, 2.5rem);
+  width: clamp(280px, 90vw, 440px);
+  text-align: center;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.45);
+}
+.linkedin-dialog p {
+  font-family: var(--font-mono);
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  color: var(--white);
+  margin-bottom: 1.75rem;
+  line-height: 1.4;
+}
+.linkedin-dialog-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.linkedin-btn-stay,
+.linkedin-btn-go {
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  padding: 0.6rem 1.4rem;
+  border-radius: 8px;
+  cursor: pointer;
+  text-decoration: none;
+  border: 2px solid var(--white);
+  transition: background 0.18s ease, color 0.18s ease;
+}
+.linkedin-btn-stay {
+  background: transparent;
+  color: var(--white);
+}
+.linkedin-btn-stay:hover {
+  background: var(--white);
+  color: var(--twilight);
+}
+.linkedin-btn-go {
+  background: var(--white);
+  color: var(--twilight);
+}
+.linkedin-btn-go:hover {
+  background: transparent;
+  color: var(--white);
 }
 
 /* ==========================================================
@@ -1140,9 +1281,6 @@ Gradient: case-orange → twilight (footer color). No seam at footer.
   justify-content: center;
   padding: var(--space-20) var(--content-pad);
 }
-
-/* Shared inner layout and SVG wrap for contact and resume */
-.contact-inner,
 .resume-inner {
   max-width: var(--maxw);
   width: 100%;
@@ -1151,18 +1289,16 @@ Gradient: case-orange → twilight (footer color). No seam at footer.
   align-items: center;
   gap: var(--space-12);
 }
-.contact-svg-wrap,
 .resume-svg-wrap {
   width: clamp(320px, 70%, 860px);
 }
-.contact-svg-wrap img,
 .resume-svg-wrap img {
   display: block;
   width: 100%;
   height: auto;
 }
 @media (max-width: 768px) {
-  .contact-svg-wrap,
+  .contact-card-wrap,
   .resume-svg-wrap {
     width: 90%;
   }
