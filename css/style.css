@@ -1013,6 +1013,7 @@ overlap its own flower. Step 1 is the baseline reference. */
   padding: 0;
   cursor: pointer;
   text-align: left;
+  width: 100%;
 }
 .step-mobile-row:focus-visible {
   outline: 3px solid var(--hero-orange);
@@ -1036,11 +1037,19 @@ overlap its own flower. Step 1 is the baseline reference. */
 .step-mobile-flower--5 { --flower-size: 4.5rem; }
 .step-mobile-flower--6 { --flower-size: 5.25rem; }
 .step-mobile-flower--7 { --flower-size: 6rem; }
-/* Uniform label type size — height-based, same principle as desktop labels.
-   Sized up for mobile legibility; flowers are unaffected (separate vars). */
+/* Label fills the remaining row width after the flower column and is
+   sized by WIDTH so the full step name always fits on screen — the
+   longest title ("Strategic Co-Creation Planning") sets the scale.
+   max-height keeps short titles from ballooning; min-width:0 lets the
+   flex item shrink instead of overflowing the row. */
 .step-mobile-label {
-  height: clamp(2.25rem, 8vw, 3rem);
-  width: auto;
+  flex: 1 1 auto;
+  min-width: 0;
+  width: 100%;
+  height: auto;
+  max-height: 3rem;
+  object-fit: contain;
+  object-position: left center;
 }
 /* bloomcta repeated below Step 7 — centered. Hidden with its parent
    (.steps-mobile) on desktop; visible on mobile via the media query. */
