@@ -779,7 +779,7 @@ collapse while inner is sparse.
 }
 /* Asymmetric widths — wide ≈ 62%, narrow ≈ 38% */
 .case-card--wide   { flex: 1 1 62%; }
-.case-card--narrow { flex: 1 1 38%; padding: clamp(0.5rem, 1.5vw, 0.875rem); }
+.case-card--narrow { flex: 1 1 38%; padding: clamp(0.2rem, 0.5vw, 0.35rem) clamp(0.5rem, 1.5vw, 0.875rem); }
 /* Color cycle */
 .case-card--saffron  { background-color: var(--saffron); }
 .case-card--electric { background-color: var(--electric-blue); }
