@@ -1282,27 +1282,38 @@ Spine hidden on mobile. Clean single column.
   }
   .case-card--narrow { order: -1; }
   .case-card--wide   { order:  1; }
-  /* Shared wide-card height drives the ratio. Narrow = 65% of wide. */
-  .case-row {
-    --wide-h: clamp(180px, 56vw, 280px);
-  }
+
+  /* Mobile cards: the SVG drives the card's height at its natural aspect
+     ratio — no fixed heights, no object-fit, so nothing distorts and the
+     artwork always fills edge to edge. Padding is 0 so the SVG reaches
+     every edge. The card simply wraps tightly around its image.
+
+     WIDTH echoes the desktop proportion: wide = full width (100%),
+     narrow = 62% centered, so "narrow" is genuinely narrower. */
+  .case-card--wide,
   .case-card--narrow {
-    display: flex;
     flex: none;
-    width: 100%;
-    height: calc(var(--wide-h) * 0.65);
-    padding: clamp(0.25rem, 1vw, 0.4rem) clamp(0.5rem, 2vw, 0.875rem);
+    display: block;       /* override desktop flex so the SVG controls height */
+    min-height: 0;        /* clear the desktop min-height so card hugs the SVG */
+    padding: 0;           /* SVG reaches the card edges */
     overflow: hidden;
   }
+  .case-card--wide {
+    width: 100%;
+  }
+  .case-card--narrow {
+    width: 62%;           /* matches desktop narrow:wide ratio (38:62) */
+    margin-left: auto;
+    margin-right: auto;   /* centered under the wide card */
+  }
+  /* Images set their own height from the artwork's aspect ratio and
+     span the full card width — true edge-to-edge, zero distortion. */
+  .case-card--wide img,
   .case-card--narrow img {
     width: 100%;
-    height: 100%;
-    object-fit: contain;
-  }
-  .case-card--wide {
-    flex: none;
-    width: 100%;
-    height: var(--wide-h);
+    height: auto;
+    object-fit: unset;
+    display: block;
   }
   /* Shorter slide distance on small screens so cards never start offscreen */
   .js-anim .case-from-left  { transform: translateX(-32px); }
