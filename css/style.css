@@ -1119,7 +1119,7 @@ Set --section-bg per section inline in HTML.
   letter-spacing: 0.03em;
 }
 /* ==========================================================
-8. CONTACT PAGE — gradient: case-orange → ember (footer color)
+8. CONTACT PAGE — gradient: case-orange → ember
 ========================================================== */
 .contact-hero { min-height: calc(100vh - var(--header-height)); background-image: linear-gradient(to bottom, var(--case-orange) 0%, var(--ember) 100%); display: flex; align-items: center; justify-content: center; padding: var(--space-20) var(--content-pad); }
 .contact-inner { max-width: var(--maxw); width: 100%; display: flex; flex-direction: column; align-items: center; gap: var(--space-12); }
@@ -1260,25 +1260,36 @@ Spine hidden on mobile. Clean single column.
   .methodology {
     min-height: auto;
   }
+  /* Mobile case pairs: narrow identifier compact on top, wide teaser prominent below.
+     Hierarchy: narrow ~40vw tall, wide ~56vw tall — teaser dominates. */
   .case-row {
     flex-direction: column;
     gap: var(--space-2);
     margin-bottom: var(--space-6);
   }
-  .case-card--narrow { order: -1; }
-  .case-card--wide   { order:  1; }
-  .case-card--wide,
-  .case-card--narrow {
-    flex: none;
-    width: 100%;
-    min-height: 120px;
-    align-items: flex-start;
-  }
+  .case-card--narrow { order: -1; } /* always on top */
+  .case-card--wide   { order:  1; } /* always on bottom */
+  /* Narrow: compact identifier — fixed aspect ratio keeps it short */
   .case-card--narrow {
     display: flex;
+    flex: none;
+    width: 100%;
+    aspect-ratio: 5 / 2;   /* ~150px tall at 375px width */
     padding: clamp(0.25rem, 1vw, 0.4rem) clamp(0.5rem, 2vw, 0.875rem);
+    overflow: hidden;
   }
-  .case-card img { height: auto; }
+  /* Narrow card images fill their fixed-ratio box */
+  .case-card--narrow img {
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+  }
+  /* Wide: larger teaser card — more prominent presence */
+  .case-card--wide {
+    flex: none;
+    width: 100%;
+    min-height: clamp(180px, 56vw, 280px);
+  }
   /* Shorter slide distance on small screens so cards never start offscreen */
   .js-anim .case-from-left  { transform: translateX(-32px); }
   .js-anim .case-from-right { transform: translateX(32px); }
@@ -1319,6 +1330,7 @@ Spine hidden on mobile. Clean single column.
       var(--case-orange) 100%
     );
   }
+  /* case-intro: full width on mobile */
   .case-intro-svg { width: 90%; }
   /* Heading centered, full-width SVG on mobile */
   .methodology-heading {
