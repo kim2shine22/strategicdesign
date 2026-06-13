@@ -771,6 +771,21 @@ collapse while inner is sparse.
 /* Asymmetric widths — wide ≈ 62%, narrow ≈ 38% */
 .case-card--wide   { flex: 1 1 62%; }
 .case-card--narrow { flex: 1 1 38%; }
+/* Wide cards: SVG fills the full card surface edge to edge.
+   padding:0 removes the inset; align-items:stretch lets the img
+   fill the card height; object-fit:fill scales the SVG exactly
+   to the box (vector, so no quality loss). Narrow cards keep
+   their padded centered treatment. */
+.case-card--wide {
+  padding: 0;
+  align-items: stretch;
+}
+.case-card--wide img,
+.case-card--wide svg {
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+}
 /* Color cycle */
 .case-card--saffron  { background-color: var(--saffron); }
 .case-card--electric { background-color: var(--electric-blue); }
@@ -1108,16 +1123,10 @@ Set --section-bg per section inline in HTML.
 /* ==========================================================
 8. CONTACT PAGE
 Gradient: case-orange → twilight (footer color). No seam at footer.
-Overlay buttons sit on top of the SVG card image, positioned by
-percentage so they scale with the card at every viewport width.
 ========================================================== */
 .contact-hero {
   min-height: calc(100vh - var(--header-height));
-  background-image: linear-gradient(
-    to bottom,
-    var(--case-orange) 0%,
-    var(--twilight)    100%
-  );
+  background-image: linear-gradient(to bottom, var(--case-orange) 0%, var(--twilight) 100%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1131,8 +1140,6 @@ percentage so they scale with the card at every viewport width.
   align-items: center;
   gap: var(--space-12);
 }
-
-/* Card wrap — position:relative so overlay buttons anchor to the img */
 .contact-card-wrap {
   position: relative;
   width: clamp(320px, 70%, 860px);
@@ -1142,8 +1149,6 @@ percentage so they scale with the card at every viewport width.
   width: 100%;
   height: auto;
 }
-
-/* Invisible overlay buttons — sit on top of SVG text areas */
 .contact-overlay {
   position: absolute;
   background: transparent;
@@ -1151,38 +1156,26 @@ percentage so they scale with the card at every viewport width.
   padding: 0;
   margin: 0;
 }
-
-/* Email overlay — tune top/left/width/height in DevTools to cover text */
 .contact-overlay--email {
-  top: 47%;
-  left: 10%;
-  width: 80%;
-  height: 12%;
+  top: 47%; left: 10%; width: 80%; height: 12%;
   cursor: copy;
 }
 .contact-overlay--email:hover,
 .contact-overlay--email:focus-visible {
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(255,255,255,0.15);
   border-radius: 4px;
   outline: none;
 }
-
-/* LinkedIn overlay — tune to cover LinkedIn text */
 .contact-overlay--linkedin {
-  top: 68%;
-  left: 25%;
-  width: 50%;
-  height: 11%;
+  top: 68%; left: 25%; width: 50%; height: 11%;
   cursor: pointer;
 }
 .contact-overlay--linkedin:hover,
 .contact-overlay--linkedin:focus-visible {
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(255,255,255,0.15);
   border-radius: 4px;
   outline: none;
 }
-
-/* Copy feedback tooltip — appears above the email area */
 .copy-feedback {
   position: absolute;
   bottom: calc(100% + 8px);
@@ -1199,29 +1192,24 @@ percentage so they scale with the card at every viewport width.
   opacity: 0;
   transition: opacity 0.2s ease;
 }
-.copy-feedback.is-visible {
-  opacity: 1;
-}
-
-/* LinkedIn confirmation modal */
+.copy-feedback.is-visible { opacity: 1; }
 .linkedin-modal-backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.55);
+  background: rgba(0,0,0,0.55);
   z-index: 500;
 }
 .linkedin-dialog {
   position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  top: 50%; left: 50%;
+  transform: translate(-50%,-50%);
   z-index: 501;
   background: var(--twilight);
   border-radius: 16px;
   padding: clamp(1.5rem, 4vw, 2.5rem);
   width: clamp(280px, 90vw, 440px);
   text-align: center;
-  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.45);
+  box-shadow: 0 8px 40px rgba(0,0,0,0.45);
 }
 .linkedin-dialog p {
   font-family: var(--font-mono);
@@ -1248,34 +1236,17 @@ percentage so they scale with the card at every viewport width.
   border: 2px solid var(--white);
   transition: background 0.18s ease, color 0.18s ease;
 }
-.linkedin-btn-stay {
-  background: transparent;
-  color: var(--white);
-}
-.linkedin-btn-stay:hover {
-  background: var(--white);
-  color: var(--twilight);
-}
-.linkedin-btn-go {
-  background: var(--white);
-  color: var(--twilight);
-}
-.linkedin-btn-go:hover {
-  background: transparent;
-  color: var(--white);
-}
+.linkedin-btn-stay { background: transparent; color: var(--white); }
+.linkedin-btn-stay:hover { background: var(--white); color: var(--twilight); }
+.linkedin-btn-go { background: var(--white); color: var(--twilight); }
+.linkedin-btn-go:hover { background: transparent; color: var(--white); }
 
 /* ==========================================================
-   RESUME PAGE
-   Mirrors the home page spine gradient: hero-orange → case-orange.
+   RESUME PAGE — mirrors home spine gradient: hero-orange → case-orange
 ========================================================== */
 .resume-hero {
   min-height: calc(100vh - var(--header-height));
-  background-image: linear-gradient(
-    to bottom,
-    var(--hero-orange)  0%,
-    var(--case-orange) 100%
-  );
+  background-image: linear-gradient(to bottom, var(--hero-orange) 0%, var(--case-orange) 100%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1299,9 +1270,7 @@ percentage so they scale with the card at every viewport width.
 }
 @media (max-width: 768px) {
   .contact-card-wrap,
-  .resume-svg-wrap {
-    width: 90%;
-  }
+  .resume-svg-wrap { width: 90%; }
 }
 
 /* ==========================================================
