@@ -21,6 +21,7 @@ Edit values here to update the entire site.
   --champagne: #dcc8a8;
   --saffron:   #e5a04c;
   --frost:     #d6dde3;
+  --ember:     #8b5536;
   /* Fonts */
   --font-display: 'Overpass Mono', monospace;
   --font-label: 'IBM Plex Sans', sans-serif;
@@ -1118,9 +1119,9 @@ Set --section-bg per section inline in HTML.
   letter-spacing: 0.03em;
 }
 /* ==========================================================
-8. CONTACT PAGE — gradient: case-orange → twilight
+8. CONTACT PAGE — gradient: case-orange → ember (footer color)
 ========================================================== */
-.contact-hero { min-height: calc(100vh - var(--header-height)); background-image: linear-gradient(to bottom, var(--case-orange) 0%, var(--twilight) 100%); display: flex; align-items: center; justify-content: center; padding: var(--space-20) var(--content-pad); }
+.contact-hero { min-height: calc(100vh - var(--header-height)); background-image: linear-gradient(to bottom, var(--case-orange) 0%, var(--ember) 100%); display: flex; align-items: center; justify-content: center; padding: var(--space-20) var(--content-pad); }
 .contact-inner { max-width: var(--maxw); width: 100%; display: flex; flex-direction: column; align-items: center; gap: var(--space-12); }
 .contact-card-wrap { position: relative; width: clamp(320px, 70%, 860px); }
 .contact-card-wrap img { display: block; width: 100%; height: auto; }
@@ -1129,16 +1130,16 @@ Set --section-bg per section inline in HTML.
 .contact-overlay--email:hover, .contact-overlay--email:focus-visible { background: rgba(255,255,255,0.15); border-radius: 4px; outline: none; }
 .contact-overlay--linkedin { top: 82%; left: 25%; width: 50%; height: 11%; cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='44' viewBox='0 0 44 44'%3E%3Cpolygon points='6,32,22,16,18,12,35,9,32,26,28,22,12,38' fill='%234A4E70' stroke='white' stroke-width='2' stroke-linejoin='round'/%3E%3C/svg%3E") 35 9, alias; }
 .contact-overlay--linkedin:hover, .contact-overlay--linkedin:focus-visible { background: rgba(255,255,255,0.15); border-radius: 4px; outline: none; }
-.copy-feedback { position: absolute; bottom: calc(100% + 8px); left: 50%; transform: translateX(-50%); background: var(--twilight); color: var(--white); font-family: var(--font-mono); font-size: clamp(0.75rem,1.5vw,0.875rem); padding: 0.35rem 0.75rem; border-radius: 6px; white-space: nowrap; pointer-events: none; opacity: 0; transition: opacity 0.2s ease; }
+.copy-feedback { position: absolute; bottom: calc(100% + 8px); left: 50%; transform: translateX(-50%); background: var(--ember); color: var(--white); font-family: var(--font-mono); font-size: clamp(0.75rem,1.5vw,0.875rem); padding: 0.35rem 0.75rem; border-radius: 6px; white-space: nowrap; pointer-events: none; opacity: 0; transition: opacity 0.2s ease; }
 .copy-feedback.is-visible { opacity: 1; }
 .linkedin-modal-backdrop { position: fixed; inset: 0; background: rgba(0,0,0,0.55); z-index: 500; }
-.linkedin-dialog { position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%); z-index: 501; background: var(--twilight); border-radius: 16px; padding: clamp(1.5rem,4vw,2.5rem); width: clamp(280px,90vw,440px); text-align: center; box-shadow: 0 8px 40px rgba(0,0,0,0.45); }
+.linkedin-dialog { position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%); z-index: 501; background: var(--ember); border-radius: 16px; padding: clamp(1.5rem,4vw,2.5rem); width: clamp(280px,90vw,440px); text-align: center; box-shadow: 0 8px 40px rgba(0,0,0,0.45); }
 .linkedin-dialog p { font-family: var(--font-mono); font-size: clamp(1rem,2vw,1.25rem); color: var(--white); margin-bottom: 1.75rem; line-height: 1.4; }
 .linkedin-dialog-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
 .linkedin-btn-stay, .linkedin-btn-go { font-family: var(--font-sans); font-size: 0.9375rem; font-weight: 600; padding: 0.6rem 1.4rem; border-radius: 8px; cursor: pointer; text-decoration: none; border: 2px solid var(--white); transition: background 0.18s ease, color 0.18s ease; }
 .linkedin-btn-stay { background: transparent; color: var(--white); }
-.linkedin-btn-stay:hover { background: var(--white); color: var(--twilight); }
-.linkedin-btn-go { background: var(--white); color: var(--twilight); }
+.linkedin-btn-stay:hover { background: var(--white); color: var(--ember); }
+.linkedin-btn-go { background: var(--white); color: var(--ember); }
 .linkedin-btn-go:hover { background: transparent; color: var(--white); }
 .resume-hero { min-height: calc(100vh - var(--header-height)); background-image: linear-gradient(to bottom, var(--hero-orange) 0%, var(--case-orange) 100%); display: flex; align-items: center; justify-content: center; padding: var(--space-20) var(--content-pad); }
 .resume-inner { max-width: var(--maxw); width: 100%; display: flex; flex-direction: column; align-items: center; gap: var(--space-12); }
@@ -1152,7 +1153,7 @@ Set --section-bg per section inline in HTML.
 9. FOOTER
 ========================================================== */
 .site-footer {
-  background-color: var(--twilight);
+  background-color: var(--ember);
   color: var(--white);
   padding: var(--space-8) var(--content-pad);
 }
@@ -1259,8 +1260,6 @@ Spine hidden on mobile. Clean single column.
   .methodology {
     min-height: auto;
   }
-  /* Mobile case pairs: narrow identifier top, wide teaser bottom.
-     CSS order reorders regardless of HTML source order. */
   .case-row {
     flex-direction: column;
     gap: var(--space-2);
@@ -1279,9 +1278,7 @@ Spine hidden on mobile. Clean single column.
     display: flex;
     padding: clamp(0.25rem, 1vw, 0.4rem) clamp(0.5rem, 2vw, 0.875rem);
   }
-  .case-card img {
-    height: auto;
-  }
+  .case-card img { height: auto; }
   /* Shorter slide distance on small screens so cards never start offscreen */
   .js-anim .case-from-left  { transform: translateX(-32px); }
   .js-anim .case-from-right { transform: translateX(32px); }
@@ -1322,10 +1319,7 @@ Spine hidden on mobile. Clean single column.
       var(--case-orange) 100%
     );
   }
-  /* case-intro: full width on mobile */
-  .case-intro-svg {
-    width: 90%;
-  }
+  .case-intro-svg { width: 90%; }
   /* Heading centered, full-width SVG on mobile */
   .methodology-heading {
     padding: var(--space-6) 0 var(--space-4);
