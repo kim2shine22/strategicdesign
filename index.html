@@ -414,8 +414,7 @@
 
       <div class="methodology-inner">
 
-        <!-- Section heading — "The Debrief: Case Studies", sized to match
-             the hero's "7-step Process" subheading -->
+        <!-- Section heading -->
         <div class="debrief-heading">
           <img
             src="assets/SVG/debriefsubheading.svg"
@@ -437,18 +436,17 @@
           />
         </div>
 
-        <!-- ============ CASE STUDY ROWS ============
-             6 rows, each an asymmetric pair: one wide card + one narrow card.
-             Odd rows: narrow left / wide right. Even rows: wide left / narrow right.
-             Card colors cycle frost → electric-blue → baby-blue.
-             Cards slide in from the outer edges on first scroll into view
-             (js/cases.js adds .is-in once; they never move again). -->
+        <!-- ============ CASE STUDY ROWS — 6 pairs ============
+             Odd rows: narrow left / wide right.
+             Even rows: wide left / narrow right.
+             Colors: frost → electric-blue → baby-blue.
+             Mobile: CSS order:-1 on narrow always puts identifier on top. -->
         <div class="case-rows">
 
           <!-- Row 1: narrow left, wide right -->
           <div class="case-row">
             <div class="case-card case-card--narrow case-card--frost case-from-left">
-              <img src="assets/SVG/case1n.svg" alt="Case Study 6: This Portfolio" loading="lazy" decoding="async" />
+              <img src="assets/SVG/case1n.svg" alt="Case Study A: This Portfolio" loading="lazy" decoding="async" />
             </div>
             <div class="case-card case-card--wide case-card--electric case-from-right">
               <img src="assets/SVG/case1w.svg" alt="My Vision, AI Enabled Execution" loading="lazy" decoding="async" />
