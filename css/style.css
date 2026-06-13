@@ -360,10 +360,7 @@ doesn't overflow on very wide monitors. Adjust the middle value to taste. */
 }
 .methodology-text-svg {
   display: block;
-  /* Proportional to the section heading: tracks at 68% of the heading's
-     rendered width (clamp(480px, 95vw, 1400px)) at every viewport size.
-     min() prevents overflow on narrow screens. */
-  width: min(calc(clamp(480px, 95vw, 1400px) * 0.68), 100%);
+  width: 81%;
   height: auto;
   margin-left: auto;
   margin-right: auto;
@@ -732,18 +729,13 @@ collapse while inner is sparse.
   height: auto;
   display: block;
 }
-/* Case studies intro text — proportional system mirrors methodology-text-svg.
-   Both are expressed as fractions of the heading's rendered width
-   (clamp(480px, 95vw, 1400px)) so the heading-to-text ratio stays
-   locked at every viewport. Methodology text = 68%; caseintro = 38%
-   because the caseintro artboard has proportionally larger text within it,
-   so a smaller fraction produces equivalent visual text size. */
 .case-intro-wrap {
   padding: 0 var(--content-pad) var(--space-8);
 }
 .case-intro-svg {
   display: block;
-  width: min(calc(clamp(480px, 95vw, 1400px) * 0.38), 100%);
+  width: 75%;
+  max-width: 100%;
   height: auto;
   margin-left: auto;
   margin-right: auto;
