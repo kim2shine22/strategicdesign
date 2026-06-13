@@ -1,19 +1,21 @@
 /* steps.js — flowerspine step interactions
    ─────────────────────────────────────────
-   DESKTOP: hover system on the flowerspine — hotspot/label/card
-   hover fires the glitter burst, glow, and defcard popup for all
-   7 steps. Unchanged behavior.
+   DESKTOP: Click system on the flowerspine.
+   Hover over hotspot or label → glow fires (visual affordance only, no popup).
+   Click hotspot or label → defcard popup opens.
+   Click again, click outside, or Escape → popup closes.
+   Only one card open at a time.
 
-   MOBILE: the spine is hidden (CSS); the .steps-mobile list shows
-   instead. Tapping a row (flower + label button) opens that step's
-   defcard in the #step-modal popup. Backdrop / ✕ / Escape close it.
+   MOBILE: spine is hidden (CSS); .steps-mobile list shows instead.
+   Tap a row → defcard opens in #step-modal popup.
+   Backdrop / ✕ / Escape close it.
    ♿ focus trap + focus return, mirroring the QA transcript modal.
 */
 
 (function () {
   'use strict';
 
-  /* ════════════════ DESKTOP HOVER SYSTEM ════════════════ */
+  /* ════════════════ DESKTOP CLICK SYSTEM ════════════════ */
 
   var STEPS = [
     { id: '1', labelId: '1' },
@@ -27,7 +29,8 @@
 
   function qs(sel) { return document.querySelector(sel); }
 
-  var spineWrap = qs('.spine-wrap');
+  var spineWrap  = qs('.spine-wrap');
+  var activeStep = null; /* tracks which step card is currently open */
 
   /* Restart a CSS animation by forcing a layout flush */
   function restartAnim(el) {
@@ -37,8 +40,25 @@
     el.classList.add('is-active');
   }
 
-  /* Track which steps have already bound keyboard events to a shared label,
-     so we don't stack duplicate handlers. */
+  /* Close whichever card is currently open */
+  function closeActive() {
+    if (!activeStep) return;
+    var s = activeStep;
+    if (s.card)  s.card.classList.remove('is-active');
+    if (s.label) s.label.classList.remove('is-active');
+    if (s.glow)  s.glow.classList.remove('is-active');
+    if (spineWrap) spineWrap.classList.remove('has-active-card');
+    activeStep = null;
+  }
+
+  /* Open a step's defcard, closing any previously open one first */
+  function openStep(step) {
+    if (activeStep && activeStep !== step) closeActive();
+    if (step.card) step.card.classList.add('is-active');
+    if (spineWrap) spineWrap.classList.add('has-active-card');
+    activeStep = step;
+  }
+
   var labelKeyboardBound = {};
 
   STEPS.forEach(function (step) {
@@ -47,60 +67,90 @@
     var card    = qs('.step-card--'      + step.id);
     var label   = qs('.step-label--'     + step.labelId);
 
-    /* activate: glitter burst + fade in card */
-    function activate() {
-      restartAnim(label);
-      restartAnim(glow);
-      if (card)      card.classList.add('is-active');
-      if (spineWrap) spineWrap.classList.add('has-active-card');
-    }
+    /* Store refs so closeActive() can reach them */
+    step.hotspot = hotspot;
+    step.glow    = glow;
+    step.card    = card;
+    step.label   = label;
 
-    function deactivate() {
-      if (label)     label.classList.remove('is-active');
-      if (glow)      glow.classList.remove('is-active');
-      if (card)      card.classList.remove('is-active');
-      if (spineWrap) spineWrap.classList.remove('has-active-card');
-    }
-
-    /* Mouse: hotspot, label, and open card are all entry points */
-    [hotspot, card].forEach(function (el) {
+    /* ── Hover: glow only, no popup ──────────────────────
+       Fires the glitter/glow animation as a visual cue that
+       the element is clickable, but does NOT open the card. */
+    [hotspot, label].forEach(function (el) {
       if (!el) return;
-      el.addEventListener('mouseenter', activate);
-      el.addEventListener('mouseleave', deactivate);
+      el.addEventListener('mouseenter', function () {
+        restartAnim(label);
+        restartAnim(glow);
+      });
+      el.addEventListener('mouseleave', function () {
+        /* Keep glow lit if this step's card is already open */
+        if (card && card.classList.contains('is-active')) return;
+        if (label) label.classList.remove('is-active');
+        if (glow)  glow.classList.remove('is-active');
+      });
     });
 
-    if (label) {
-      label.addEventListener('mouseenter', activate);
-      label.addEventListener('mouseleave', deactivate);
+    /* ── Click: toggle defcard popup ─────────────────────
+       First click opens; second click (or click-outside) closes. */
+    function handleClick(e) {
+      e.stopPropagation(); /* prevent document click from immediately closing */
+      if (card && card.classList.contains('is-active')) {
+        closeActive();
+      } else {
+        openStep(step);
+        restartAnim(label);
+        restartAnim(glow);
+      }
     }
 
-    /* Keyboard: only bind once per unique labelId to avoid stacked handlers */
+    if (hotspot) hotspot.addEventListener('click', handleClick);
+    if (label)   label.addEventListener('click',   handleClick);
+
+    /* Prevent clicks inside the open card from bubbling to document */
+    if (card) {
+      card.addEventListener('click', function (e) { e.stopPropagation(); });
+    }
+
+    /* ── Keyboard ─────────────────────────────────────── */
     if (label && !labelKeyboardBound[step.labelId]) {
       labelKeyboardBound[step.labelId] = true;
 
-      label.addEventListener('focus', activate);
-      label.addEventListener('blur',  deactivate);
+      label.addEventListener('focus', function () {
+        restartAnim(label);
+        restartAnim(glow);
+      });
+      label.addEventListener('blur', function () {
+        if (card && card.classList.contains('is-active')) return;
+        if (label) label.classList.remove('is-active');
+        if (glow)  glow.classList.remove('is-active');
+      });
       label.addEventListener('keydown', function (e) {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
-          label.classList.contains('is-active') ? deactivate() : activate();
+          handleClick(e);
         }
       });
     }
-
-    /* Global Escape closes any open card */
-    document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape') deactivate();
-    });
   });
+
+  /* Click anywhere outside the spine → close active card */
+  document.addEventListener('click', function () {
+    closeActive();
+  });
+
+  /* Escape → close active card */
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closeActive();
+  });
+
 
   /* ════════════════ MOBILE DEFCARD MODAL ════════════════ */
 
-  var rows       = document.querySelectorAll('.step-mobile-row[data-defcard]');
-  var modal      = document.getElementById('step-modal');
-  var backdrop   = document.getElementById('step-modal-backdrop');
-  var closeBtn   = document.getElementById('step-modal-close');
-  var modalImg   = document.getElementById('step-modal-img');
+  var rows     = document.querySelectorAll('.step-mobile-row[data-defcard]');
+  var modal    = document.getElementById('step-modal');
+  var backdrop = document.getElementById('step-modal-backdrop');
+  var closeBtn = document.getElementById('step-modal-close');
+  var modalImg = document.getElementById('step-modal-img');
 
   if (!modal || !modalImg || !rows.length) return;
 
@@ -126,13 +176,11 @@
   }
 
   rows.forEach(function (row) {
-    /* <button> gives us click, tap, Enter, and Space for free */
     row.addEventListener('click', function () {
       openStepModal(row.dataset.defcard, row.getAttribute('aria-label'), row);
     });
   });
 
-  /* Image error handling */
   modalImg.addEventListener('error', function () {
     if (!modalImg.src || modalImg.src.indexOf('.svg') === -1) return;
     console.error(
@@ -143,7 +191,6 @@
     );
   });
 
-  /* Close triggers */
   backdrop.addEventListener('click', closeStepModal);
   closeBtn.addEventListener('click', closeStepModal);
 
