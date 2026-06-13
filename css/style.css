@@ -755,37 +755,22 @@ collapse while inner is sparse.
   box-shadow: var(--shadow-md);
   min-height: clamp(220px, 24vw, 320px);
   display: flex;
-  align-items: center;
+  align-items: stretch;
   justify-content: center;
   overflow: hidden;
-  padding: clamp(var(--space-4), 3vw, var(--space-8));
+  padding: 0;
 }
-/* Title SVGs sit INSIDE the visible colored card — sized to a
-   comfortable share of the card width, never stretched to fill it */
+/* SVGs fill the full card surface edge to edge — vector so no quality loss */
 .case-card img,
 .case-card svg {
-  width: clamp(160px, 70%, 560px);
-  height: auto;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
   display: block;
 }
 /* Asymmetric widths — wide ≈ 62%, narrow ≈ 38% */
 .case-card--wide   { flex: 1 1 62%; }
 .case-card--narrow { flex: 1 1 38%; }
-/* Wide cards: SVG fills the full card surface edge to edge.
-   padding:0 removes the inset; align-items:stretch lets the img
-   fill the card height; object-fit:fill scales the SVG exactly
-   to the box (vector, so no quality loss). Narrow cards keep
-   their padded centered treatment. */
-.case-card--wide {
-  padding: 0;
-  align-items: stretch;
-}
-.case-card--wide img,
-.case-card--wide svg {
-  width: 100%;
-  height: 100%;
-  object-fit: fill;
-}
 /* Color cycle */
 .case-card--saffron  { background-color: var(--saffron); }
 .case-card--electric { background-color: var(--electric-blue); }
@@ -1144,11 +1129,7 @@ Gradient: case-orange → twilight (footer color). No seam at footer.
   position: relative;
   width: clamp(320px, 70%, 860px);
 }
-.contact-card-wrap img {
-  display: block;
-  width: 100%;
-  height: auto;
-}
+.contact-card-wrap img { display: block; width: 100%; height: auto; }
 .contact-overlay {
   position: absolute;
   background: transparent;
@@ -1194,14 +1175,12 @@ Gradient: case-orange → twilight (footer color). No seam at footer.
 }
 .copy-feedback.is-visible { opacity: 1; }
 .linkedin-modal-backdrop {
-  position: fixed;
-  inset: 0;
+  position: fixed; inset: 0;
   background: rgba(0,0,0,0.55);
   z-index: 500;
 }
 .linkedin-dialog {
-  position: fixed;
-  top: 50%; left: 50%;
+  position: fixed; top: 50%; left: 50%;
   transform: translate(-50%,-50%);
   z-index: 501;
   background: var(--twilight);
@@ -1219,8 +1198,7 @@ Gradient: case-orange → twilight (footer color). No seam at footer.
   line-height: 1.4;
 }
 .linkedin-dialog-actions {
-  display: flex;
-  gap: 1rem;
+  display: flex; gap: 1rem;
   justify-content: center;
   flex-wrap: wrap;
 }
@@ -1260,14 +1238,8 @@ Gradient: case-orange → twilight (footer color). No seam at footer.
   align-items: center;
   gap: var(--space-12);
 }
-.resume-svg-wrap {
-  width: clamp(320px, 70%, 860px);
-}
-.resume-svg-wrap img {
-  display: block;
-  width: 100%;
-  height: auto;
-}
+.resume-svg-wrap { width: clamp(320px, 70%, 860px); }
+.resume-svg-wrap img { display: block; width: 100%; height: auto; }
 @media (max-width: 768px) {
   .contact-card-wrap,
   .resume-svg-wrap { width: 90%; }
