@@ -728,6 +728,18 @@ collapse while inner is sparse.
   height: auto;
   display: block;
 }
+/* Case studies intro text — mirrors methodology-text-svg proportions
+   (section 2 intro text) for consistent hierarchy across all three sections */
+.case-intro-wrap {
+  padding: 0 var(--content-pad) var(--space-8);
+}
+.case-intro-svg {
+  display: block;
+  width: 81%;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+}
 /* ==========================================================
    CASE STUDY ROWS — 8 asymmetric card pairs below the debrief
    heading. One wide + one narrow card per row, sides swapping
@@ -760,7 +772,7 @@ collapse while inner is sparse.
   overflow: hidden;
   padding: 0;
 }
-/* SVGs fill the full card surface edge to edge — vector so no quality loss */
+/* SVGs fill the full card surface edge to edge */
 .case-card img,
 .case-card svg {
   width: 100%;
@@ -987,7 +999,7 @@ collapse while inner is sparse.
   display: block;
   border-radius: 4px;
 }
-/* ── Card positions — estimated from confirmed hotspot coordinates. 5 and 7 swapped. */
+/* ── Card positions — confirmed hotspot coordinates. 5 and 7 swapped. */
 .step-card--1 { top:  1%;  left: 44%; width: 28%; }
 .step-card--2 { top:  9%;  left: 44%; width: 28%; }
 .step-card--3 { top: 27%;  left: 44%; width: 28%; }
@@ -1106,144 +1118,44 @@ Set --section-bg per section inline in HTML.
   letter-spacing: 0.03em;
 }
 /* ==========================================================
-8. CONTACT PAGE
-Gradient: case-orange → twilight (footer color). No seam at footer.
+8. CONTACT PAGE — gradient: case-orange → twilight
 ========================================================== */
 .contact-hero {
   min-height: calc(100vh - var(--header-height));
   background-image: linear-gradient(to bottom, var(--case-orange) 0%, var(--twilight) 100%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: flex; align-items: center; justify-content: center;
   padding: var(--space-20) var(--content-pad);
 }
 .contact-inner {
-  max-width: var(--maxw);
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  max-width: var(--maxw); width: 100%;
+  display: flex; flex-direction: column; align-items: center;
   gap: var(--space-12);
 }
-.contact-card-wrap {
-  position: relative;
-  width: clamp(320px, 70%, 860px);
-}
+.contact-card-wrap { position: relative; width: clamp(320px, 70%, 860px); }
 .contact-card-wrap img { display: block; width: 100%; height: auto; }
-.contact-overlay {
-  position: absolute;
-  background: transparent;
-  border: none;
-  padding: 0;
-  margin: 0;
-}
-.contact-overlay--email {
-  top: 47%; left: 10%; width: 80%; height: 12%;
-  cursor: copy;
-}
-.contact-overlay--email:hover,
-.contact-overlay--email:focus-visible {
-  background: rgba(255,255,255,0.15);
-  border-radius: 4px;
-  outline: none;
-}
-.contact-overlay--linkedin {
-  top: 68%; left: 25%; width: 50%; height: 11%;
-  cursor: pointer;
-}
-.contact-overlay--linkedin:hover,
-.contact-overlay--linkedin:focus-visible {
-  background: rgba(255,255,255,0.15);
-  border-radius: 4px;
-  outline: none;
-}
-.copy-feedback {
-  position: absolute;
-  bottom: calc(100% + 8px);
-  left: 50%;
-  transform: translateX(-50%);
-  background: var(--twilight);
-  color: var(--white);
-  font-family: var(--font-mono);
-  font-size: clamp(0.75rem, 1.5vw, 0.875rem);
-  padding: 0.35rem 0.75rem;
-  border-radius: 6px;
-  white-space: nowrap;
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 0.2s ease;
-}
+.contact-overlay { position: absolute; background: transparent; border: none; padding: 0; margin: 0; }
+.contact-overlay--email { top: 47%; left: 10%; width: 80%; height: 12%; cursor: copy; }
+.contact-overlay--email:hover, .contact-overlay--email:focus-visible { background: rgba(255,255,255,0.15); border-radius: 4px; outline: none; }
+.contact-overlay--linkedin { top: 68%; left: 25%; width: 50%; height: 11%; cursor: pointer; }
+.contact-overlay--linkedin:hover, .contact-overlay--linkedin:focus-visible { background: rgba(255,255,255,0.15); border-radius: 4px; outline: none; }
+.copy-feedback { position: absolute; bottom: calc(100% + 8px); left: 50%; transform: translateX(-50%); background: var(--twilight); color: var(--white); font-family: var(--font-mono); font-size: clamp(0.75rem, 1.5vw, 0.875rem); padding: 0.35rem 0.75rem; border-radius: 6px; white-space: nowrap; pointer-events: none; opacity: 0; transition: opacity 0.2s ease; }
 .copy-feedback.is-visible { opacity: 1; }
-.linkedin-modal-backdrop {
-  position: fixed; inset: 0;
-  background: rgba(0,0,0,0.55);
-  z-index: 500;
-}
-.linkedin-dialog {
-  position: fixed; top: 50%; left: 50%;
-  transform: translate(-50%,-50%);
-  z-index: 501;
-  background: var(--twilight);
-  border-radius: 16px;
-  padding: clamp(1.5rem, 4vw, 2.5rem);
-  width: clamp(280px, 90vw, 440px);
-  text-align: center;
-  box-shadow: 0 8px 40px rgba(0,0,0,0.45);
-}
-.linkedin-dialog p {
-  font-family: var(--font-mono);
-  font-size: clamp(1rem, 2vw, 1.25rem);
-  color: var(--white);
-  margin-bottom: 1.75rem;
-  line-height: 1.4;
-}
-.linkedin-dialog-actions {
-  display: flex; gap: 1rem;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-.linkedin-btn-stay,
-.linkedin-btn-go {
-  font-family: var(--font-sans);
-  font-size: 0.9375rem;
-  font-weight: 600;
-  padding: 0.6rem 1.4rem;
-  border-radius: 8px;
-  cursor: pointer;
-  text-decoration: none;
-  border: 2px solid var(--white);
-  transition: background 0.18s ease, color 0.18s ease;
-}
+.linkedin-modal-backdrop { position: fixed; inset: 0; background: rgba(0,0,0,0.55); z-index: 500; }
+.linkedin-dialog { position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%); z-index: 501; background: var(--twilight); border-radius: 16px; padding: clamp(1.5rem, 4vw, 2.5rem); width: clamp(280px, 90vw, 440px); text-align: center; box-shadow: 0 8px 40px rgba(0,0,0,0.45); }
+.linkedin-dialog p { font-family: var(--font-mono); font-size: clamp(1rem, 2vw, 1.25rem); color: var(--white); margin-bottom: 1.75rem; line-height: 1.4; }
+.linkedin-dialog-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+.linkedin-btn-stay, .linkedin-btn-go { font-family: var(--font-sans); font-size: 0.9375rem; font-weight: 600; padding: 0.6rem 1.4rem; border-radius: 8px; cursor: pointer; text-decoration: none; border: 2px solid var(--white); transition: background 0.18s ease, color 0.18s ease; }
 .linkedin-btn-stay { background: transparent; color: var(--white); }
 .linkedin-btn-stay:hover { background: var(--white); color: var(--twilight); }
 .linkedin-btn-go { background: var(--white); color: var(--twilight); }
 .linkedin-btn-go:hover { background: transparent; color: var(--white); }
 
-/* ==========================================================
-   RESUME PAGE — mirrors home spine gradient: hero-orange → case-orange
-========================================================== */
-.resume-hero {
-  min-height: calc(100vh - var(--header-height));
-  background-image: linear-gradient(to bottom, var(--hero-orange) 0%, var(--case-orange) 100%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: var(--space-20) var(--content-pad);
-}
-.resume-inner {
-  max-width: var(--maxw);
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--space-12);
-}
+/* RESUME PAGE — gradient: hero-orange → case-orange */
+.resume-hero { min-height: calc(100vh - var(--header-height)); background-image: linear-gradient(to bottom, var(--hero-orange) 0%, var(--case-orange) 100%); display: flex; align-items: center; justify-content: center; padding: var(--space-20) var(--content-pad); }
+.resume-inner { max-width: var(--maxw); width: 100%; display: flex; flex-direction: column; align-items: center; gap: var(--space-12); }
 .resume-svg-wrap { width: clamp(320px, 70%, 860px); }
 .resume-svg-wrap img { display: block; width: 100%; height: auto; }
-@media (max-width: 768px) {
-  .contact-card-wrap,
-  .resume-svg-wrap { width: 90%; }
-}
+@media (max-width: 768px) { .contact-card-wrap, .resume-svg-wrap { width: 90%; } }
 
 /* ==========================================================
 9. FOOTER
