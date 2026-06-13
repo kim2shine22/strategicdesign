@@ -728,9 +728,6 @@ collapse while inner is sparse.
   height: auto;
   display: block;
 }
-/* Case studies intro text — same position/role as methodology-text-svg
-   in section 2. Width reduced to 55% so the visual hierarchy (heading
-   large, body text smaller) matches section 2's proportions. */
 .case-intro-wrap {
   padding: 0 var(--content-pad) var(--space-8);
 }
@@ -1131,6 +1128,8 @@ Set --section-bg per section inline in HTML.
 .contact-overlay--linkedin:hover, .contact-overlay--linkedin:focus-visible { background: rgba(255,255,255,0.15); border-radius: 4px; outline: none; }
 .copy-feedback { position: absolute; bottom: calc(100% + 8px); left: 50%; transform: translateX(-50%); background: var(--twilight); color: var(--white); font-family: var(--font-mono); font-size: clamp(0.75rem,1.5vw,0.875rem); padding: 0.35rem 0.75rem; border-radius: 6px; white-space: nowrap; pointer-events: none; opacity: 0; transition: opacity 0.2s ease; }
 .copy-feedback.is-visible { opacity: 1; }
+
+/* Shared LinkedIn modal — used by contact.js and resume.js */
 .linkedin-modal-backdrop { position: fixed; inset: 0; background: rgba(0,0,0,0.55); z-index: 500; }
 .linkedin-dialog { position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%); z-index: 501; background: var(--twilight); border-radius: 16px; padding: clamp(1.5rem,4vw,2.5rem); width: clamp(280px,90vw,440px); text-align: center; box-shadow: 0 8px 40px rgba(0,0,0,0.45); }
 .linkedin-dialog p { font-family: var(--font-mono); font-size: clamp(1rem,2vw,1.25rem); color: var(--white); margin-bottom: 1.75rem; line-height: 1.4; }
@@ -1140,11 +1139,20 @@ Set --section-bg per section inline in HTML.
 .linkedin-btn-stay:hover { background: var(--white); color: var(--twilight); }
 .linkedin-btn-go { background: var(--white); color: var(--twilight); }
 .linkedin-btn-go:hover { background: transparent; color: var(--white); }
+
+/* ==========================================================
+   RESUME PAGE — gradient: hero-orange → case-orange
+========================================================== */
 .resume-hero { min-height: calc(100vh - var(--header-height)); background-image: linear-gradient(to bottom, var(--hero-orange) 0%, var(--case-orange) 100%); display: flex; align-items: center; justify-content: center; padding: var(--space-20) var(--content-pad); }
 .resume-inner { max-width: var(--maxw); width: 100%; display: flex; flex-direction: column; align-items: center; gap: var(--space-12); }
-.resume-svg-wrap { width: clamp(320px, 70%, 860px); }
-.resume-svg-wrap img { display: block; width: 100%; height: auto; }
-@media (max-width: 768px) { .contact-card-wrap, .resume-svg-wrap { width: 90%; } }
+/* Resume card — entire card is a button that opens LinkedIn modal */
+.resume-card-btn { display: block; width: clamp(320px, 70%, 860px); background: none; border: none; padding: 0; cursor: pointer; }
+.resume-card-btn:hover { opacity: 0.92; }
+.resume-card-btn:focus-visible { outline: 3px solid var(--white); outline-offset: 4px; border-radius: 4px; }
+.resume-card-btn img { display: block; width: 100%; height: auto; }
+@media (max-width: 768px) {
+  .contact-card-wrap, .resume-card-btn { width: 90%; }
+}
 
 /* ==========================================================
 9. FOOTER
