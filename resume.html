@@ -6,11 +6,8 @@
   <meta name="description" content="Resume — Kim Matthews, strategic designer and public interest communications leader." />
   <title>Resume — Kim Matthews Portfolio</title>
 
-  <!-- Preconnect for faster font loading -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-
-  <!-- Overpass Mono: headings | IBM Plex Sans: nav + body | Special Elite: accent -->
   <link href="https://fonts.googleapis.com/css2?family=Overpass+Mono:wght@400;600;700&family=IBM+Plex+Sans:wght@300;400;500;600&family=Special+Elite&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="css/reset.css" />
@@ -19,7 +16,6 @@
 
 <body>
 
-  <!-- Skip link -->
   <a href="#main-content" class="skip-link">Skip to main content</a>
 
   <!-- ===================== HEADER ===================== -->
@@ -30,7 +26,6 @@
         Kim Matthews Portfolio
       </a>
 
-      <!-- Mobile hamburger toggle -->
       <button
         class="nav-toggle"
         aria-expanded="false"
@@ -61,20 +56,43 @@
     <section class="resume-hero" aria-label="Resume">
       <div class="resume-inner">
 
-        <!-- Drop your resume SVG here -->
-        <div class="resume-svg-wrap">
+        <!-- Entire card is a button — click opens LinkedIn confirmation modal -->
+        <button
+          class="resume-card-btn"
+          id="resume-card-trigger"
+          type="button"
+          aria-label="View Kim Matthews on LinkedIn — opens confirmation"
+        >
           <img
-            src="assets/SVG/resume.svg"
-            alt="Kim Matthews — Resume"
+            src="assets/SVG/resumecard.svg"
+            alt="Resume card — Under Construction. Please check out my LinkedIn for more information."
             loading="eager"
             decoding="async"
           />
-        </div>
+        </button>
 
       </div>
     </section>
 
   </main>
+
+  <!-- ===================== LINKEDIN MODAL ===================== -->
+  <div id="linkedin-modal" hidden>
+    <div id="linkedin-backdrop" class="linkedin-modal-backdrop"></div>
+    <div class="linkedin-dialog" role="dialog" aria-modal="true" aria-labelledby="linkedin-dialog-msg">
+      <p id="linkedin-dialog-msg">Open Kim's LinkedIn profile in a new tab?</p>
+      <div class="linkedin-dialog-actions">
+        <button id="linkedin-stay" class="linkedin-btn-stay" type="button">Stay on site</button>
+        <a
+          id="linkedin-go"
+          class="linkedin-btn-go"
+          href="https://www.linkedin.com/in/kim-matthews-b6216a11/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >Visit LinkedIn</a>
+      </div>
+    </div>
+  </div>
 
   <!-- ===================== FOOTER ===================== -->
   <footer class="site-footer" role="contentinfo">
@@ -84,6 +102,7 @@
   </footer>
 
   <script src="js/nav.js" defer></script>
+  <script src="js/resume.js" defer></script>
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
