@@ -44,11 +44,11 @@
 
       <nav id="primary-nav" class="primary-nav" aria-label="Primary navigation">
         <ul role="list">
-          <li><a href="#home">Home</a></li>
+          <li><a href="index.html">Home</a></li>
           <li><a href="#methodology">7-Step Process</a></li>
           <li><a href="#case-studies">Case Studies</a></li>
-          <li><a href="#resume">Resume</a></li>
-          <li><a href="#contact">Contact</a></li>
+          <li><a href="resume.html">Resume</a></li>
+          <li><a href="contact.html">Contact</a></li>
         </ul>
       </nav>
 
@@ -426,8 +426,7 @@
           />
         </div>
 
-        <!-- Case studies intro text — proportionally matches the
-             methodology intro text (section 2): 81% width, centered -->
+        <!-- Case studies intro text -->
         <div class="case-intro-wrap">
           <img
             src="assets/SVG/caseintro.svg"
@@ -439,17 +438,16 @@
         </div>
 
         <!-- ============ CASE STUDY ROWS ============
-             8 rows, each an asymmetric pair: one wide card + one narrow card.
+             6 rows, each an asymmetric pair: one wide card + one narrow card.
              Odd rows: narrow left / wide right. Even rows: wide left / narrow right.
-             Card colors cycle saffron → electric-blue → baby-blue.
+             Card colors cycle frost → electric-blue → baby-blue.
              Cards slide in from the outer edges on first scroll into view
-             (js/cases.js adds .is-in once; they never move again).
-             Each card is an empty shell — case study SVGs drop inside. -->
+             (js/cases.js adds .is-in once; they never move again). -->
         <div class="case-rows">
 
           <!-- Row 1: narrow left, wide right -->
           <div class="case-row">
-            <div class="case-card case-card--narrow case-card--saffron case-from-left">
+            <div class="case-card case-card--narrow case-card--frost case-from-left">
               <img src="assets/SVG/case1n.svg" alt="Case Study 6: This Portfolio" loading="lazy" decoding="async" />
             </div>
             <div class="case-card case-card--wide case-card--electric case-from-right">
@@ -462,7 +460,7 @@
             <div class="case-card case-card--wide case-card--baby case-from-left">
               <img src="assets/SVG/case2w.svg" alt="Case Study 2 — wide" loading="lazy" decoding="async" />
             </div>
-            <div class="case-card case-card--narrow case-card--saffron case-from-right">
+            <div class="case-card case-card--narrow case-card--frost case-from-right">
               <img src="assets/SVG/case2n.svg" alt="Case Study 2 — narrow" loading="lazy" decoding="async" />
             </div>
           </div>
@@ -479,7 +477,7 @@
 
           <!-- Row 4: wide left, narrow right -->
           <div class="case-row">
-            <div class="case-card case-card--wide case-card--saffron case-from-left">
+            <div class="case-card case-card--wide case-card--frost case-from-left">
               <img src="assets/SVG/case4w.svg" alt="Case Study 4 — wide" loading="lazy" decoding="async" />
             </div>
             <div class="case-card case-card--narrow case-card--electric case-from-right">
@@ -492,7 +490,7 @@
             <div class="case-card case-card--narrow case-card--baby case-from-left">
               <img src="assets/SVG/case5n.svg" alt="Case Study 5 — narrow" loading="lazy" decoding="async" />
             </div>
-            <div class="case-card case-card--wide case-card--saffron case-from-right">
+            <div class="case-card case-card--wide case-card--frost case-from-right">
               <img src="assets/SVG/case5w.svg" alt="Case Study 5 — wide" loading="lazy" decoding="async" />
             </div>
           </div>
