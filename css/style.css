@@ -19,7 +19,8 @@ Edit values here to update the entire site.
   --twilight: #4A4E70;
   --twilight-dark: #363957;
   --champagne: #dcc8a8;
-  --saffron: #e5a04c;
+  --saffron:   #e5a04c;
+  --frost:     #d6dde3;
   /* Fonts */
   --font-display: 'Overpass Mono', monospace;
   --font-label: 'IBM Plex Sans', sans-serif;
@@ -728,16 +729,6 @@ collapse while inner is sparse.
   height: auto;
   display: block;
 }
-.case-intro-wrap {
-  padding: 0 var(--content-pad) var(--space-8);
-}
-.case-intro-svg {
-  display: block;
-  width: clamp(260px, 55%, 760px);
-  height: auto;
-  margin-left: auto;
-  margin-right: auto;
-}
 /* ==========================================================
    CASE STUDY ROWS — 8 asymmetric card pairs below the debrief
    heading. One wide + one narrow card per row, sides swapping
@@ -784,6 +775,7 @@ collapse while inner is sparse.
 .case-card--saffron  { background-color: var(--saffron); }
 .case-card--electric { background-color: var(--electric-blue); }
 .case-card--baby     { background-color: var(--baby-blue); }
+.case-card--frost    { background-color: var(--frost); }
 /* Slide-in from the outer edges — the hidden starting state only applies
    once js/cases.js has confirmed it is running (it adds .js-anim to body).
    If the script is missing or fails, the boxes are simply visible — the
@@ -1114,6 +1106,15 @@ Set --section-bg per section inline in HTML.
   color: var(--twilight);
   letter-spacing: 0.03em;
 }
+.case-intro-wrap { padding: 0 var(--content-pad) var(--space-8); }
+.case-intro-svg {
+  display: block;
+  width: clamp(260px, 55%, 760px);
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 /* ==========================================================
 8. CONTACT PAGE — gradient: case-orange → twilight
 ========================================================== */
@@ -1128,8 +1129,7 @@ Set --section-bg per section inline in HTML.
 .contact-overlay--linkedin:hover, .contact-overlay--linkedin:focus-visible { background: rgba(255,255,255,0.15); border-radius: 4px; outline: none; }
 .copy-feedback { position: absolute; bottom: calc(100% + 8px); left: 50%; transform: translateX(-50%); background: var(--twilight); color: var(--white); font-family: var(--font-mono); font-size: clamp(0.75rem,1.5vw,0.875rem); padding: 0.35rem 0.75rem; border-radius: 6px; white-space: nowrap; pointer-events: none; opacity: 0; transition: opacity 0.2s ease; }
 .copy-feedback.is-visible { opacity: 1; }
-
-/* Shared LinkedIn modal — used by contact.js and resume.js */
+/* Shared LinkedIn modal — contact.js and resume.js */
 .linkedin-modal-backdrop { position: fixed; inset: 0; background: rgba(0,0,0,0.55); z-index: 500; }
 .linkedin-dialog { position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%); z-index: 501; background: var(--twilight); border-radius: 16px; padding: clamp(1.5rem,4vw,2.5rem); width: clamp(280px,90vw,440px); text-align: center; box-shadow: 0 8px 40px rgba(0,0,0,0.45); }
 .linkedin-dialog p { font-family: var(--font-mono); font-size: clamp(1rem,2vw,1.25rem); color: var(--white); margin-bottom: 1.75rem; line-height: 1.4; }
@@ -1140,19 +1140,14 @@ Set --section-bg per section inline in HTML.
 .linkedin-btn-go { background: var(--white); color: var(--twilight); }
 .linkedin-btn-go:hover { background: transparent; color: var(--white); }
 
-/* ==========================================================
-   RESUME PAGE — gradient: hero-orange → case-orange
-========================================================== */
+/* RESUME PAGE — gradient: hero-orange → case-orange */
 .resume-hero { min-height: calc(100vh - var(--header-height)); background-image: linear-gradient(to bottom, var(--hero-orange) 0%, var(--case-orange) 100%); display: flex; align-items: center; justify-content: center; padding: var(--space-20) var(--content-pad); }
 .resume-inner { max-width: var(--maxw); width: 100%; display: flex; flex-direction: column; align-items: center; gap: var(--space-12); }
-/* Resume card — entire card is a button that opens LinkedIn modal */
 .resume-card-btn { display: block; width: clamp(320px, 70%, 860px); background: none; border: none; padding: 0; cursor: pointer; }
 .resume-card-btn:hover { opacity: 0.92; }
 .resume-card-btn:focus-visible { outline: 3px solid var(--white); outline-offset: 4px; border-radius: 4px; }
 .resume-card-btn img { display: block; width: 100%; height: auto; }
-@media (max-width: 768px) {
-  .contact-card-wrap, .resume-card-btn { width: 90%; }
-}
+@media (max-width: 768px) { .contact-card-wrap, .resume-card-btn { width: 90%; } }
 
 /* ==========================================================
 9. FOOTER
