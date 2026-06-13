@@ -360,7 +360,10 @@ doesn't overflow on very wide monitors. Adjust the middle value to taste. */
 }
 .methodology-text-svg {
   display: block;
-  width: 81%; /* eased from 93.75% — restores side margins, stays large */
+  /* Proportional to the section heading: tracks at 68% of the heading's
+     rendered width (clamp(480px, 95vw, 1400px)) at every viewport size.
+     min() prevents overflow on narrow screens. */
+  width: min(calc(clamp(480px, 95vw, 1400px) * 0.68), 100%);
   height: auto;
   margin-left: auto;
   margin-right: auto;
@@ -728,6 +731,22 @@ collapse while inner is sparse.
   max-width: 100%;
   height: auto;
   display: block;
+}
+/* Case studies intro text — proportional system mirrors methodology-text-svg.
+   Both are expressed as fractions of the heading's rendered width
+   (clamp(480px, 95vw, 1400px)) so the heading-to-text ratio stays
+   locked at every viewport. Methodology text = 68%; caseintro = 38%
+   because the caseintro artboard has proportionally larger text within it,
+   so a smaller fraction produces equivalent visual text size. */
+.case-intro-wrap {
+  padding: 0 var(--content-pad) var(--space-8);
+}
+.case-intro-svg {
+  display: block;
+  width: min(calc(clamp(480px, 95vw, 1400px) * 0.38), 100%);
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
 }
 /* ==========================================================
    CASE STUDY ROWS — 8 asymmetric card pairs below the debrief
@@ -1106,15 +1125,6 @@ Set --section-bg per section inline in HTML.
   color: var(--twilight);
   letter-spacing: 0.03em;
 }
-.case-intro-wrap { padding: 0 var(--content-pad) var(--space-8); }
-.case-intro-svg {
-  display: block;
-  width: clamp(260px, 55%, 760px);
-  height: auto;
-  margin-left: auto;
-  margin-right: auto;
-}
-
 /* ==========================================================
 8. CONTACT PAGE — gradient: case-orange → twilight
 ========================================================== */
@@ -1129,7 +1139,6 @@ Set --section-bg per section inline in HTML.
 .contact-overlay--linkedin:hover, .contact-overlay--linkedin:focus-visible { background: rgba(255,255,255,0.15); border-radius: 4px; outline: none; }
 .copy-feedback { position: absolute; bottom: calc(100% + 8px); left: 50%; transform: translateX(-50%); background: var(--twilight); color: var(--white); font-family: var(--font-mono); font-size: clamp(0.75rem,1.5vw,0.875rem); padding: 0.35rem 0.75rem; border-radius: 6px; white-space: nowrap; pointer-events: none; opacity: 0; transition: opacity 0.2s ease; }
 .copy-feedback.is-visible { opacity: 1; }
-/* Shared LinkedIn modal — contact.js and resume.js */
 .linkedin-modal-backdrop { position: fixed; inset: 0; background: rgba(0,0,0,0.55); z-index: 500; }
 .linkedin-dialog { position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%); z-index: 501; background: var(--twilight); border-radius: 16px; padding: clamp(1.5rem,4vw,2.5rem); width: clamp(280px,90vw,440px); text-align: center; box-shadow: 0 8px 40px rgba(0,0,0,0.45); }
 .linkedin-dialog p { font-family: var(--font-mono); font-size: clamp(1rem,2vw,1.25rem); color: var(--white); margin-bottom: 1.75rem; line-height: 1.4; }
@@ -1139,8 +1148,6 @@ Set --section-bg per section inline in HTML.
 .linkedin-btn-stay:hover { background: var(--white); color: var(--twilight); }
 .linkedin-btn-go { background: var(--white); color: var(--twilight); }
 .linkedin-btn-go:hover { background: transparent; color: var(--white); }
-
-/* RESUME PAGE — gradient: hero-orange → case-orange */
 .resume-hero { min-height: calc(100vh - var(--header-height)); background-image: linear-gradient(to bottom, var(--hero-orange) 0%, var(--case-orange) 100%); display: flex; align-items: center; justify-content: center; padding: var(--space-20) var(--content-pad); }
 .resume-inner { max-width: var(--maxw); width: 100%; display: flex; flex-direction: column; align-items: center; gap: var(--space-12); }
 .resume-card-btn { display: block; width: clamp(320px, 70%, 860px); background: none; border: none; padding: 0; cursor: pointer; }
