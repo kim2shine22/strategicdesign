@@ -1,14 +1,19 @@
 /* video.js — TV popup player
+   - Hero preview videos (desktop TV screen + mobile stack) autoplay muted,
+     play ONCE, then freeze on the final frame (the email address card).
+     An `ended` listener calls pause() to lock the last frame in place —
+     without this, some browsers go blank or revert to a poster image.
    - Hover TV (desktop) → screen glows (CSS handles this)
-   - Click/tap TV (desktop) OR mobile media block → modal opens, self-hosted video plays WITH sound
+   - Click/tap TV (desktop) OR mobile media block → modal opens, self-hosted
+     video plays WITH sound
    - Click backdrop or ✕ or Escape → modal closes
    ♿ Focus trapped in modal; returns to whichever trigger opened it
 
-   The hero previews (desktop TV screen + mobile stacked video) stay MUTED —
-   that is the only state browsers allow for autoplay. The modal video has no
-   muted attribute, so it plays with sound; the opening click is the user
-   gesture browsers require to permit audio. If a browser still blocks audio
-   autoplay, the modal video has native controls as a fallback.
+   The hero previews stay MUTED — that is the only state browsers allow for
+   autoplay. The modal video has no muted attribute, so it plays with sound;
+   the opening click is the user gesture browsers require to permit audio.
+   If a browser still blocks audio autoplay, the modal video has native
+   controls as a fallback.
 */
 
 (function () {
@@ -16,6 +21,19 @@
 
   var VIDEO_SRC = 'assets/video/hero-film-1.mp4';
 
+  /* ── Preview videos — freeze on last frame ──────────────────────────────
+     Both preview videos autoplay muted (no loop). When each ends, pause()
+     locks the browser on the final frame so the email-address card is
+     visible and legible indefinitely. Without this, some browsers blank
+     the element or show a black screen after playback ends.            */
+  var previewVideos = document.querySelectorAll('.tv-video, .hero-mobile-video');
+  previewVideos.forEach(function (v) {
+    v.addEventListener('ended', function () {
+      v.pause();   /* holds current frame — browsers do not advance past end */
+    });
+  });
+
+  /* ── Modal elements ──────────────────────────────────────────────────── */
   var tvUnit       = document.getElementById('tv-unit');         /* desktop TV */
   var tvUnitMobile = document.getElementById('tv-unit-mobile');  /* mobile media block */
   var modal        = document.getElementById('video-modal');
