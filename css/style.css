@@ -236,10 +236,19 @@ a:focus-visible {
   padding: var(--space-2) var(--content-pad);
   width: 100%;
 }
-/* Empty left column placeholder keeps TV in its column */
-.hero-inner::before {
-  content: '';
+/* Left column — changeagent statement, anchored to the bottom of the grid row
+   so it sits at the same vertical level as the Q&A cards below it.
+   The ::before placeholder is replaced by this real element in the HTML. */
+.hero-left-col {
+  display: flex;
+  align-items: flex-end;
+  padding-bottom: var(--space-4);
+}
+.changeagent-svg {
   display: block;
+  width: 100%;
+  max-width: 560px;
+  height: auto;
 }
 /* .hero-text removed — heading is now in .hero-heading-wrap above the grid */
 /* Hero heading — full width row above the TV grid */
@@ -1240,6 +1249,10 @@ Spine hidden on mobile. Clean single column.
   }
   /* Hero TV hidden on mobile — mobile TV stack in hero section shows instead */
   .hero-visual {
+    display: none;
+  }
+  /* Changeagent statement hidden on mobile — too large for single-column layout */
+  .hero-left-col {
     display: none;
   }
   /* Hero mobile media — TV chassis + video stacked */
