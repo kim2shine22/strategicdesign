@@ -72,16 +72,7 @@
 
       <div class="hero-inner">
 
-        <!-- Left column — changeagent statement, floats beside the Q&A section -->
-        <div class="hero-left-col">
-          <img
-            src="assets/SVG/changeagent.svg"
-            alt="Cross-sector design is my change-agent practice: a systems-based approach to shifting narrative, aligning people, and building the daily structure that makes lasting change possible."
-            class="changeagent-svg"
-            loading="lazy"
-            decoding="async"
-          />
-        </div>
+        <!-- hero-text removed — heading is now above the grid -->
 
         <!-- Mobile-only: TV chassis + video stacked.
              Tappable — opens the same #video-modal as the desktop TV,
@@ -160,6 +151,20 @@
       <!-- Q&A SUBSECTION — extends hero, sits directly under TV -->
       <div class="hero-qa">
         <div class="hero-qa-inner">
+
+          <!-- changeagent statement — desktop: fills the blank space to the
+               right of the Q&A heading, under the TV. Mobile: drops under the
+               Q&A subheading (handled in CSS). Absolutely positioned on desktop
+               so nothing around it shifts. -->
+          <div class="changeagent-wrap">
+            <img
+              src="assets/SVG/changeagent.svg"
+              alt="Cross-sector design is my change-agent practice: a systems-based approach to shifting narrative, aligning people, and building the daily structure that makes lasting change possible."
+              class="changeagent-svg"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
 
           <!-- qasubheading: very large, left-aligned at hero heading margin,
                top-aligned with the bottom of the TV -->

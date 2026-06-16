@@ -236,19 +236,10 @@ a:focus-visible {
   padding: var(--space-2) var(--content-pad);
   width: 100%;
 }
-/* Left column — changeagent statement, anchored to the bottom of the grid row
-   so it sits at the same vertical level as the Q&A cards below it.
-   The ::before placeholder is replaced by this real element in the HTML. */
-.hero-left-col {
-  display: flex;
-  align-items: flex-end;
-  padding-bottom: var(--space-4);
-}
-.changeagent-svg {
+/* Empty left column placeholder keeps TV in its column */
+.hero-inner::before {
+  content: '';
   display: block;
-  width: 100%;
-  max-width: 560px;
-  height: auto;
 }
 /* .hero-text removed — heading is now in .hero-heading-wrap above the grid */
 /* Hero heading — full width row above the TV grid */
@@ -406,10 +397,37 @@ the flower overlaps into the bottom of each q card
   Desktop: heading (1) → cards (2) → bloomcta (3, below cards). */
   display: flex;
   flex-direction: column;
+  position: relative; /* positioning context for the absolutely-placed changeagent SVG */
 }
 .qa-subheading-wrap { order: 1; }
 .qa-cards-row { order: 2; }
 .bloom-cta-svg { order: 3; }
+/* changeagent statement — DESKTOP.
+   Absolutely positioned inside .hero-qa-inner so it occupies the blank space
+   UNDER the TV and to the RIGHT of the Q&A heading, without shifting any
+   element around it.
+
+   ── POSITION KNOBS (all editable in DevTools) ──
+   top    : push DOWN from the top of the Q&A block. Raise this if the
+            statement overlaps the TV; lower it to move the statement up.
+   right  : inset from the right edge. Keep ≥ 2% so the last words don't
+            clip off-screen.
+   width  : size of the statement. Larger = bigger type.
+   These three are the only values you normally need to touch. */
+.changeagent-wrap {
+  position: absolute;
+  top: 171px;             /* sits below the TV — value confirmed in DevTools */
+  right: 7%;              /* stays inside the right margin so nothing clips */
+  width: 54%;
+  max-width: 720px;
+  z-index: 4;             /* above the Q&A heading, below modals */
+  pointer-events: auto;   /* inspectable in DevTools and selectable */
+}
+.changeagent-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
 /* qasubheading — very large, left edge matches hero heading margin */
 .qa-subheading-wrap {
   margin-top: var(--space-16); /* drops the whole Q&A group down the page (desktop) */
@@ -482,16 +500,26 @@ flower shape only, never touching the card text below. */
   .hero-qa {
     padding-bottom: var(--space-4); /* tightened from --space-12 — pulls subheading1 up toward the Q3 card */
   }
+  /* changeagent — MOBILE: return to normal flow, directly under the Q&A
+     subheading. Cancels the desktop absolute positioning. order:2 slots it
+     between the heading (1) and the bloomcta (now 3) → cards (now 4). */
+  .changeagent-wrap {
+    position: static;
+    order: 2;
+    width: 88%;
+    max-width: 520px;
+    margin: var(--space-4) auto var(--space-2);
+    pointer-events: auto;
+  }
   .qa-subheading-svg {
     width: 45%; /* substantially smaller on mobile so it doesn't dwarf the hero */
     max-width: 100%;
     margin: var(--space-16) auto 0; /* dropped down toward bloomcta (was --space-8) */
   }
   /* bloomcta readable on mobile — larger share of width than desktop clamp gives.
-  Mobile order: heading (1) → bloomcta (2, above cards) → cards (3).
-  Desktop keeps bloomcta below the cards via its base order. */
+  Mobile order: heading (1) → changeagent (2) → bloomcta (3) → cards (4). */
   .bloom-cta-svg {
-    order: 2;
+    order: 3;
     width: 70%;
     max-width: 360px;
     margin: var(--space-4) auto var(--space-6);
@@ -505,7 +533,7 @@ flower shape only, never touching the card text below. */
     margin-bottom: var(--space-6); /* tighter: brings first card up toward the CTA */
   }
   .qa-cards-row {
-    order: 3; /* below bloomcta on mobile (bloomcta is order 2) */
+    order: 4; /* below bloomcta on mobile */
     margin-top: 0; /* reset desktop negative margin — mobile stacks normally */
     flex-direction: column;
     align-items: center; /* center each card when stacked */
@@ -1249,10 +1277,6 @@ Spine hidden on mobile. Clean single column.
   }
   /* Hero TV hidden on mobile — mobile TV stack in hero section shows instead */
   .hero-visual {
-    display: none;
-  }
-  /* Changeagent statement hidden on mobile — too large for single-column layout */
-  .hero-left-col {
     display: none;
   }
   /* Hero mobile media — TV chassis + video stacked */
