@@ -510,7 +510,7 @@ flower shape only, never touching the card text below. */
     order: 2;
     width: 95%;          /* wider than before (was 88%) — fills mobile viewport */
     max-width: none;     /* remove 520px cap — text needs full width to be readable */
-    margin: var(--space-6) auto var(--space-2);
+    margin: var(--space-1) auto var(--space-2); /* top reduced space-6→space-1: closes ~80% of gap to Q&A heading */
     pointer-events: auto;
   }
   .qa-subheading-svg {
@@ -532,7 +532,7 @@ flower shape only, never touching the card text below. */
   .qa-subheading-wrap {
     text-align: center;
     margin-top: 0;
-    margin-bottom: var(--space-6); /* tighter: brings first card up toward the CTA */
+    margin-bottom: var(--space-1); /* reduced space-6→space-1: tightens gap to changeagent below */
   }
   .qa-cards-row {
     order: 4; /* below bloomcta on mobile */
@@ -1091,16 +1091,16 @@ overlap its own flower. Step 1 is the baseline reference. */
    longest title ("Strategic Co-Creation Planning") sets the scale.
    max-height keeps short titles from ballooning; min-width:0 lets the
    flex item shrink instead of overflowing the row. */
+/* Label is sized by WIDTH, not height — width can never exceed the row, so
+   labels are guaranteed to stay on screen no matter how long the title is.
+   Every label fills the SAME remaining row width (flex:1), so the rendered
+   type lands at a consistent scale across all seven. height:auto lets each
+   SVG keep its own aspect ratio within that width. */
 .step-mobile-label {
-  /* Fixed HEIGHT (not max-height) locks every label to the same render height →
-     same visual font size across all 7 SVGs regardless of text length.
-     Width is auto so longer labels simply get wider instead of shrinking.
-     Tune the height value here to scale all labels up or down at once. */
-  flex: 0 0 auto;
-  min-width: 0;
-  height: 2.25rem;
-  width: auto;
-  max-width: 72vw;     /* keeps the longest label (Step 4) inside the row */
+  flex: 1 1 auto;
+  min-width: 0;          /* allows the flex item to shrink instead of overflowing */
+  width: 100%;
+  height: auto;
   object-fit: contain;
   object-position: left center;
 }
@@ -1401,24 +1401,59 @@ Spine hidden on mobile. Clean single column.
     display: flex;
     flex-direction: column;
     gap: var(--space-6);
-    padding: var(--space-6) var(--content-pad) var(--space-8);
+    padding: var(--space-6) var(--space-2) var(--space-8); /* slim side padding → max width for labels */
     background-image: linear-gradient(
       to bottom,
       var(--hero-orange) 0%,
       var(--case-orange) 100%
     );
   }
-  /* case-intro: 3× bigger on mobile — wrapper scrolls horizontally so the
-     SVG renders at full size without clipping. Users swipe to read the full
-     width. Tune the % if you want a different scale factor. */
+  /* Pull flowers hard to the left and labels right up against them so the
+     full step name has the most possible horizontal room. Flowers keep
+     their original sizes — space is reclaimed from margins/gap/padding only. */
+  .step-mobile-row {
+    gap: var(--space-2);   /* tighter flower↔label gap (was --space-4) */
+  }
+  /* NO centering margins. Removing the margin-left/right that centered each
+     flower inside a 6rem column means every flower left-aligns and the label
+     butts right up to it, reclaiming the leftover column width per row.
+     Flowers stay at their original graduated sizes (set in the base rules). */
+  .step-mobile-flower {
+    margin-left: 0;
+    margin-right: 0;
+  }
+  /* Uniform type size: every label rendered to the SAME height, so font size
+     matches across all seven regardless of text length. max-width:100% is the
+     safety clamp — if a long title would exceed the row, it scales down to fit
+     instead of overflowing offscreen (the bug from before). Now that the
+     centering margins and wide gap are gone, there's room for the long titles
+     to render at full height without hitting that clamp.
+     Tune the height value to scale all labels up/down together. */
+  .step-mobile-label {
+    flex: 0 1 auto;
+    width: auto;
+    height: 2.2rem;
+    max-width: 100%;
+    object-fit: contain;
+    object-position: left center;
+  }
+
+  /* case-intro — readable AND fully on screen. The wrapper sets the visible
+     size; the SVG simply fills it at 100%, scaling to its own aspect ratio.
+     No fixed pixel width, no horizontal scroll, no clipping: it fits any
+     phone width by definition. Slim side padding maximizes the readable area.
+     To make the intro bigger or smaller, change the wrapper padding only. */
   .case-intro-wrap {
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
+    padding: 0 var(--space-2) var(--space-8);
+    overflow-x: visible;
   }
   .case-intro-svg {
-    width: 270%;       /* ~3× the mobile viewport width */
-    min-width: 270%;
-    max-width: none;
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
   }
   /* Heading centered, full-width SVG on mobile */
   .methodology-heading {
