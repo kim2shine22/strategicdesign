@@ -502,13 +502,15 @@ flower shape only, never touching the card text below. */
   }
   /* changeagent — MOBILE: return to normal flow, directly under the Q&A
      subheading. Cancels the desktop absolute positioning. order:2 slots it
-     between the heading (1) and the bloomcta (now 3) → cards (now 4). */
+     between the heading (1) and the bloomcta (now 3) → cards (now 4).
+     95% width + no max-width cap = SVG fills the mobile viewport so the
+     design statement text is large enough to read. */
   .changeagent-wrap {
     position: static;
     order: 2;
-    width: 88%;
-    max-width: 520px;
-    margin: var(--space-4) auto var(--space-2);
+    width: 95%;          /* wider than before (was 88%) — fills mobile viewport */
+    max-width: none;     /* remove 520px cap — text needs full width to be readable */
+    margin: var(--space-6) auto var(--space-2);
     pointer-events: auto;
   }
   .qa-subheading-svg {
@@ -1090,11 +1092,15 @@ overlap its own flower. Step 1 is the baseline reference. */
    max-height keeps short titles from ballooning; min-width:0 lets the
    flex item shrink instead of overflowing the row. */
 .step-mobile-label {
-  flex: 1 1 auto;
+  /* Fixed HEIGHT (not max-height) locks every label to the same render height →
+     same visual font size across all 7 SVGs regardless of text length.
+     Width is auto so longer labels simply get wider instead of shrinking.
+     Tune the height value here to scale all labels up or down at once. */
+  flex: 0 0 auto;
   min-width: 0;
-  width: 100%;
-  height: auto;
-  max-height: 3rem;
+  height: 2.25rem;
+  width: auto;
+  max-width: 72vw;     /* keeps the longest label (Step 4) inside the row */
   object-fit: contain;
   object-position: left center;
 }
@@ -1320,32 +1326,42 @@ Spine hidden on mobile. Clean single column.
   .case-card--narrow { order: -1; }
   .case-card--wide   { order:  1; }
 
-  /* Mobile cards: the SVG drives the card's height at its natural aspect
-     ratio — no fixed heights, no object-fit, so nothing distorts and the
-     artwork always fills edge to edge. Padding is 0 so the SVG reaches
-     every edge. The card simply wraps tightly around its image.
-
-     WIDTH echoes the desktop proportion: wide = full width (100%),
-     narrow = 62% centered, so "narrow" is genuinely narrower. */
+  /* Mobile cards:
+     WIDE  — SVG drives height, edge-to-edge, no padding (unchanged).
+     NARROW — larger card with visible colored padding around the SVG.
+              Card widens to 80% (was 62%); padding creates the breathing
+              room so the background color shows. SVG at 100% of the
+              content area lands at roughly the same rendered pixel width
+              as before (80% card − 48px padding ≈ same as old 62% full). */
   .case-card--wide,
   .case-card--narrow {
     flex: none;
-    display: block;       /* override desktop flex so the SVG controls height */
-    min-height: 0;        /* clear the desktop min-height so card hugs the SVG */
-    padding: 0;           /* SVG reaches the card edges */
     overflow: hidden;
   }
   .case-card--wide {
+    display: block;
+    min-height: 0;
+    padding: 0;
     width: 100%;
   }
   .case-card--narrow {
-    width: 62%;           /* matches desktop narrow:wide ratio (38:62) */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80%;                        /* wider card — more colored bg visible */
+    min-height: 120px;                 /* card has height even if SVG is compact */
+    padding: var(--space-4) var(--space-6);  /* colored breathing room all around */
     margin-left: auto;
-    margin-right: auto;   /* centered under the wide card */
+    margin-right: auto;
   }
-  /* Images set their own height from the artwork's aspect ratio and
-     span the full card width — true edge-to-edge, zero distortion. */
-  .case-card--wide img,
+  /* Wide card: SVG controls height, fills edge-to-edge */
+  .case-card--wide img {
+    width: 100%;
+    height: auto;
+    object-fit: unset;
+    display: block;
+  }
+  /* Narrow card: SVG fills content area (inside padding) */
   .case-card--narrow img {
     width: 100%;
     height: auto;
@@ -1392,7 +1408,18 @@ Spine hidden on mobile. Clean single column.
       var(--case-orange) 100%
     );
   }
-  .case-intro-svg { width: 90%; }
+  /* case-intro: 3× bigger on mobile — wrapper scrolls horizontally so the
+     SVG renders at full size without clipping. Users swipe to read the full
+     width. Tune the % if you want a different scale factor. */
+  .case-intro-wrap {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .case-intro-svg {
+    width: 270%;       /* ~3× the mobile viewport width */
+    min-width: 270%;
+    max-width: none;
+  }
   /* Heading centered, full-width SVG on mobile */
   .methodology-heading {
     padding: var(--space-6) 0 var(--space-4);
