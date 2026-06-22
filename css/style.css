@@ -135,16 +135,25 @@ a:focus-visible {
   margin: 0 auto;
   padding: 0 var(--content-pad) var(--space-2);
   height: 100%;
-  position: relative;
 }
 .header-undersign {
   position: absolute;
+  /* ── POSITION KNOBS (drag in DevTools, then send me the values) ──
+     top:  distance from the TOP of the header band. 0 = flush with band top.
+           Positive pushes it DOWN. Anchoring from the top means the sign
+           hangs downward and is never clipped by the browser chrome above.
+     left: horizontal position. 50% + translateX(-50%) keeps it centered;
+           to move it left/right instead, delete the transform line and set
+           an explicit left in px. */
+  top: 6px;
   left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  height: 46px;
+  transform: translateX(-50%);
+  /* ── SIZE KNOB ── height drives everything; width follows the aspect ratio. */
+  height: 96px;
   width: auto;
-  pointer-events: none;
+  max-width: none;      /* defeats reset.css img{max-width:100%} so width never clamps height */
+  pointer-events: auto; /* grabbable in DevTools so you can select & reposition it */
+  z-index: 101;         /* above header content so the part below the band isn't clipped */
 }
 .site-title {
   font-family: var(--font-label);
