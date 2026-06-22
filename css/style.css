@@ -135,6 +135,16 @@ a:focus-visible {
   margin: 0 auto;
   padding: 0 var(--content-pad) var(--space-2);
   height: 100%;
+  position: relative;
+}
+.header-undersign {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  height: 46px;
+  width: auto;
+  pointer-events: none;
 }
 .site-title {
   font-family: var(--font-label);
