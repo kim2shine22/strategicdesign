@@ -69,8 +69,8 @@ Edit values here to update the entire site.
 body {
   font-family: var(--font-label);
   font-size: var(--text-base);
-  color: var(--black);
-  background-color: var(--white);
+  color: var(--white);
+  background-color: #0b0c10;
 }
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-display);
@@ -124,7 +124,7 @@ a:focus-visible {
   top: 0;
   z-index: 100;
   height: var(--header-height);
-  background-color: var(--champagne);
+  background-color: #0b0c10;
   box-shadow: var(--shadow-sm);
 }
 .header-inner {
@@ -159,7 +159,7 @@ a:focus-visible {
   font-family: var(--font-label);
   font-size: var(--text-base);
   font-weight: 600;
-  color: var(--black);
+  color: var(--white);
   letter-spacing: 0.01em;
   white-space: nowrap;
 }
@@ -175,7 +175,7 @@ a:focus-visible {
   font-family: var(--font-label);
   font-size: var(--text-sm);
   font-weight: 500;
-  color: var(--black);
+  color: var(--white);
   letter-spacing: 0.04em;
   text-transform: uppercase;
   padding: var(--space-1) 0;
@@ -215,7 +215,7 @@ a:focus-visible {
   display: block;
   width: 100%;
   height: 2px;
-  background-color: var(--black);
+  background-color: var(--white);
   border-radius: 2px;
   transition: transform 250ms ease, opacity 150ms ease;
 }
@@ -233,12 +233,8 @@ a:focus-visible {
 ♿ Black on #fbf1da = 17.8:1 — exceeds WCAG AAA
 ========================================================== */
 .hero {
-  background-color: var(--lightest-orange);
-  background-image: linear-gradient(
-  to bottom,
-  var(--lightest-orange) 20%,
-  var(--hero-orange) 65%
-  );
+  background-color: #0b0c10;
+  background-image: none;
   min-height: calc(100vh - var(--header-height));
   display: flex;
   flex-direction: column;
@@ -755,7 +751,7 @@ collapse while inner is sparse.
 ♿ Spine and mobile TV are decorative — aria-hidden.
 ========================================================== */
 .methodology {
-  background-color: var(--case-orange);
+  background-color: #0b0c10;
   padding-top: 0;
   padding-bottom: var(--space-20);
   position: relative;
@@ -889,11 +885,8 @@ collapse while inner is sparse.
   line-height: 0;
   margin-top: -27px;
   z-index: 1;
-  background-image: linear-gradient(
-    to bottom,
-    var(--hero-orange) 0%,
-    var(--case-orange) 100%
-  );
+  background-color: #0b0c10;
+  background-image: none;
 }
 .spine-img {
   width: 100%;
@@ -1143,7 +1136,7 @@ Generic sections below methodology.
 Set --section-bg per section inline in HTML.
 ========================================================== */
 .content-section {
-  --section-bg: var(--white);
+  --section-bg: #0b0c10;
   background-color: var(--section-bg);
   padding: var(--space-20) var(--content-pad);
 }
@@ -1185,7 +1178,7 @@ Set --section-bg per section inline in HTML.
    Cursors use external SVG files from assets/SVG/.
    Path is relative to css/style.css so prefix is ../
 ========================================================== */
-.contact-hero { min-height: calc(100vh - var(--header-height)); background-image: linear-gradient(to bottom, var(--case-orange) 0%, var(--ember) 100%); display: flex; align-items: center; justify-content: center; padding: var(--space-20) var(--content-pad); }
+.contact-hero { min-height: calc(100vh - var(--header-height)); background-image: none; background-color: #0b0c10; display: flex; align-items: center; justify-content: center; padding: var(--space-20) var(--content-pad); }
 .contact-inner { max-width: var(--maxw); width: 100%; display: flex; flex-direction: column; align-items: center; gap: var(--space-12); }
 .contact-card-wrap { position: relative; width: clamp(320px, 70%, 860px); }
 .contact-card-wrap img { display: block; width: 100%; height: auto; }
@@ -1218,7 +1211,7 @@ Set --section-bg per section inline in HTML.
 .linkedin-btn-go:hover { background: transparent; color: var(--white); }
 
 /* Resume page — arrow cursor on the LinkedIn card */
-.resume-hero { min-height: calc(100vh - var(--header-height)); background-image: linear-gradient(to bottom, var(--hero-orange) 0%, var(--case-orange) 100%); display: flex; align-items: center; justify-content: center; padding: var(--space-20) var(--content-pad); }
+.resume-hero { min-height: calc(100vh - var(--header-height)); background-image: none; background-color: #0b0c10; display: flex; align-items: center; justify-content: center; padding: var(--space-20) var(--content-pad); }
 .resume-inner { max-width: var(--maxw); width: 100%; display: flex; flex-direction: column; align-items: center; gap: var(--space-12); }
 .resume-card-btn { display: block; width: clamp(320px, 70%, 860px); background: none; border: none; padding: 0; cursor: url('../assets/images/arrowasset.png') 4 4, pointer; }
 .resume-card-btn:hover { opacity: 0.92; }
@@ -1230,7 +1223,7 @@ Set --section-bg per section inline in HTML.
 9. FOOTER
 ========================================================== */
 .site-footer {
-  background-color: var(--ember);
+  background-color: #0b0c10;
   color: var(--white);
   padding: var(--space-8) var(--content-pad);
 }
@@ -1258,7 +1251,7 @@ Spine hidden on mobile. Clean single column.
   .primary-nav {
     position: fixed;
     inset: 0 0 auto 0;
-    background-color: var(--champagne);
+    background-color: #0b0c10;
     padding: calc(var(--header-height) + var(--space-4)) var(--content-pad) var(--space-8);
     border-bottom: 3px solid var(--hero-orange);
     box-shadow: var(--shadow-lg);
@@ -1421,11 +1414,8 @@ Spine hidden on mobile. Clean single column.
     flex-direction: column;
     gap: var(--space-6);
     padding: var(--space-6) var(--space-2) var(--space-8); /* slim side padding → max width for labels */
-    background-image: linear-gradient(
-      to bottom,
-      var(--hero-orange) 0%,
-      var(--case-orange) 100%
-    );
+    background-image: none;
+    background-color: #0b0c10;
   }
   /* Pull flowers hard to the left and labels right up against them so the
      full step name has the most possible horizontal room. Flowers keep
